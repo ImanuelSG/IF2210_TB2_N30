@@ -5,10 +5,8 @@ import java.util.Map;
 
 public class Toko {
     private Map<String, Integer> stock;
-
     // Private static instance of the singleton class
     private static Toko instance;
-
     // Private constructor to prevent instantiation
     private Toko() {
         stock = new HashMap<>();

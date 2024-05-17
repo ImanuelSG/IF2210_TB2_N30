@@ -1,0 +1,3 @@
+Biji Jagung,pathtoimage,pathtoimage,3,Jagung
+Biji Stroberi,pathtoimage,pathtoimage,4,Stroberi
+Biji Labu,pathtoimage,pathtoimage,5,Labu

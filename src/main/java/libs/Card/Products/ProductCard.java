@@ -1,7 +1,4 @@
 package libs.Card.Products;
-
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 import libs.Card.Card;
@@ -9,12 +6,12 @@ import libs.Card.Harvestable.AnimalCard;
 import libs.Interfaces.Transactionable;
 import libs.Interfaces.UseableOnAnimal;
 
-public abstract class ProductCard extends Card implements Transactionable, UseableOnAnimal {
+public class ProductCard extends Card implements Transactionable, UseableOnAnimal {
     private int price;
     private int addedParameter;
-    private ArrayList<String> allowedEater;
+    private String allowedEater;
 
-    public ProductCard(String name, ImageIcon image, int price, int addedParameter, ArrayList<String> allowedEater) {
+    public ProductCard(String name, ImageIcon image, int price, int addedParameter, String allowedEater) {
         super(name, image);
         this.price = price;
         this.addedParameter = addedParameter;
@@ -25,7 +22,7 @@ public abstract class ProductCard extends Card implements Transactionable, Useab
         return addedParameter;
     }
 
-    public ArrayList<String> getAllowedEater() {
+    public String getAllowedEater() {
         return allowedEater;
     }
 

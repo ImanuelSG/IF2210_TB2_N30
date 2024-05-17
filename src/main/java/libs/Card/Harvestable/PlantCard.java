@@ -4,8 +4,9 @@ import javax.swing.ImageIcon;
 
 public class PlantCard extends HarvestableCard {
 
-    PlantCard(String name, ImageIcon image, ImageIcon transformedImage, int age, int age_to_harvest) {
-        super(name, image, transformedImage, age, age_to_harvest);
+    public PlantCard(String name, ImageIcon image, ImageIcon transformedImage, int age, int age_to_harvest,
+            String productMade) {
+        super(name, image, transformedImage, age, age_to_harvest, productMade);
     }
 
     public void addPlantAge() {
@@ -18,8 +19,8 @@ public class PlantCard extends HarvestableCard {
     }
 
     @Override
-    public boolean harvest() {
-        return true;
+    public String harvest() {
+        return this.productMade;
 
     }
 

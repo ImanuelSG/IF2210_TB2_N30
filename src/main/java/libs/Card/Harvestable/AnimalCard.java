@@ -7,9 +7,9 @@ import libs.Card.Products.ProductCard;
 public class AnimalCard extends HarvestableCard {
     private String type;
 
-    AnimalCard(String name, ImageIcon image, ImageIcon transformedImage, int weigth, int weigth_to_harvest,
-            String type) {
-        super(name, image, transformedImage, weigth, weigth_to_harvest);
+    public AnimalCard(String name, ImageIcon image, ImageIcon transformedImage, int weigth, int weigth_to_harvest,
+            String type, String productMade) {
+        super(name, image, transformedImage, weigth, weigth_to_harvest, productMade);
         this.type = type;
     }
 
@@ -34,8 +34,8 @@ public class AnimalCard extends HarvestableCard {
     }
 
     @Override
-    public boolean harvest() {
-        return true;
+    public String harvest() {
+        return this.productMade;
     }
 
 }

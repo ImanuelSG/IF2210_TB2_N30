@@ -9,5 +9,5 @@ public interface Harvestable {
 
     void applyEffect(String effect);
 
-    boolean harvest();
+    String harvest();
 }
