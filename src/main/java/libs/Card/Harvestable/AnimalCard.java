@@ -1,0 +1,41 @@
+package libs.Card.Harvestable;
+
+import javax.swing.ImageIcon;
+
+import libs.Card.Products.ProductCard;
+
+public class AnimalCard extends HarvestableCard {
+    private String type;
+
+    AnimalCard(String name, ImageIcon image, ImageIcon transformedImage, int weigth, int weigth_to_harvest,
+            String type) {
+        super(name, image, transformedImage, weigth, weigth_to_harvest);
+        this.type = type;
+    }
+
+    public void feed(ProductCard product) {
+        switch (type) {
+            case "herbivore":
+                System.out.println("Hewan herbivora diberi makan ");
+                break;
+            case "carnivore":
+                System.out.println("Hewan karnivora diberi makan ");
+                break;
+            default:
+                System.out.println("Hewan diberi makan ");
+                break;
+        }
+        System.out.println("Makan hewan");
+    }
+
+    @Override
+    public void applyEffect(String effect) {
+        System.out.println("Hewan diberi efek " + effect);
+    }
+
+    @Override
+    public boolean harvest() {
+        return true;
+    }
+
+}
