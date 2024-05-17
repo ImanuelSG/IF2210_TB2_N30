@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import libs.Toko.*;
 public class HelloWorldSwing {
     public static void main(String[] args) {
         // Create and set up the window
@@ -14,8 +14,9 @@ public class HelloWorldSwing {
         // Create a JPanel to hold the components and center it
         JPanel panel = new JPanel(new GridBagLayout());
 
+        String test = Toko.Hello();
         // Add the "Hello, World!" label to the panel
-        JLabel label = new JLabel("Hello, World!");
+        JLabel label = new JLabel(test);
         label.setHorizontalAlignment(SwingConstants.CENTER); // Center text horizontally
         label.setVerticalAlignment(SwingConstants.CENTER); // Center text vertically
         panel.add(label);

@@ -1,7 +1,7 @@
-package libs.Card.Useable;
+// package libs.Card.Useable;
 
-import libs.Card.Card;
+// import libs.Card.Card;
 
-public abstract class Useable extends Card {
+// public abstract class Useable extends Card {
 
-}
+// }

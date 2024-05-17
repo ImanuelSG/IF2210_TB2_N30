@@ -61,4 +61,9 @@ public class Toko {
         System.out.println("Penjualan berhasil");
         return 0;
     }
+
+    public static String Hello()
+    {
+     return "Hellow World";   
+    }
 }
