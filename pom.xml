@@ -29,7 +29,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <mainClass>HelloWorldSwing</mainClass>
+                    <mainClass>trial.HelloWorldSwing</mainClass>
                     <!--                    <arguments>-->
                     <!--                        <argument>-Djava.awt.headless=true</argument>-->
                     <!--                    </arguments>-->
