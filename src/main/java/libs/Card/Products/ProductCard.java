@@ -2,7 +2,7 @@ package libs.Card.Products;
 
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
+import javafx.scene.image.Image;
 
 import libs.Card.Card;
 import libs.Card.Harvestable.AnimalCard;
@@ -14,7 +14,7 @@ public abstract class ProductCard extends Card implements Transactionable, Useab
     private int addedParameter;
     private ArrayList<String> allowedEater;
 
-    public ProductCard(String name, ImageIcon image, int price, int addedParameter, ArrayList<String> allowedEater) {
+    public ProductCard(String name, Image image, int price, int addedParameter, ArrayList<String> allowedEater) {
         super(name, image);
         this.price = price;
         this.addedParameter = addedParameter;
@@ -31,7 +31,7 @@ public abstract class ProductCard extends Card implements Transactionable, Useab
 
     @Override
     public void use(AnimalCard target) {
-        System.out.println("Produk digunakan");
+        System.out.println("Product is used");
     }
 
     @Override
@@ -43,5 +43,4 @@ public abstract class ProductCard extends Card implements Transactionable, Useab
     public void setPrice(int price) {
         this.price = price;
     }
-
 }
