@@ -1,10 +1,10 @@
 package libs.Card.Harvestable;
 
-import javax.swing.ImageIcon;
+import javafx.scene.image.Image;
 
 public class PlantCard extends HarvestableCard {
 
-    public PlantCard(String name, ImageIcon image, ImageIcon transformedImage, int age, int age_to_harvest,
+    public PlantCard(String name, Image image, Image transformedImage, int age, int age_to_harvest,
             String productMade) {
         super(name, image, transformedImage, age, age_to_harvest, productMade);
     }

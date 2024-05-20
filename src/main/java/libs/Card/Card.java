@@ -1,12 +1,12 @@
 package libs.Card;
 
-import javax.swing.ImageIcon;
+import javafx.scene.image.Image;
 
 public class Card {
     protected String name;
-    protected ImageIcon image;
+    protected Image image;
 
-    public Card(String name, ImageIcon image) {
+    public Card(String name, Image image) {
         this.name = name;
         this.image = image;
     }
@@ -15,7 +15,7 @@ public class Card {
         return name;
     }
 
-    public ImageIcon getImage() {
+    public Image getImage() {
         return image;
     }
 }

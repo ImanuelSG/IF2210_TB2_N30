@@ -1,14 +1,14 @@
 package libs.Deck;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
 import libs.Card.Card;
 
 public class Deck {
-    private ArrayList<Card> cards;
+    protected ArrayList<Card> cards;
 
     public Deck() {
-        cards = new ArrayList<Card>();
+        cards = new ArrayList<>();
     }
 
     public void addCard(Card card) {
@@ -19,20 +19,27 @@ public class Deck {
         cards.remove(card);
     }
 
+    public Card drawCard() {
+        if (cards.size() > 0) {
+            return cards.remove(cards.size() - 1);
+        }
+        return null;
+    }
+
+    public void shuffle() {
+        Collections.shuffle(cards);
+    }
+
     public ArrayList<Card> getCards() {
         return cards;
     }
 
     public ArrayList<Card> shuffle(int quantity) {
-        ArrayList<Card> shuffledCards = new ArrayList<Card>();
-        for (int i = 0; i < quantity; i++) {
-            int randomIndex = (int) (Math.random() * cards.size());
-            shuffledCards.add(cards.get(randomIndex));
+        Collections.shuffle(cards);
+        ArrayList<Card> shuffledCards = new ArrayList<>();
+        for (int i = 0; i < quantity && i < cards.size(); i++) {
+            shuffledCards.add(cards.get(i));
         }
         return shuffledCards;
-
     }
-
-    
-
 }

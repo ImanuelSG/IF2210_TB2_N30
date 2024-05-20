@@ -1,21 +1,20 @@
 package libs.Card.Harvestable;
 
-import javax.swing.ImageIcon;
-
+import javafx.scene.image.Image;
 import libs.Card.Card;
 import libs.Interfaces.Harvestable;
 
 import java.util.Map;
 
 public abstract class HarvestableCard extends Card implements Harvestable {
-    protected ImageIcon transformedImage;
+    protected Image transformedImage;
     protected boolean isProtected;
     protected int parameter;
     protected int parameterToHarvest;
     protected String productMade;
     protected Map<String, Integer> appliedEffect;
 
-    public HarvestableCard(String name, ImageIcon image, ImageIcon transformedImage, int parameter,
+    public HarvestableCard(String name, Image image, Image transformedImage, int parameter,
             int parameterToHarvest, String productMade) {
         super(name, image);
         this.transformedImage = transformedImage;
@@ -34,7 +33,7 @@ public abstract class HarvestableCard extends Card implements Harvestable {
     }
 
     @Override
-    public ImageIcon getImage() {
+    public Image getImage() {
         if (parameter >= parameterToHarvest) {
             return transformedImage;
         } else {

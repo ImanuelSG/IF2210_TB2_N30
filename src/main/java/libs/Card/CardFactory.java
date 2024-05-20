@@ -5,8 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.ImageIcon;
-
+import javafx.scene.image.Image;
 import libs.Card.Harvestable.AnimalCard;
 import libs.Card.Harvestable.PlantCard;
 import libs.Card.Products.ProductCard;
@@ -37,8 +36,8 @@ public class CardFactory {
 
     public static AnimalCard createAnimalCard(String name) {
         List<String> data = MapHewan.get(name);
-        ImageIcon image = new ImageIcon(data.get(0));
-        ImageIcon transformedImage = new ImageIcon(data.get(1));
+        Image image = new Image(data.get(0));
+        Image transformedImage = new Image(data.get(1));
         int weightToHarvest = Integer.parseInt(data.get(2));
         String type = data.get(3);
         String productMade = data.get(4);
@@ -50,7 +49,7 @@ public class CardFactory {
     public static ProductCard createProductCard(String name) {
 
         List<String> data = MapProduct.get(name);
-        ImageIcon image = new ImageIcon(data.get(0));
+        Image image = new Image(data.get(0));
         int price = Integer.parseInt(data.get(1));
         int addedParameter = Integer.parseInt(data.get(2));
         String type = data.get(3);
@@ -61,8 +60,8 @@ public class CardFactory {
     public static PlantCard createPlantCard(String name) {
 
         List<String> data = MapTanaman.get(name);
-        ImageIcon image = new ImageIcon(data.get(0));
-        ImageIcon transformedImage = new ImageIcon(data.get(1));
+        Image image = new Image(data.get(0));
+        Image transformedImage = new Image(data.get(1));
         int growthTime = Integer.parseInt(data.get(2));
         String productMade = data.get(3);
 

@@ -1,19 +1,25 @@
 package libs.Player;
 
+import java.util.ArrayList;
+
+import libs.Card.Card;
+import libs.Deck.ActiveDeck;
 import libs.Deck.Deck;
+import libs.Field.Field;
 
 public class Player {
     private String name;
     private int gulden;
     private Deck deck;
-    private Deck activeDeck;
-    
+    private ActiveDeck activeDeck;
+    private Field field;
 
     public Player(String name, int gulden) {
         this.name = name;
         this.gulden = gulden;
         this.deck = new Deck();
-        this.activeDeck = new Deck();
+        this.activeDeck = new ActiveDeck();
+        this.field = new Field(4, 5);
     }
 
     public String getName() {
@@ -28,16 +34,24 @@ public class Player {
         return deck;
     }
 
-    public Deck getActiveDeck() {
+    public ActiveDeck getActiveDeck() {
         return activeDeck;
+    }
+
+    public Field getField() {
+        return field;
     }
 
     public void setGulden(int gulden) {
         this.gulden = gulden;
     }
 
-    public void setActiveDeck(Deck activeDeck) {
+    public void setActiveDeck(ActiveDeck activeDeck) {
         this.activeDeck = activeDeck;
+    }
+
+    public ArrayList<Card> drawCard() {
+        return this.deck.shuffle(6 - this.activeDeck.getCards().size());
     }
 
 }

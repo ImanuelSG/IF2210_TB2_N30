@@ -5,13 +5,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
-import libs.Interfaces.Harvestable;
+import libs.Player.Player;
+import libs.Card.Card;
+import libs.Card.Harvestable.HarvestableCard;
 
 public class FieldObserver extends GridPane {
-    private Field field;
 
-    public FieldObserver(Field field) {
-        this.field = field;
+    public FieldObserver(Player player) {
+        Field field = player.getField();
         int rows = field.getField().length;
         int cols = field.getField()[0].length;
 
@@ -21,16 +22,14 @@ public class FieldObserver extends GridPane {
                 final int col = j;
 
                 ImageView cellView = new ImageView();
-                field.getField()[i][j].addListener((obs, oldHarvestable, newHarvestable) -> {
-                    if (newHarvestable != null) {
-                        cellView.setImage(newHarvestable.getImage());
-                    } else {
-                        cellView.setImage(null);
-                    }
-                });
+                cellView.setFitWidth(100);
+                cellView.setFitHeight(100);
+                if (field.getHarvestable(row, col) != null) {
+                    cellView.setImage(field.getHarvestable(row, col).getImage());
+                }
 
                 cellView.setOnDragOver(event -> {
-                    if (event.getGestureSource() != cellView && event.getDragboard().hasImage()) {
+                    if (event.getGestureSource() != cellView && event.getDragboard().hasString()) {
                         event.acceptTransferModes(TransferMode.MOVE);
                     }
                     event.consume();
@@ -39,14 +38,31 @@ public class FieldObserver extends GridPane {
                 cellView.setOnDragDropped(event -> {
                     Dragboard db = event.getDragboard();
                     boolean success = false;
-                    if (db.hasImage()) {
-                        // Implement your logic to get the dragged card and place it in the field
-                        Harvestable draggedCard = ... // Obtain the dragged card
-                        field.setHarvestable(row, col, draggedCard);
-                        success = true;
+                    if (db.hasString()) {
+                        String cardName = db.getString();
+                        Card draggedCard = player.getActiveDeck().getCardByName(cardName);
+                        if (draggedCard instanceof HarvestableCard) {
+                            field.setHarvestable(row, col, (HarvestableCard) draggedCard);
+                            cellView.setImage(((HarvestableCard) draggedCard).getImage());
+                            player.getActiveDeck().removeCard(draggedCard);
+                            success = true;
+                        }
                     }
                     event.setDropCompleted(success);
                     event.consume();
+                });
+
+                cellView.setOnDragDetected(event -> {
+                    HarvestableCard currentCard = field.getHarvestable(row, col);
+                    if (currentCard != null) {
+                        Dragboard db = cellView.startDragAndDrop(TransferMode.MOVE);
+                        ClipboardContent content = new ClipboardContent();
+                        content.putString(currentCard.getName());
+                        db.setContent(content);
+                        field.removeHarvestable(row, col);
+                        cellView.setImage(null);
+                        event.consume();
+                    }
                 });
 
                 this.add(cellView, j, i);

@@ -1,14 +1,13 @@
 package libs.Card.Useable;
 
-import javax.swing.ImageIcon;
-
+import javafx.scene.image.Image;
 import libs.Card.Card;
 import libs.Card.Harvestable.HarvestableCard;
 import libs.Interfaces.UseableOnHarvestable;
 
 public class InstantHarverst extends Card implements UseableOnHarvestable {
 
-    public InstantHarverst(String name, ImageIcon image) {
+    public InstantHarverst(String name, Image image) {
         super(name, image);
     }
 

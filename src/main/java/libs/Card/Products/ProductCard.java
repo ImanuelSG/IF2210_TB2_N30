@@ -1,6 +1,6 @@
 package libs.Card.Products;
-import javax.swing.ImageIcon;
 
+import javafx.scene.image.Image;
 import libs.Card.Card;
 import libs.Card.Harvestable.AnimalCard;
 import libs.Interfaces.Transactionable;
@@ -11,7 +11,7 @@ public class ProductCard extends Card implements Transactionable, UseableOnAnima
     private int addedParameter;
     private String allowedEater;
 
-    public ProductCard(String name, ImageIcon image, int price, int addedParameter, String allowedEater) {
+    public ProductCard(String name, Image image, int price, int addedParameter, String allowedEater) {
         super(name, image);
         this.price = price;
         this.addedParameter = addedParameter;

@@ -1,11 +1,12 @@
 package libs.Interfaces;
 
-import javax.swing.ImageIcon;
+
+import javafx.scene.image.Image;
 
 public interface Harvestable {
     boolean isProtected();
 
-    ImageIcon getImage();
+    Image getImage();
 
     void applyEffect(String effect);
 
