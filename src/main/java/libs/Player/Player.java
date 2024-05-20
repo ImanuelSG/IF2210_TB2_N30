@@ -7,6 +7,7 @@ public class Player {
     private int gulden;
     private Deck deck;
     private Deck activeDeck;
+    
 
     public Player(String name, int gulden) {
         this.name = name;

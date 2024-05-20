@@ -6,14 +6,14 @@ import libs.Card.Card;
 import libs.Card.Harvestable.HarvestableCard;
 import libs.Interfaces.UseableOnHarvestable;
 
-public class AccelerateCard extends Card implements UseableOnHarvestable {
+public class DelayCard extends Card implements UseableOnHarvestable {
 
-    public AccelerateCard(String name, ImageIcon image) {
+    public DelayCard(String name, ImageIcon image) {
         super(name, image);
     }
 
     @Override
     public void use(HarvestableCard target) {
-        System.out.println("Accelerate Card digunakan");
+        System.out.println("Delay Card digunakan");
     }
 }

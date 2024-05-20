@@ -33,7 +33,11 @@ public class GameWorld {
             // Update game state
             // Render game state
         }
-        // Main game loop
+        if (playerList.get(0).getGulden() > playerList.get(1).getGulden()) {
+            System.out.println(playerList.get(0).getName() + " wins!");
+        } else {
+            System.out.println(playerList.get(1).getName() + " wins!");
+        }
     }
 
     public void nextTurn() {
@@ -46,6 +50,10 @@ public class GameWorld {
 
     public ArrayList<Player> getPlayerList() {
         return playerList;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
     }
 
     // Other methods and fields of the GameWorld class

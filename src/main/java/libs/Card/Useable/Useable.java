@@ -1,7 +1,8 @@
 package libs.Card.Useable;
 
-import libs.Card.Card;
+import libs.Interfaces.Harvestable;
 
-public abstract class Useable extends Card {
+public interface Useable {
+    public void use(Harvestable target);
 
 }

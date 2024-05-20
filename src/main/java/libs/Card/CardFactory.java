@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import libs.Card.Harvestable.AnimalCard;
 import libs.Card.Harvestable.PlantCard;
 import libs.Card.Products.ProductCard;
-import libs.Interfaces.Harvestable;
 
 public class CardFactory {
     private static CardFactory instance;
@@ -25,8 +24,8 @@ public class CardFactory {
 
     private CardFactory() {
         loadProductMap();
-        loadHarvestableMap();
-        loadItemsMap();
+        loadHewanMap();
+        loadTanamanMap();
     }
 
     public static CardFactory getInstance() {
@@ -59,9 +58,8 @@ public class CardFactory {
         return new ProductCard(name, image, price, addedParameter, type);
     }
 
-    // Factory method to create a PlantCard
     public static PlantCard createPlantCard(String name) {
-        //
+
         List<String> data = MapTanaman.get(name);
         ImageIcon image = new ImageIcon(data.get(0));
         ImageIcon transformedImage = new ImageIcon(data.get(1));
@@ -72,18 +70,17 @@ public class CardFactory {
     }
 
     private void loadProductMap() {
-        MapItems = new HashMap<>();
-        MapItems.put("Bibit", new ArrayList<String>());
-    }
-
-    private void loadHarvestableMap() {
-        MapHarvestable = new HashMap<>();
-        MapHarvestable.put("Hewan", new ArrayList<String>());
-        MapHarvestable.put("Tanaman", new ArrayList<String>());
+        MapProduct = new HashMap<>();
 
     }
 
-    private void loadItemsMap() {
+    private void loadHewanMap() {
+        MapHewan = new HashMap<>();
+        MapHewan.put("Ayam", new ArrayList<String>());
+
+    }
+
+    private void loadTanamanMap() {
         MapProduct = new HashMap<>();
         MapProduct.put("Produk", new ArrayList<String>());
     }
