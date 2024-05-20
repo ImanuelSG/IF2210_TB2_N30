@@ -32,6 +32,22 @@ public abstract class HarvestableCard extends Card implements Harvestable {
         this.isProtected = isProtected;
     }
 
+    public void setParameter(int parameter) {
+        this.parameter = parameter;
+    }
+
+    public int getParameter() {
+        return parameter;
+    }
+
+    public void applyEffect(String effect) {
+        if (appliedEffect.containsKey(effect)) {
+            appliedEffect.put(effect, appliedEffect.get(effect) + 1);
+        } else {
+            appliedEffect.put(effect, 1);
+        }
+    }
+
     @Override
     public Image getImage() {
         if (parameter >= parameterToHarvest) {
