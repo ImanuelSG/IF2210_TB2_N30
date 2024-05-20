@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+    <left>
+        <HBox>
+            <Button text="Switch to View 1" onAction="#showView1"/>
+            <Button text="Switch to View 2" onAction="#showView2"/>
+        </HBox>
+    </left>
+    <center>
+        <Pane fx:id="contentPane"/>
+    </center>
+</BorderPane>
