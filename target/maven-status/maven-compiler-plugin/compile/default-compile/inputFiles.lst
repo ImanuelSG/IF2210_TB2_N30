@@ -9,6 +9,7 @@
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/DestroyCard.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Harvestable/AnimalCard.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Interfaces/Harvestable.java
+/home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/MainApp.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/DelayCard.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Interfaces/UseableOnHarvestable.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/CardFactory.java
@@ -19,5 +20,5 @@
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Deck/ActiveDeck.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Field/FieldObserver.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Interfaces/UseableOnAnimal.java
+/home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/MainController.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Player/Player.java
-/home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/ImageExample.java

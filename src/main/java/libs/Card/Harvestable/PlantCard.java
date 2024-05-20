@@ -21,7 +21,6 @@ public class PlantCard extends HarvestableCard {
     @Override
     public String harvest() {
         return this.productMade;
-
     }
 
 }

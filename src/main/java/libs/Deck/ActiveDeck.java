@@ -10,8 +10,8 @@ import javafx.scene.text.Text;
 
 public class ActiveDeck extends Deck {
 
-    public ActiveDeck() {
-        super();
+    public ActiveDeck(String name) {
+        super(name);
     }
 
     public HBox createActiveDeckView() {

@@ -9,6 +9,7 @@ import java.util.Map;
 public abstract class HarvestableCard extends Card implements Harvestable {
     protected Image transformedImage;
     protected boolean isProtected;
+    protected boolean isPlacedTraped;
     protected int parameter;
     protected int parameterToHarvest;
     protected String productMade;
@@ -47,6 +48,8 @@ public abstract class HarvestableCard extends Card implements Harvestable {
             appliedEffect.put(effect, 1);
         }
     }
+
+    
 
     @Override
     public Image getImage() {

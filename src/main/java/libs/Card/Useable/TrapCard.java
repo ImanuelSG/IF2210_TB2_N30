@@ -5,14 +5,14 @@ import libs.Card.Card;
 import libs.Card.Harvestable.HarvestableCard;
 import libs.Interfaces.UseableOnHarvestable;
 
-public class InstantHarverst extends Card implements UseableOnHarvestable {
+public class TrapCard extends Card implements UseableOnHarvestable {
 
-    public InstantHarverst(String name, Image image) {
+    public TrapCard(String name, Image image) {
         super(name, image);
     }
 
-    public void use(HarvestableCard target ) {
-        
+    @Override
+    public void use(HarvestableCard target) {
+        target.applyEffect("Trap");
     }
-
 }

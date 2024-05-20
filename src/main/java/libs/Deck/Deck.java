@@ -6,9 +6,11 @@ import libs.Card.Card;
 
 public class Deck {
     protected ArrayList<Card> cards;
+    protected String owner;
 
-    public Deck() {
+    public Deck(String owner) {
         cards = new ArrayList<>();
+        this.owner = owner;
     }
 
     public void addCard(Card card) {
@@ -41,5 +43,9 @@ public class Deck {
             shuffledCards.add(cards.get(i));
         }
         return shuffledCards;
+    }
+
+    public String getOwner() {
+        return owner;
     }
 }
