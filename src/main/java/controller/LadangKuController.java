@@ -3,7 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-public class View1Controller {
+public class LadangKuController {
 
     @FXML
     private Text someText;

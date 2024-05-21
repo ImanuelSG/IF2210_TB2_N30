@@ -14,14 +14,14 @@ public class MainController {
     @FXML
     private void initialize() {
         System.out.println("KELOAD");
-        loadView("View1.fxml"); // Corrected to load "View1.fxml"
+        loadView("LadangKu.fxml"); // Corrected to load "View1.fxml"
     }
 
 
     @FXML
-    public void showView1() {
+    public void showLadangKu() {
         System.out.println("Ayam2");
-        loadView("View1.fxml");
+        loadView("LadangKu.fxml");
     }
 
     @FXML

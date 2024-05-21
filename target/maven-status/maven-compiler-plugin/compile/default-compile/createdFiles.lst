@@ -2,6 +2,7 @@ libs/Card/Harvestable/PlantCard.class
 libs/Card/Harvestable/HarvestableCard.class
 libs/Card/Harvestable/AnimalCard.class
 libs/Card/CardFactory.class
+controller/LadangKuController.class
 libs/GameWorld/GameWorld.class
 controller/MainController.class
 libs/Interfaces/UseableOnAnimal.class
@@ -21,5 +22,4 @@ libs/Card/Products/ProductCard.class
 libs/Player/Player.class
 libs/Interfaces/Transactionable.class
 libs/Interfaces/UseableOnHarvestable.class
-controller/View1Controller.class
 libs/MainApp.class
