@@ -16,12 +16,12 @@
 
 <BorderPane prefHeight="1000" prefWidth="1203.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <center>
-       <StackPane fx:id="stackPane">
+      
           <!-- Switchable content pane -->
-          <Pane fx:id="contentPane" minHeight="1000.0" prefWidth="900.0" />
-         <!-- <HBox prefHeight="1000.0" prefWidth="875.0" style="-fx-padding: 10px;">
-            <children>
-               <StackPane alignment="TOP_CENTER" prefHeight="100.0" prefWidth="471.0" style="-fx-padding: 20px;">
+          
+         <HBox prefHeight="100.0" prefWidth="875.0" style="-fx-padding: 10px;">
+       
+               
                   <children>
                      <Rectangle arcHeight="39.0" arcWidth="42.0" fill="#495749" height="149.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="424.0" />
                      <VBox prefHeight="688.0" prefWidth="471.0">
@@ -43,7 +43,7 @@
                                        <Image url="@../img/gui/coin.png" />
                                     </image>
                                  </ImageView>
-                                 <Label prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Text" />
+                                 <Label fx:id="player1GuldenLabel" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Text" />
                               </children>
                            </HBox>
                            <HBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="397.0" style="-fx-spacing: 10px; -fx-padding: 15px 20px;">
@@ -63,20 +63,22 @@
                                        <Image url="@../img/gui/coin.png" />
                                     </image>
                                  </ImageView>
-                                 <Label prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Text" />
+                                 <Label fx:id="player2GuldenLabel" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Text" />
                               </children>
                            </HBox>
                         </children>
                      </VBox>
-                  </children> -->
-               <!-- </StackPane>  -->
+                  </children>
                
-            <!-- </children>
-         </HBox> -->
-        <VBox spacing="20"> <!-- Added VBox with spacing -->
-             <fx:include source="LadangKu.fxml"/>
-             <fx:include source="ActiveDeckView.fxml"/>
-          </VBox>
+               
+            
+         </HBox>
+          <StackPane fx:id="stackPane">
+          <Pane fx:id="contentPane" minHeight="1000.0" prefWidth="900.0" />
+          <children>
+         <fx:include source="LadangKu.fxml"/>
+         <fx:include source="ActiveDeckView.fxml"/>
+         </children>
        </StackPane>
     </center>
    <right>

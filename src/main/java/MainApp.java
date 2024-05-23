@@ -5,17 +5,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import libs.Card.CardFactory;
+import libs.GameWorld.GameWorld;
+import libs.Toko.Toko;
 
 public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        
+
+
         Parent root = FXMLLoader.load(getClass().getResource("view/MainView.fxml"));
-        primaryStage.setTitle("Drag and Drop Example");
+        primaryStage.setTitle("MooMoo Game");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
-        CardFactory.getInstance();
 
     }
 

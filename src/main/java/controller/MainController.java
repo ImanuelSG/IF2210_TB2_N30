@@ -2,7 +2,9 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import libs.GameWorld.GameWorld;
 
 import java.io.IOException;
 
@@ -12,14 +14,26 @@ public class MainController {
     private Pane contentPane;
 
     @FXML
-    private void initialize() {
-        System.out.println("KELOAD");
-        loadView("LadangKu.fxml"); // Corrected to load "View1.fxml"
-    }
+    private Label turnLabel;
 
+    @FXML
+    private Label player1GuldenLabel;
+
+    @FXML
+    private Label player2GuldenLabel;
+
+    @FXML
+    private void initialize() {
+        GameWorld main = GameWorld.getInstance();
+
+        loadView("LadangKu.fxml"); // Corrected to load "View1.fxml"
+        // main.run();
+
+    }
 
     @FXML
     public void showLadangKu() {
+        GameWorld.getInstance().nextTurn();
         System.out.println("Ayam2");
         loadView("LadangKu.fxml");
     }
@@ -38,6 +52,10 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateView() {
+
     }
 
 }
