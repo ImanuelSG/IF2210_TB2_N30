@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+     <GridPane fx:id="deckGrid" prefHeight="200" prefWidth="200" style="-fx-border-color: black;">
+         <!-- Cards in the deck -->
+         <Label text="Card 1" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+         <Label text="Card 2" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+         <!-- Add more cards as needed -->
+     </GridPane>
+    <VBox>
+        <Button onAction="#handleAddCard" text="Add Card" />
+        <Button onAction="#handleRemoveCard" text="Remove Card" />
+    </VBox>
+    <GridPane fx:id="fieldGrid" prefHeight="200" prefWidth="200" style="-fx-border-color: black;">
+        <!-- Field where cards will be dragged to -->
+    </GridPane>
+</HBox>
