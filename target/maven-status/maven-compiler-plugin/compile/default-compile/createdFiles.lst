@@ -1,24 +1,13 @@
 libs/Card/Harvestable/PlantCard.class
-<<<<<<< HEAD
 libs/Card/Harvestable/HarvestableCard.class
-controller/LadangkuController$1.class
 controller/ActiveDeckController.class
 libs/Card/Harvestable/AnimalCard.class
-controller/LadangkuController$4.class
-=======
-controller/ActiveDeckController.class
-libs/Card/Harvestable/AnimalCard.class
->>>>>>> 9f88bcf0be33888a3c376b0b21823e6a7f52431f
 libs/Interfaces/UseableOnAnimal.class
 libs/Card/Useable/InstantHarverst.class
 libs/Card/Useable/DelayCard.class
 libs/Card/Useable/Useable.class
 libs/Card/Card.class
-<<<<<<< HEAD
 controller/StartViewController.class
-libs/Field/Field.class
-=======
->>>>>>> 9f88bcf0be33888a3c376b0b21823e6a7f52431f
 libs/Toko/Toko.class
 libs/Card/Useable/AccelerateCard.class
 libs/Interfaces/Harvestable.class
