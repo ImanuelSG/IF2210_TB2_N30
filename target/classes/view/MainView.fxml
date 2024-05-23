@@ -73,8 +73,10 @@
                
             <!-- </children>
          </HBox> -->
-         <fx:include source="LadangKu.fxml"/>
-         <fx:include source="ActiveDeckView.fxml"/>
+        <VBox spacing="20"> <!-- Added VBox with spacing -->
+             <fx:include source="LadangKu.fxml"/>
+             <fx:include source="ActiveDeckView.fxml"/>
+          </VBox>
        </StackPane>
     </center>
    <right>

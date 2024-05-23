@@ -1,16 +1,19 @@
 package controller;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import libs.Card.CardFactory;
-import libs.Card.Harvestable.AnimalCard;
+import libs.Card.Harvestable.HarvestableCard;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,7 +28,7 @@ public class LadangkuController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         CardFactory.getInstance();
         populateGrid();
-
+        enableGridDrop();
     }
 
     private void populateGrid() {
@@ -62,19 +65,13 @@ public class LadangkuController implements Initializable {
                 // Set the VBox to the center of the BorderPane
                 borderPane.setCenter(vBox);
 
-                AnimalCard animalCard = CardFactory.createAnimalCard(AnimalString.get(i));
-
-                // Set the image and name
-                imageView.setImage(animalCard.getImage());
-                label.setText(animalCard.getName());
-
                 // Add the BorderPane to the gridPane
                 gridPane.add(borderPane, j, i);
             }
         }
     }
 
-    private void setCardAt(int row, int col, String name, String imagePath) {
+    private void setCardAt(int row, int col, HarvestableCard card) {
         // Get the BorderPane at the specified row and column
         BorderPane borderPane = (BorderPane) gridPane.getChildren().get(row * 5 + col);
 
@@ -86,7 +83,54 @@ public class LadangkuController implements Initializable {
         Label label = (Label) vBox.getChildren().get(1);
 
         // Set the image and name
-        imageView.setImage(new javafx.scene.image.Image(imagePath));
-        label.setText(name);
+        imageView.setImage(card.getImage());
+        label.setText(card.getName());
     }
+
+    private void enableGridDrop() {
+        // Set an event handler to handle drag over the grid
+        gridPane.setOnDragOver(new EventHandler<DragEvent>() {
+
+            public void handle(DragEvent event) {
+
+                /* data is dragged over the target */
+                if (event.getGestureSource() != gridPane &&
+                        event.getDragboard().hasString()) {
+                    /* allow for both copying and moving, whatever user chooses */
+                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                }
+                event.consume();
+            }
+        });
+
+        // Set an event handler to handle drop onto the grid
+        gridPane.setOnDragDropped(new EventHandler<DragEvent>() {
+            public void handle(DragEvent event) {
+                
+                Dragboard db = event.getDragboard();
+                boolean success = false;
+                if (db.hasString()) {
+                    // Get the card name from the dragboard
+                    String cardName = db.getString();
+                    // Create the corresponding card from the name (assuming CardFactory provides
+                    // this functionality)
+                    HarvestableCard card = CardFactory.createAnimalCard(cardName);
+                    // Get the row and column where the drop occurred
+                    int col = (int) event.getX() / 100; // Adjust this value according to your cell width
+                    int row = (int) event.getY() / 150; // Adjust this value according to your cell height
+                    // Set the card at the specified row and column
+                    setCardAt(row, col, card);
+                    success = true;
+                }
+                /*
+                 * let the source know whether the string was successfully
+                 * transferred and used
+                 */
+                event.setDropCompleted(success);
+
+                event.consume();
+            }
+        });
+    }
+
 }
