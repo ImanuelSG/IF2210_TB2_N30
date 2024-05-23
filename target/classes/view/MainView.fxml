@@ -19,7 +19,7 @@
       <!-- Switchable content pane -->
       <StackPane>
          <ImageView>
-            <Image url="/img/gui/bg_deck.png" requestedWidth="900" requestedHeight="1000" />
+            <Image url="/img/gui/bg_deck.png" requestedWidth="900" requestedHeight="1100" />
          </ImageView>
          <VBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="875.0" style="-fx-padding: 10px;">
@@ -74,12 +74,13 @@
                   <Label fx:id="turnLabel" alignment="CENTER" prefHeight="63.0" prefWidth="141.0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" text="TURN : 0" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" style="-fx-padding: 10px;">
-
-               <BorderPane fx:id="contentPane" minHeight="500.0" prefWidth="900.0" />
-               <fx:include source="ActiveDeckView.fxml" />
-
-            </HBox>
+            <children>
+               <BorderPane fx:id="contentPane" prefHeight="700.0" prefWidth="900.0" />
+<!--               <fx:include source="ActiveDeckView.fxml" />-->
+               <HBox alignment="BOTTOM_CENTER" style="-fx-padding: 10px;">
+                  <fx:include source="ActiveDeckView.fxml" />
+               </HBox>
+            </children>
          </VBox>
       </StackPane>
    </center>
