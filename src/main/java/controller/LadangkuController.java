@@ -94,25 +94,30 @@ public class LadangkuController implements Initializable, Observer {
         Dragboard db = event.getDragboard();
         boolean success = false;
         if (db.hasString()) {
-            int columnIndex = GridPane.getColumnIndex(borderPane);
-            int rowIndex = GridPane.getRowIndex(borderPane);
-            String args = db.getString().split("_")[0];
-            String type = db.getString().split("_")[1];
-            if (ladang.getHarvestable(rowIndex, columnIndex) == null
-                    && type.equals("Harvestable")) {
-                ImageView imageView = (ImageView) ((VBox) borderPane.getCenter()).getChildren().get(0);
-                Label label = (Label) ((VBox) borderPane.getCenter()).getChildren().get(1);
-                HarvestableCard card = CardFactory.createHarvestableCard(args);
-                imageView.setImage(card.getImage());
-                label.setText(card.getName());
-                ladang.setHarvestable(rowIndex, columnIndex, card);
-                success = true;
+            String[] data = db.getString().split("_");
+            if (data.length == 2) {
+                String args = data[0];
+                String type = data[1];
+                int columnIndex = GridPane.getColumnIndex(borderPane);
+                int rowIndex = GridPane.getRowIndex(borderPane);
+
+                if (ladang.getHarvestable(rowIndex, columnIndex) == null && type.equals("Harvestable")) {
+                    VBox centerBox = (VBox) borderPane.getCenter();
+                    ImageView imageView = (ImageView) centerBox.getChildren().get(0);
+                    Label label = (Label) centerBox.getChildren().get(1);
+                    HarvestableCard card = CardFactory.createHarvestableCard(args);
+                    imageView.setImage(card.getImage());
+                    label.setText(card.getName());
+                    ladang.setHarvestable(rowIndex, columnIndex, card);
+                    success = true;
+                }
             }
-            updateView();
         }
+
         event.setDropCompleted(success);
         event.consume();
-        
+
+        updateView();
     }
 
     private void handleCellClick(BorderPane borderPane) {

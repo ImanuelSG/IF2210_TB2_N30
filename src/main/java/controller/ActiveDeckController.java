@@ -90,15 +90,15 @@ public class ActiveDeckController implements Initializable, Observer {
 
             });
 
-            imageView.setOnDragDone(
-                    event -> {
-                        System.out.println(event.isDropCompleted());
-                        if (event.isDropCompleted()) {
-                            System.out.println("Card removed");
-                            activeDeck.removeCard(container.getChildren().indexOf(borderPane));
-                            updateView();
-                        }
-                    });
+            imageView.setOnDragDone(event -> {
+
+                if (event.isDropCompleted()) {
+
+                    activeDeck.removeCard(container.getChildren().indexOf(borderPane));
+                    updateView();
+                }
+            });
+
         }
     }
 
