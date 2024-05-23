@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
 
-<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ActiveDeckController" spacing="10" alignment="CENTER" style="-fx-padding: 10;" prefHeight="100.0">
+<HBox fx:id="container" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ActiveDeckController" spacing="10" alignment="CENTER" style="-fx-padding: 10;" prefHeight="100.0">
 <HBox maxHeight="100.0" >
     <Pane fx:id="placeholder1" style="-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;">
         <VBox alignment="CENTER">

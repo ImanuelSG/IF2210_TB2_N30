@@ -10,7 +10,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("view/MainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/StartView.fxml"));
         primaryStage.setTitle("Drag and Drop Example");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
