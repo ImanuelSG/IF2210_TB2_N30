@@ -17,8 +17,8 @@ public class Player {
     public Player(String name, int gulden) {
         this.name = name;
         this.gulden = gulden;
-        this.deck = new Deck();
-        this.activeDeck = new ActiveDeck();
+        this.deck = new Deck(name);
+        this.activeDeck = new ActiveDeck(name);
         this.field = new Field(4, 5);
     }
 

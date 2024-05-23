@@ -28,11 +28,6 @@ public class AnimalCard extends HarvestableCard {
     }
 
     @Override
-    public void applyEffect(String effect) {
-        System.out.println("Hewan diberi efek " + effect);
-    }
-
-    @Override
     public String harvest() {
         return this.productMade;
     }

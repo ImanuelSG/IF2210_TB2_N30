@@ -1,9 +1,0 @@
-Sirip Hiu,pathtoimage,500,12,Carnivore
-Susu,pathtoimage,100,4,Carnivore
-Daging Domba,pathtoimage,120,6,Carnivore
-Daging Kuda,pathtoimage,150,8,Carnivore
-Telur,pathtoimage,50,2,Carnivore
-Daging Beruang,pathtoimage,500,12,Carnivore
-Jagung,pathtoimage,150,3,Herbivore
-Labu,pathtoimage,500,12,Herbivore
-Stroberi,pathtoimage,100,4,Herbivore
