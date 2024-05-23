@@ -19,7 +19,7 @@
        <StackPane fx:id="stackPane">
           <!-- Switchable content pane -->
           <Pane fx:id="contentPane" minHeight="1000.0" prefWidth="900.0" />
-         <HBox prefHeight="1000.0" prefWidth="875.0" style="-fx-padding: 10px;">
+         <!-- <HBox prefHeight="1000.0" prefWidth="875.0" style="-fx-padding: 10px;">
             <children>
                <StackPane alignment="TOP_CENTER" prefHeight="100.0" prefWidth="471.0" style="-fx-padding: 20px;">
                   <children>
@@ -68,9 +68,13 @@
                            </HBox>
                         </children>
                      </VBox>
-                  </children>
-               </StackPane>
-               <HBox prefHeight="979.0" prefWidth="259.0" style="-fx-padding: 20px;">
+                  </children> -->
+               <!-- </StackPane>  -->
+               
+            <!-- </children>
+         </HBox> -->
+         <fx:include source="ActiveDeckView.fxml"/>
+               <HBox prefHeight="100.0" prefWidth="259.0" style="-fx-padding: 20px;">
                   <children>
                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="101.0" prefWidth="189.0" style="-fx-background-radius: 20px; -fx-background-color: #495749; -fx-padding: 10px;" text="TURN" textAlignment="CENTER" textFill="WHITE">
                         <font>
@@ -79,11 +83,10 @@
                      </Label>
                   </children>
                </HBox>
-            </children>
-         </HBox>
        </StackPane>
     </center>
    <right>
+   <!--SIDE BAR-->
       <VBox prefHeight="1000.0" prefWidth="304.0" style="-fx-padding: 20px; -fx-spacing: 150px; -fx-background-image: url('img/gui/bg_sidebar.png'); -fx-background-size: cover;" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" prefHeight="72.0" prefWidth="96.0" style="-fx-background-color: #68441D; -fx-background-radius: 8px;" text="NEXT" textFill="WHITE">

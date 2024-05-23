@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ActiveDeckController" spacing="10" alignment="CENTER" style="-fx-padding: 10;" prefHeight="100.0">
+<HBox maxHeight="100.0" >
+    <Pane fx:id="placeholder1" style="-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;">
+        <VBox alignment="CENTER">
+            <ImageView fx:id="imageView1" fitWidth="80" fitHeight="100"/>
+            <Label fx:id="label1"/>
+        </VBox>
+    </Pane>
+    <Pane fx:id="placeholder2" style="-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;">
+        <VBox alignment="CENTER">
+            <ImageView fx:id="imageView2" fitWidth="80" fitHeight="100"/>
+            <Label fx:id="label2"/>
+        </VBox>
+    </Pane>
+    <Pane fx:id="placeholder3" style="-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;">
+        <VBox alignment="CENTER">
+            <ImageView fx:id="imageView3" fitWidth="80" fitHeight="100"/>
+            <Label fx:id="label3"/>
+        </VBox>
+    </Pane>
+    <Pane fx:id="placeholder4" style="-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;">
+        <VBox alignment="CENTER">
+            <ImageView fx:id="imageView4" fitWidth="80" fitHeight="100"/>
+            <Label fx:id="label4"/>
+        </VBox>
+    </Pane>
+    <Pane fx:id="placeholder5" style="-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;">
+        <VBox alignment="CENTER">
+            <ImageView fx:id="imageView5" fitWidth="80" fitHeight="100"/>
+            <Label fx:id="label5"/>
+        </VBox>
+    </Pane>
+    <Pane fx:id="placeholder6" style="-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;">
+        <VBox alignment="CENTER">
+            <ImageView fx:id="imageView6" fitWidth="80" fitHeight="100"/>
+            <Label fx:id="label6"/>
+        </VBox>
+    </Pane>
+    </HBox>
+</HBox>
