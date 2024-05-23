@@ -34,13 +34,11 @@ public class MainController {
 
     @FXML
     public void showLadangKu() {
-
         loadView("LadangKu.fxml");
     }
 
     @FXML
     public void showView2() {
-
         loadView("View2.fxml");
     }
 

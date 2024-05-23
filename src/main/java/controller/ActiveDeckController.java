@@ -93,6 +93,14 @@ public class ActiveDeckController implements Initializable {
         label.setText(card.getName());
     }
 
+    public void insertCardAt(int index, Card card) {
+        setCard(index, card);
+    }
+
+    public void removeCardAt(int index) {
+        removeCard(index);
+    }
+
     // Method to add a card to the deck
     public void addCard(Card card) {
         for (int i = 0; i < imageViews.size(); i++) {
