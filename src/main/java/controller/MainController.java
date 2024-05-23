@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -72,6 +73,17 @@ public class MainController {
 
         // Update player 2 gulden label, ensuring it's a string
         player2GuldenLabel.setText(String.valueOf(main.getPlayer2().getGulden()));
+    }
+
+    @FXML
+    public void showToko() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Toko.fxml"));
+            Parent root = loader.load();
+            contentPane.getChildren().add(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

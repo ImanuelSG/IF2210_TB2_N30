@@ -20,12 +20,12 @@ public class CardFactory {
     // (Karnivor dkk), namaProductHasil
 
     //
-    private static Map<String, ArrayList<String>> MapHewan;
+    public static Map<String, ArrayList<String>> MapHewan;
     // Map of nama kartu,pathImageAsli,pathImageTransformed,AgetToHarvest,
     // namaProductHasil
-    private static Map<String, ArrayList<String>> MapTanaman;
+    public static Map<String, ArrayList<String>> MapTanaman;
     // Map of nama kartu, pathImageAsli, harga, penambahanParameter, allowedEater
-    private static Map<String, ArrayList<String>> MapProduct;
+    public static Map<String, ArrayList<String>> MapProduct;
 
     private CardFactory() {
         loadProductMap();
