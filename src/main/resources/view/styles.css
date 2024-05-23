@@ -1,6 +1,3 @@
 .drag-over {
-    background-color: yellow;
-    border-color: red;
-    border-width: 3px;
-    border-style: dashed;
+    transform: scale(2%);
 }

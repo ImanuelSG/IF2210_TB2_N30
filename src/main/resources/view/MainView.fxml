@@ -7,22 +7,26 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="1000" prefWidth="1203.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
-    <center>
-          <!-- Switchable content pane -->
-          <VBox>
-         <HBox prefHeight="100.0" prefWidth="875.0" style="-fx-padding: 10px;">
-                  <children>
-                  <StackPane> 
+<?import javafx.scene.layout.Pane?>
+<BorderPane prefHeight="1200" prefWidth="1203.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+   <center >
+      <!-- Switchable content pane -->
+      <StackPane>
+         <ImageView fitHeight="1200" >
+            <Image url="/img/gui/bg_deck.png" />
+         </ImageView>
+         <VBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="875.0" style="-fx-padding: 10px;">
+               <children>
+                  <StackPane style="-fx-padding: 10;">
                      <Rectangle arcHeight="39.0" arcWidth="42.0" fill="#495749" height="149.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="424.0" />
-                     <VBox prefHeight="688.0" prefWidth="471.0">
+                     <VBox prefHeight="688.0" prefWidth="471.0" style="-fx-padding: 20;">
                         <children>
                            <HBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="397.0" style="-fx-spacing: 10px; -fx-padding: 15px 20px;">
                               <children>
@@ -41,7 +45,7 @@
                                        <Image url="@../img/gui/coin.png" />
                                     </image>
                                  </ImageView>
-                                 <Label fx:id="player1GuldenLabel" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Text" />
+                                 <Label fx:id="player1GuldenLabel" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 10;" text="Text" />
                               </children>
                            </HBox>
                            <HBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="397.0" style="-fx-spacing: 10px; -fx-padding: 15px 20px;">
@@ -61,38 +65,42 @@
                                        <Image url="@../img/gui/coin.png" />
                                     </image>
                                  </ImageView>
-                                 <Label fx:id="player2GuldenLabel" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Text" />
+                                 <Label fx:id="player2GuldenLabel" prefHeight="36.0" prefWidth="181.0" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-padding: 10;" text="Text" />
                               </children>
                            </HBox>
                         </children>
                      </VBox>
-                     </StackPane> 
-                     <Label fx:id="turnLabel" text="TURN : 0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" />
-                  </children>
-         </HBox>
-          
-          <children>
-          <Pane fx:id="contentPane" minHeight="1000.0" prefWidth="900.0" />
-         </children>
-          <fx:include source="ActiveDeckView.fxml"/>
-          </VBox>
-      
-    </center>
+                  </StackPane>
+                  <Label fx:id="turnLabel" alignment="CENTER" prefHeight="63.0" prefWidth="141.0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" text="TURN : 0" />
+               </children>
+            </HBox>
+            <children>
+               <HBox alignment="CENTER" style="-fx-padding: 20px;">
+                  <BorderPane fx:id="contentPane" prefHeight="700.0" maxWidth="900.0"/>
+               </HBox>
+<!--               <fx:include source="ActiveDeckView.fxml" />-->
+               <HBox alignment="BOTTOM_CENTER" style="-fx-padding: 20px;">
+                  <fx:include source="ActiveDeckView.fxml" />
+               </HBox>
+            </children>
+         </VBox>
+      </StackPane>
+   </center>
    <right>
-   <!--SIDE BAR-->
+      <!--SIDE BAR-->
       <VBox prefHeight="1000.0" prefWidth="304.0" style="-fx-padding: 20px; -fx-spacing: 150px; -fx-background-image: url('img/gui/bg_sidebar.png'); -fx-background-size: cover;" BorderPane.alignment="CENTER">
          <children>
-            <Button onAction="#handleNextTurn" mnemonicParsing="false" prefHeight="72.0" prefWidth="96.0" style="-fx-background-color: #68441D; -fx-background-radius: 8px;" text="NEXT" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#handleNextTurn" prefHeight="72.0" prefWidth="96.0" style="-fx-background-color: #68441D; -fx-background-radius: 8px;" text="NEXT" textFill="WHITE">
                <font>
                   <Font name="Inter Semi Bold" size="18.0" />
                </font></Button>
             <VBox alignment="TOP_CENTER" prefHeight="756.0" prefWidth="264.0" style="-fx-spacing: 50px;">
                <children>
-                     <Button alignment="CENTER" contentDisplay="CENTER" onAction="#showLadangKu" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 25px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="LADANGKU" textAlignment="CENTER" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" onAction="#showLadangKu" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 25px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="LADANGKU" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                     <Button alignment="CENTER" contentDisplay="CENTER" onAction="#showView2" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LADANG LAWAN" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" onAction="#showView2" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LADANG LAWAN" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>

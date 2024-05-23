@@ -47,8 +47,7 @@ public class LadangMusuhController implements Initializable, Observer {
     private BorderPane createGridCell() {
         BorderPane borderPane = new BorderPane();
         borderPane.setStyle(
-                "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;");
-
+                "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;");
         VBox vBox = new VBox();
         vBox.setAlignment(javafx.geometry.Pos.CENTER);
 
@@ -74,7 +73,7 @@ public class LadangMusuhController implements Initializable, Observer {
     private void handleDragOver(DragEvent event, BorderPane borderPane) {
         if (event.getGestureSource() != gridPane && event.getDragboard().hasString()) {
             borderPane.setStyle(
-                    "-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 3px; -fx-border-style: dashed;");
+                    "-fx-background-color: #9FC47C; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #495749;  -fx-border-width: 6px; -fx-border-radius: 7px;");
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
         event.consume();
@@ -82,7 +81,8 @@ public class LadangMusuhController implements Initializable, Observer {
 
     private void handleDragExited(DragEvent event, BorderPane borderPane) {
         borderPane.setStyle(
-                "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;");
+                "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;");
+
         event.consume();
     }
 

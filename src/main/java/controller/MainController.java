@@ -4,7 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import libs.GameWorld.GameWorld;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +18,7 @@ import libs.GameWorld.GameWorld;
 public class MainController implements Initializable, Observerable {
 
     @FXML
-    private Pane contentPane;
+    private BorderPane contentPane;
 
     @FXML
     private Label turnLabel;
@@ -79,7 +81,7 @@ public class MainController implements Initializable, Observerable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + fxml));
             Pane newLoadedPane = loader.load();
-            contentPane.getChildren().setAll(newLoadedPane);
+            contentPane.setCenter(newLoadedPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -100,3 +102,4 @@ public class MainController implements Initializable, Observerable {
     }
 
 }
+
