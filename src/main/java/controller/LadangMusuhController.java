@@ -25,9 +25,12 @@ public class LadangMusuhController implements Initializable, Observer {
     @FXML
     private GridPane gridPane;
 
+    private Ladang ladang;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GameWorld.getInstance().addObserver(this);
+        ladang = GameWorld.getInstance().getEnemy().getField();
         populateGrid();
         updateView();
     }
@@ -88,11 +91,9 @@ public class LadangMusuhController implements Initializable, Observer {
         boolean success = false;
         if (db.hasString()) {
 
-            Ladang playerField = GameWorld.getInstance().getCurrentPlayer().getField();
-
             int columnIndex = GridPane.getColumnIndex(borderPane);
             int rowIndex = GridPane.getRowIndex(borderPane);
-            if (playerField.getHarvestable(rowIndex, columnIndex) == null
+            if (ladang.getHarvestable(rowIndex, columnIndex) == null
                     && CardFactory.isValidHarvestableCard(db.getString())) {
 
                 ImageView imageView = (ImageView) ((VBox) borderPane.getCenter()).getChildren().get(0);
@@ -100,7 +101,7 @@ public class LadangMusuhController implements Initializable, Observer {
                 HarvestableCard card = CardFactory.createHarvestableCard(db.getString());
                 imageView.setImage(card.getImage());
                 label.setText(card.getName());
-                playerField.setHarvestable(rowIndex, columnIndex, card);
+                ladang.setHarvestable(rowIndex, columnIndex, card);
                 success = true;
             }
             updateView();
