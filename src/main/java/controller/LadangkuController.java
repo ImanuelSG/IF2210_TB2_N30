@@ -65,6 +65,56 @@ public class LadangkuController implements Initializable {
                 // Set the VBox to the center of the BorderPane
                 borderPane.setCenter(vBox);
 
+                borderPane.setOnDragOver(new EventHandler<DragEvent>() {
+
+                    public void handle(DragEvent event) {
+
+                        System.out.println(event.getDragboard());
+
+                        /* data is dragged over the target */
+                        if (event.getGestureSource() != gridPane &&
+                                event.getDragboard().hasString()) {
+                            borderPane.setStyle(
+                                    "-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 3px; -fx-border-style: dashed;");
+                            /* allow for both copying and moving, whatever user chooses */
+                            event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                        }
+                        event.consume();
+                    }
+                });
+
+                borderPane.setOnDragExited(new EventHandler<DragEvent>() {
+                    public void handle(DragEvent event) {
+                        /* mouse moved away, remove the graphical cues */
+                        borderPane.setStyle(
+                                "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;");
+                        event.consume();
+                    }
+                });
+
+                borderPane.setOnDragDropped(new EventHandler<DragEvent>() {
+                    public void handle(DragEvent event) {
+
+                        /* data dropped */
+                        /* if there is a string data on dragboard, read it and use it */
+                        Dragboard db = event.getDragboard();
+                        boolean success = false;
+                        if (db.hasString()) {
+                            imageView.setImage(db.getImage());
+                            label.setText(db.getString());
+                            
+                            success = true;
+                        }
+                        /*
+                         * let the source know whether the string was successfully
+                         * transferred and used
+                         */
+                        event.setDropCompleted(success);
+
+                        event.consume();
+                    }
+                });
+
                 // Add the BorderPane to the gridPane
                 gridPane.add(borderPane, j, i);
             }
@@ -88,25 +138,11 @@ public class LadangkuController implements Initializable {
     }
 
     private void enableGridDrop() {
-        // Set an event handler to handle drag over the grid
-        gridPane.setOnDragOver(new EventHandler<DragEvent>() {
-
-            public void handle(DragEvent event) {
-
-                /* data is dragged over the target */
-                if (event.getGestureSource() != gridPane &&
-                        event.getDragboard().hasString()) {
-                    /* allow for both copying and moving, whatever user chooses */
-                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                }
-                event.consume();
-            }
-        });
 
         // Set an event handler to handle drop onto the grid
         gridPane.setOnDragDropped(new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
-                
+
                 Dragboard db = event.getDragboard();
                 boolean success = false;
                 if (db.hasString()) {

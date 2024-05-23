@@ -75,6 +75,9 @@ public class ActiveDeckController implements Initializable {
 
                 ClipboardContent content = new ClipboardContent();
                 content.putImage(imageView.getImage());
+
+                content.putString(label.getText() + "_" + "Animal");
+
                 dragboard.setContent(content);
 
                 event.consume();
