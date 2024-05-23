@@ -87,18 +87,23 @@ public class LadangMusuhController implements Initializable, Observer {
     }
 
     private void handleDragDropped(DragEvent event, BorderPane borderPane) {
+
+        // Get the dragboard content
         Dragboard db = event.getDragboard();
         boolean success = false;
         if (db.hasString()) {
 
             int columnIndex = GridPane.getColumnIndex(borderPane);
             int rowIndex = GridPane.getRowIndex(borderPane);
+
+            String args = db.getString().split("_")[0];
+            String type = db.getString().split("_")[1];
             if (ladang.getHarvestable(rowIndex, columnIndex) == null
-                    && CardFactory.isValidHarvestableCard(db.getString())) {
+                    && type.equals("Useable")) {
 
                 ImageView imageView = (ImageView) ((VBox) borderPane.getCenter()).getChildren().get(0);
                 Label label = (Label) ((VBox) borderPane.getCenter()).getChildren().get(1);
-                HarvestableCard card = CardFactory.createHarvestableCard(db.getString());
+                HarvestableCard card = CardFactory.createHarvestableCard(args);
                 imageView.setImage(card.getImage());
                 label.setText(card.getName());
                 ladang.setHarvestable(rowIndex, columnIndex, card);
@@ -106,8 +111,10 @@ public class LadangMusuhController implements Initializable, Observer {
             }
             updateView();
         }
+
         event.setDropCompleted(success);
         event.consume();
+        
     }
 
     @Override

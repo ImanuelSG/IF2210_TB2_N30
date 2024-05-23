@@ -50,9 +50,8 @@ public class LadangkuController implements Initializable, Observer {
     private BorderPane createGridCell() {
         BorderPane borderPane = new BorderPane();
         borderPane.setStyle(
-                        "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;");
+                "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;");
 
-            
         VBox vBox = new VBox();
         vBox.setAlignment(javafx.geometry.Pos.CENTER);
 
@@ -79,7 +78,7 @@ public class LadangkuController implements Initializable, Observer {
     private void handleDragOver(DragEvent event, BorderPane borderPane) {
         if (event.getGestureSource() != gridPane && event.getDragboard().hasString()) {
             borderPane.setStyle(
-                "-fx-background-color: #9FC47C; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #495749;  -fx-border-width: 6px; -fx-border-radius: 7px;");
+                    "-fx-background-color: #9FC47C; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #495749;  -fx-border-width: 6px; -fx-border-radius: 7px;");
             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
         }
         event.consume();
@@ -97,11 +96,13 @@ public class LadangkuController implements Initializable, Observer {
         if (db.hasString()) {
             int columnIndex = GridPane.getColumnIndex(borderPane);
             int rowIndex = GridPane.getRowIndex(borderPane);
+            String args = db.getString().split("_")[0];
+            String type = db.getString().split("_")[1];
             if (ladang.getHarvestable(rowIndex, columnIndex) == null
-                    && CardFactory.isValidHarvestableCard(db.getString())) {
+                    && type.equals("Harvestable")) {
                 ImageView imageView = (ImageView) ((VBox) borderPane.getCenter()).getChildren().get(0);
                 Label label = (Label) ((VBox) borderPane.getCenter()).getChildren().get(1);
-                HarvestableCard card = CardFactory.createHarvestableCard(db.getString());
+                HarvestableCard card = CardFactory.createHarvestableCard(args);
                 imageView.setImage(card.getImage());
                 label.setText(card.getName());
                 ladang.setHarvestable(rowIndex, columnIndex, card);
@@ -111,6 +112,7 @@ public class LadangkuController implements Initializable, Observer {
         }
         event.setDropCompleted(success);
         event.consume();
+        
     }
 
     private void handleCellClick(BorderPane borderPane) {

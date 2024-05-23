@@ -1,4 +1,4 @@
-package controller;
+package controller.LadangController;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,28 +12,23 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import libs.Card.Card;
-import libs.Card.Harvestable.HarvestableCard;
-import libs.Card.Products.ProductCard;
-import libs.Card.Useable.Useable;
-import libs.Deck.ActiveDeck;
-import libs.GameWorld.GameWorld;
-
+import libs.Card.CardFactory;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ActiveDeckController implements Initializable, Observer {
+public class ActiveDeckController implements Initializable {
 
     @FXML
     private HBox container; // Assuming this VBox holds all the BorderPanes
 
-    private ActiveDeck activeDeck;
+    private ArrayList<ImageView> imageViews = new ArrayList<>();
+    private ArrayList<Label> labels = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        activeDeck = GameWorld.getInstance().getCurrentPlayer().getActiveDeck();
-        GameWorld.getInstance().addObserver(this);
+        CardFactory.getInstance();
         populateGrid();
-        updateView();
     }
 
     private void populateGrid() {
@@ -66,74 +61,58 @@ public class ActiveDeckController implements Initializable, Observer {
             // Add BorderPane to container
             container.getChildren().add(borderPane);
 
+            // Add ImageView and Label to lists
+            imageViews.add(imageView);
+            labels.add(label);
+
             imageView.setOnDragDetected(event -> {
                 Dragboard dragboard = imageView.startDragAndDrop(TransferMode.ANY);
 
                 ClipboardContent content = new ClipboardContent();
                 content.putImage(imageView.getImage());
 
-                Card curr = activeDeck.getCard(container.getChildren().indexOf(borderPane));
-                String type = "";
-                if (curr instanceof HarvestableCard) {
-                    type = "Harvestable";
-                } else if (curr instanceof ProductCard) {
-                    type = "Product";
-                } else if (curr instanceof Useable) {
-                    type = "Useable";
-                }
-
-                content.putString(label.getText() + "_" + type);
+                content.putString(label.getText());
 
                 dragboard.setContent(content);
 
                 event.consume();
-
             });
-
-            imageView.setOnDragDone(
-                    event -> {
-                        System.out.println(event.isDropCompleted());
-                        if (event.isDropCompleted()) {
-                            System.out.println("Card removed");
-                            activeDeck.removeCard(container.getChildren().indexOf(borderPane));
-                            updateView();
-                        }
-                    });
         }
     }
 
     private void setCard(int index, Card card) {
-        ImageView imageView = (ImageView) ((VBox) ((BorderPane) container.getChildren().get(index)).getCenter())
-                .getChildren().get(0);
-        Label label = (Label) ((VBox) ((BorderPane) container.getChildren().get(index)).getCenter()).getChildren()
-                .get(1);
+        ImageView imageView = imageViews.get(index);
+        Label label = labels.get(index);
 
         imageView.setImage(card.getImage());
         label.setText(card.getName());
     }
 
-    public void removeCardAt(int index) {
-        ImageView imageView = (ImageView) ((VBox) ((BorderPane) container.getChildren().get(index)).getCenter())
-                .getChildren().get(0);
-        Label label = (Label) ((VBox) ((BorderPane) container.getChildren().get(index)).getCenter()).getChildren()
-                .get(1);
+    public void insertCardAt(int index, Card card) {
+        setCard(index, card);
+    }
 
-        imageView.setImage(null);
-        label.setText("");
+    public void removeCardAt(int index) {
+        removeCard(index);
+    }
+
+    // Method to add a card to the deck
+    public void addCard(Card card) {
+        for (int i = 0; i < imageViews.size(); i++) {
+            // Check if the current slot is empty
+            if (labels.get(i).getText().isEmpty()) {
+                setCard(i, card);
+                break;
+            }
+        }
     }
 
     // Method to remove a card from the deck
+    public void removeCard(int index) {
+        ImageView imageView = imageViews.get(index);
+        Label label = labels.get(index);
 
-    @Override
-    public void updateView() {
-        activeDeck = GameWorld.getInstance().getCurrentPlayer().getActiveDeck();
-        for (int i = 0; i < 6; i++) {
-            Card card = activeDeck.getCard(i);
-            if (card != null) {
-                setCard(i, card);
-            } else {
-                removeCardAt(i);
-            }
-        }
+        imageView.setImage(null); // Clear the image
+        label.setText(""); // Clear the label text
     }
 }

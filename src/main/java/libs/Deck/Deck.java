@@ -6,12 +6,6 @@ import libs.Card.Card;
 
 public class Deck {
     protected ArrayList<Card> cards;
-    protected String owner;
-
-    public Deck(String owner) {
-        cards = new ArrayList<>();
-        this.owner = owner;
-    }
 
     public void addCard(Card card) {
         cards.add(card);
@@ -45,7 +39,8 @@ public class Deck {
         return shuffledCards;
     }
 
-    public String getOwner() {
-        return owner;
+    public Card getCard(int index) {
+
+        return cards.get(index);
     }
 }
