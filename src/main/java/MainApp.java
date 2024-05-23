@@ -17,7 +17,6 @@ public class MainApp extends Application {
 
         CardFactory.getInstance();
 
-        System.out.println(CardFactory.createAnimalCard("Ayam"));
     }
 
     public static void main(String[] args) {

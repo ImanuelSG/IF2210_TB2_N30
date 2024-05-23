@@ -73,16 +73,8 @@
                
             <!-- </children>
          </HBox> -->
+         <fx:include source="LadangKu.fxml"/>
          <fx:include source="ActiveDeckView.fxml"/>
-               <HBox prefHeight="100.0" prefWidth="259.0" style="-fx-padding: 20px;">
-                  <children>
-                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="101.0" prefWidth="189.0" style="-fx-background-radius: 20px; -fx-background-color: #495749; -fx-padding: 10px;" text="TURN" textAlignment="CENTER" textFill="WHITE">
-                        <font>
-                           <Font name="Inter Semi Bold" size="24.0" />
-                        </font>
-                     </Label>
-                  </children>
-               </HBox>
        </StackPane>
     </center>
    <right>
