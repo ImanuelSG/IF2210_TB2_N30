@@ -3,9 +3,9 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import libs.Card.Card;
+import libs.Card.CardFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,13 +38,15 @@ public class ActiveDeckController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        CardFactory.getInstance();
+
         // Example cards initialization
-        setCard(imageView1, label1,
-                new Card("Corn", new Image(getClass().getResourceAsStream("/img/tanaman/corn_seeds.png"))));
+        setCard(imageView1, label1, CardFactory.createAnimalCard("Ayam"));
+
         setCard(imageView2, label2,
-                new Card("Wheat", new Image(getClass().getResourceAsStream("/img/tanaman/pumpkin_seeds.png"))));
+                CardFactory.createAnimalCard("Sapi"));
         setCard(imageView3, label3,
-                new Card("Sheep", new Image(getClass().getResourceAsStream("/img/tanaman/strawberry_seeds.png"))));
+                CardFactory.createAnimalCard("Beruang"));
         // Initialize other placeholders as needed
     }
 
