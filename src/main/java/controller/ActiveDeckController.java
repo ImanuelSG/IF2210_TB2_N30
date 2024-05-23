@@ -13,7 +13,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import libs.Card.Card;
 import libs.Card.CardFactory;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -31,8 +30,8 @@ public class ActiveDeckController implements Initializable {
         CardFactory.getInstance();
         populateGrid();
 
-        setCard(1, CardFactory.createAnimalCard("Ayam"));
-        setCard(3, CardFactory.createAnimalCard("Beruang"));
+        setCard(1, CardFactory.createHarvestableCard("Ayam"));
+        setCard(3, CardFactory.createHarvestableCard("Beruang"));
         setCard(5, CardFactory.createProductCard("Labu"));
     }
 
@@ -76,7 +75,7 @@ public class ActiveDeckController implements Initializable {
                 ClipboardContent content = new ClipboardContent();
                 content.putImage(imageView.getImage());
 
-                content.putString(label.getText() + "_" + "Animal");
+                content.putString(label.getText());
 
                 dragboard.setContent(content);
 

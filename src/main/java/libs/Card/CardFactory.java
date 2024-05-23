@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javafx.scene.image.Image;
 import libs.Card.Harvestable.AnimalCard;
+import libs.Card.Harvestable.HarvestableCard;
 import libs.Card.Harvestable.PlantCard;
 import libs.Card.Products.ProductCard;
 
@@ -40,7 +41,19 @@ public class CardFactory {
         return instance;
     }
 
-    public static AnimalCard createAnimalCard(String name) {
+    public static HarvestableCard createHarvestableCard(String name) {
+        if (MapHewan.containsKey(name)) {
+            return createAnimalCard(name);
+        } else {
+            return createPlantCard(name);
+        }
+    }
+
+    public static boolean isValidHarvestableCard(String name) {
+        return MapHewan.containsKey(name) || MapTanaman.containsKey(name);
+    }
+
+    private static AnimalCard createAnimalCard(String name) {
         List<String> data = MapHewan.get(name);
         Image image = new Image(data.get(0));
         Image transformedImage = new Image(data.get(1));
@@ -63,7 +76,7 @@ public class CardFactory {
         return new ProductCard(name, image, price, addedParameter, type);
     }
 
-    public static PlantCard createPlantCard(String name) {
+    private static PlantCard createPlantCard(String name) {
 
         List<String> data = MapTanaman.get(name);
         Image image = new Image(data.get(0));
