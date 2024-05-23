@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import libs.GameWorld.GameWorld;
 
@@ -12,7 +13,7 @@ import libs.GameWorld.GameWorld;
 public class MainController {
 
     @FXML
-    private Pane contentPane;
+    private BorderPane contentPane;
 
     @FXML
     private Label turnLabel;
