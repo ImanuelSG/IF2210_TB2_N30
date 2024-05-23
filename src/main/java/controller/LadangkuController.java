@@ -69,8 +69,6 @@ public class LadangkuController implements Initializable {
 
                     public void handle(DragEvent event) {
 
-                        System.out.println(event.getDragboard());
-
                         /* data is dragged over the target */
                         if (event.getGestureSource() != gridPane &&
                                 event.getDragboard().hasString()) {
@@ -102,7 +100,7 @@ public class LadangkuController implements Initializable {
                         if (db.hasString()) {
                             imageView.setImage(db.getImage());
                             label.setText(db.getString());
-                            
+
                             success = true;
                         }
                         /*

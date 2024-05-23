@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import libs.Card.CardFactory;
 
 public class MainApp extends Application {
 
@@ -14,8 +13,6 @@ public class MainApp extends Application {
         primaryStage.setTitle("Drag and Drop Example");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
-        CardFactory.getInstance();
 
     }
 
