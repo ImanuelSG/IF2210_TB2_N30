@@ -1,6 +1,10 @@
 libs/Card/Harvestable/HarvestableCard.class
 libs/Card/Harvestable/PlantCard.class
+controller/LadangkuController$1.class
+controller/ActiveDeckController.class
 libs/Card/Harvestable/AnimalCard.class
+controller/LadangkuController$4.class
+controller/MainController.class
 libs/Interfaces/UseableOnAnimal.class
 libs/Card/Useable/InstantHarverst.class
 libs/Card/Useable/DelayCard.class
@@ -9,7 +13,11 @@ libs/Card/Card.class
 libs/Field/Field.class
 libs/Toko/Toko.class
 libs/Card/Useable/AccelerateCard.class
+controller/View2Controller.class
 libs/Interfaces/Harvestable.class
+controller/LadangkuController$2.class
 libs/Card/Products/ProductCard.class
 libs/Interfaces/Transactionable.class
 libs/Interfaces/UseableOnHarvestable.class
+controller/LadangkuController$3.class
+controller/LadangkuController.class

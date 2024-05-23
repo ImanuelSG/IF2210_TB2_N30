@@ -16,13 +16,11 @@
 
 <BorderPane prefHeight="1000" prefWidth="1203.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <center>
-      
           <!-- Switchable content pane -->
-          
+          <VBox>
          <HBox prefHeight="100.0" prefWidth="875.0" style="-fx-padding: 10px;">
-       
-               
                   <children>
+                  <StackPane> 
                      <Rectangle arcHeight="39.0" arcWidth="42.0" fill="#495749" height="149.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="424.0" />
                      <VBox prefHeight="688.0" prefWidth="471.0">
                         <children>
@@ -68,18 +66,16 @@
                            </HBox>
                         </children>
                      </VBox>
+                     </StackPane> 
                   </children>
-               
-               
-            
          </HBox>
-          <StackPane fx:id="stackPane">
-          <Pane fx:id="contentPane" minHeight="1000.0" prefWidth="900.0" />
+          
           <children>
-         <fx:include source="LadangKu.fxml"/>
-         <fx:include source="ActiveDeckView.fxml"/>
+          <Pane fx:id="contentPane" minHeight="1000.0" prefWidth="900.0" />
          </children>
-       </StackPane>
+          <fx:include source="ActiveDeckView.fxml"/>
+          </VBox>
+      
     </center>
    <right>
    <!--SIDE BAR-->
