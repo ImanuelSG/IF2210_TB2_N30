@@ -24,8 +24,10 @@ public class MainController {
 
     @FXML
     private void initialize() {
+        GameWorld.getInstance();
 
         loadView("LadangKu.fxml"); // Corrected to load "View1.fxml"
+        updateView();
         // main.run();
 
     }
@@ -42,6 +44,13 @@ public class MainController {
         loadView("View2.fxml");
     }
 
+    @FXML
+    public void handleNextTurn() {
+        GameWorld main = GameWorld.getInstance();
+        main.nextTurn();
+        updateView();
+    }
+
     private void loadView(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + fxml));
@@ -54,11 +63,15 @@ public class MainController {
 
     private void updateView() {
         GameWorld main = GameWorld.getInstance();
+
+        // Update turn label
         turnLabel.setText("Turn: " + main.getTurn());
-        player1GuldenLabel.setText("Player 1 Gulden: " +
-                main.getPlayer1().getGulden());
-        player2GuldenLabel.setText("Player 2 Gulden: " +
-                main.getPlayer2().getGulden());
+
+        // Update player 1 gulden label, ensuring it's a string
+        player1GuldenLabel.setText(String.valueOf(main.getPlayer1().getGulden()));
+
+        // Update player 2 gulden label, ensuring it's a string
+        player2GuldenLabel.setText(String.valueOf(main.getPlayer2().getGulden()));
     }
 
 }
