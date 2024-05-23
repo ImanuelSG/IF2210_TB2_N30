@@ -5,11 +5,11 @@ import javafx.beans.property.SimpleObjectProperty;
 import libs.Card.Harvestable.HarvestableCard;
 
 
-public class Field {
+public class Ladang {
     private ObjectProperty<HarvestableCard>[][] field;
 
     @SuppressWarnings("unchecked")
-    public Field(int row, int col) {
+    public Ladang(int row, int col) {
         field = new SimpleObjectProperty[row][col];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {

@@ -49,8 +49,6 @@ public abstract class HarvestableCard extends Card implements Harvestable {
         }
     }
 
-    
-
     @Override
     public Image getImage() {
         if (parameter >= parameterToHarvest) {

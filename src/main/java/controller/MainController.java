@@ -2,13 +2,18 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 import libs.GameWorld.GameWorld;
 
-public class MainController {
+public class MainController implements Initializable, Observerable {
 
     @FXML
     private Pane contentPane;
@@ -22,8 +27,10 @@ public class MainController {
     @FXML
     private Label player2GuldenLabel;
 
-    @FXML
-    private void initialize() {
+    private ArrayList<Observer> observers = new ArrayList<>();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         GameWorld.getInstance();
 
         loadView("LadangKu.fxml"); // Corrected to load "View1.fxml"
@@ -39,7 +46,7 @@ public class MainController {
 
     @FXML
     public void showView2() {
-        loadView("View2.fxml");
+        loadView("LadangMusuh.fxml");
     }
 
     @FXML
@@ -47,6 +54,25 @@ public class MainController {
         GameWorld main = GameWorld.getInstance();
         main.nextTurn();
         updateView();
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+
+    public void notifyObserver() {
+        for (Observer observer : observers) {
+            observer.updateView();
+        }
     }
 
     private void loadView(String fxml) {
@@ -70,6 +96,7 @@ public class MainController {
 
         // Update player 2 gulden label, ensuring it's a string
         player2GuldenLabel.setText(String.valueOf(main.getPlayer2().getGulden()));
+
     }
 
 }
