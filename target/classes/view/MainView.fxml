@@ -14,12 +14,12 @@
 <?import javafx.scene.text.Text?>
 
 <?import javafx.scene.layout.Pane?>
-<BorderPane prefHeight="1100" prefWidth="1203.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<BorderPane prefHeight="1200" prefWidth="1203.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <center >
       <!-- Switchable content pane -->
       <StackPane>
-         <ImageView>
-            <Image url="/img/gui/bg_deck.png" requestedWidth="900" requestedHeight="1100" />
+         <ImageView fitHeight="1200" >
+            <Image url="/img/gui/bg_deck.png" />
          </ImageView>
          <VBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="875.0" style="-fx-padding: 10px;">
@@ -75,9 +75,11 @@
                </children>
             </HBox>
             <children>
-               <BorderPane fx:id="contentPane" prefHeight="700.0" prefWidth="900.0" />
+               <HBox alignment="CENTER" style="-fx-padding: 20px;">
+                  <BorderPane fx:id="contentPane" prefHeight="700.0" maxWidth="900.0"/>
+               </HBox>
 <!--               <fx:include source="ActiveDeckView.fxml" />-->
-               <HBox alignment="BOTTOM_CENTER" style="-fx-padding: 10px;">
+               <HBox alignment="BOTTOM_CENTER" style="-fx-padding: 20px;">
                   <fx:include source="ActiveDeckView.fxml" />
                </HBox>
             </children>

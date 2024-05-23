@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.animation.ScaleTransition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import libs.Card.CardFactory;
 import libs.Card.Harvestable.HarvestableCard;
 
@@ -29,7 +31,17 @@ public class LadangkuController implements Initializable {
         populateGrid();
         enableGridDrop();
     }
+    private void applyScaleAnimation(BorderPane borderPane, double scaleFactor) {
+        // Create a ScaleTransition object
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), borderPane);
 
+        // Set the scaling factors
+        scaleTransition.setToX(scaleFactor);
+        scaleTransition.setToY(scaleFactor);
+
+        // Play the animation
+        scaleTransition.play();
+    }
     private void populateGrid() {
 
         for (int i = 0; i < 4; i++) {
@@ -37,7 +49,7 @@ public class LadangkuController implements Initializable {
                 // Create a new BorderPane
                 BorderPane borderPane = new BorderPane();
                 borderPane.setStyle(
-                        "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;");
+                        "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;");
 
                 // Create a VBox for the center position
                 VBox vBox = new VBox();
@@ -68,7 +80,7 @@ public class LadangkuController implements Initializable {
                         if (event.getGestureSource() != gridPane &&
                                 event.getDragboard().hasString()) {
                             borderPane.setStyle(
-                                    "-fx-background-color: yellow; -fx-border-color: red; -fx-border-width: 3px; -fx-border-style: dashed;");
+                                    "-fx-background-color: #9FC47C; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #495749;  -fx-border-width: 6px; -fx-border-radius: 7px;");
                             /* allow for both copying and moving, whatever user chooses */
                             event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
                         }
@@ -80,7 +92,7 @@ public class LadangkuController implements Initializable {
                     public void handle(DragEvent event) {
                         /* mouse moved away, remove the graphical cues */
                         borderPane.setStyle(
-                                "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150;");
+                                "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;");
                         event.consume();
                     }
                 });

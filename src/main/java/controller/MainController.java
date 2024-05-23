@@ -55,7 +55,7 @@ public class MainController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/" + fxml));
             Pane newLoadedPane = loader.load();
-            contentPane.getChildren().setAll(newLoadedPane);
+            contentPane.setCenter(newLoadedPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
