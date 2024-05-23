@@ -67,6 +67,7 @@
                         </children>
                      </VBox>
                      </StackPane> 
+                     <Label fx:id="turnLabel" text="TURN : 0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" />
                   </children>
          </HBox>
           
@@ -81,7 +82,7 @@
       <!--SIDE BAR-->
       <VBox prefHeight="1000.0" prefWidth="304.0" style="-fx-padding: 20px; -fx-spacing: 150px; -fx-background-image: url('img/gui/bg_sidebar.png'); -fx-background-size: cover;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="72.0" prefWidth="96.0" style="-fx-background-color: #68441D; -fx-background-radius: 8px;" text="NEXT" textFill="WHITE">
+            <Button onAction="#handleNextTurn" mnemonicParsing="false" prefHeight="72.0" prefWidth="96.0" style="-fx-background-color: #68441D; -fx-background-radius: 8px;" text="NEXT" textFill="WHITE">
                <font>
                   <Font name="Inter Semi Bold" size="18.0" />
                </font></Button>

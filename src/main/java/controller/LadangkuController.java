@@ -16,7 +16,6 @@ import libs.Card.CardFactory;
 import libs.Card.Harvestable.HarvestableCard;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LadangkuController implements Initializable {
@@ -32,11 +31,7 @@ public class LadangkuController implements Initializable {
     }
 
     private void populateGrid() {
-        ArrayList<String> AnimalString = new ArrayList<>();
-        AnimalString.add("Ayam");
-        AnimalString.add("Sapi");
-        AnimalString.add("Domba");
-        AnimalString.add("Beruang");
+
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 5; j++) {
                 // Create a new BorderPane
@@ -166,5 +161,7 @@ public class LadangkuController implements Initializable {
             }
         });
     }
+
+    
 
 }
