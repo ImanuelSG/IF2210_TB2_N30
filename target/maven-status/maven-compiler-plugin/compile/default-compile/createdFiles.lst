@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 libs/Card/Harvestable/HarvestableCard.class
 libs/Card/Harvestable/PlantCard.class
 controller/ActiveDeckController.class
@@ -10,3 +11,5 @@ libs/Toko/Toko.class
 libs/Card/Useable/AccelerateCard.class
 libs/Card/Products/ProductCard.class
 controller/LadangkuController.class
+=======
+>>>>>>> Stashed changes

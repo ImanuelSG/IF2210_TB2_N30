@@ -42,6 +42,22 @@ public class ActiveDeck implements Observerable {
         notifyObserver();
     }
 
+    public void addCard(Card card, String location) {
+        if (location.equals("A01")) {
+            addCard(card, 0);
+        } else if (location.equals("B01")) {
+            addCard(card, 1);
+        } else if (location.equals("C01")) {
+            addCard(card, 2);
+        } else if (location.equals("D01")) {
+            addCard(card, 3);
+        } else if (location.equals("E01")) {
+            addCard(card, 4);
+        } else if (location.equals("F01")) {
+            addCard(card, 5);
+        }
+    }    
+
     public void removeCard(int index) {
         cards[index] = null;
         cardCount--;
