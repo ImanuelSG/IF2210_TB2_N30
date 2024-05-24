@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import libs.Card.CardFactory;
 import libs.Card.Card;
 import libs.Player.Player;
 import libs.Toko.Toko;
+import libs.Deck.ActiveDeck;
 
 public class TokoController {
     @FXML
@@ -20,10 +18,11 @@ public class TokoController {
 
     // Reference to the singleton instance of Toko
     private final Toko toko = Toko.getInstance();
-    private final CardFactory cf = CardFactory.getInstance();
 
     Map<String, Integer> stocks;
     Map<String, Integer> prices;
+
+    public TokoController(){};
     
     public void initializeStocks() {
         stocks = toko.getStock();
@@ -53,34 +52,48 @@ public class TokoController {
         String name = card.getName();
         int price = prices.get(name);
         int playerGulden = player.getGulden();
-        if (price > playerGulden) {
+        if (price * quantity > playerGulden) {
             throw new Exception("Not enough Gulden!");
+        }
+        
+        ActiveDeck activeDeck = player.getActiveDeck();
+        if ((activeDeck.getCards()).size() + quantity > 6) {
+            throw new Exception("Not enough active deck slot!");
+        }
+
+        for (int i = 0; i < quantity; i++) {
+            Card tempCard = new Card(card.getName(), card.getImage());
+            activeDeck.addCard(tempCard);
         }
 
         boolean success = toko.removeProduct(name, quantity);
 
         if (success) {
-            player.setGulden(playerGulden - price);
+            player.setGulden(playerGulden - price * quantity);
+            player.setActiveDeck(activeDeck);
         }
 
+        initializeStocks();
         return success;
     }
 
-    public boolean sellItem(Player player, Card card, int quantity) throws Exception {
+    public void sellItem(Player player, Card card, int quantity) throws Exception {
+        ActiveDeck activeDeck = player.getActiveDeck();
+        if (activeDeck.getCards().size() < quantity) {
+            throw new Exception("Not enough item to sell!");
+        }
+
+        for (int i = 0; i < quantity; i++) {
+            activeDeck.removeCard(card);
+        }
+
         String name = card.getName();
         int price = prices.get(name);
-        int playerGulden = player.getGulden();
-        if (price > playerGulden) {
-            throw new Exception("Not enough Gulden!");
-        }
 
-        boolean success = toko.removeProduct(name, quantity);
+        toko.addProduct(name, quantity);
+        player.setGulden(player.getGulden() + price * quantity);
 
-        if (success) {
-            player.setGulden(playerGulden - price);
-        }
-
-        return success;
+        initializeStocks();
     }
 
     // @FXML
