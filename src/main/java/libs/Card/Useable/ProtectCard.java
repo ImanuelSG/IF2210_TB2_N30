@@ -13,6 +13,8 @@ public class ProtectCard extends UseableOnSelfCard {
     public void use(HarvestableCard target) {
         Ladang field = GameWorld.getInstance().getCurrentPlayer().getField();
 
+        
+
         target.applyEffect("Protect");
 
     }
