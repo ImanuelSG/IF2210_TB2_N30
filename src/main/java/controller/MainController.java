@@ -59,6 +59,7 @@ public class MainController implements Initializable, Observerable {
         GameWorld main = GameWorld.getInstance();
         main.nextTurn();
         updateView();
+        loadView("LadangKu.fxml");
     }
 
     @Override
@@ -73,7 +74,6 @@ public class MainController implements Initializable, Observerable {
     }
 
     @Override
-
     public void notifyObserver() {
         for (Observer observer : observers) {
             observer.updateView();

@@ -2,14 +2,12 @@ package libs.Card.Harvestable;
 
 import javafx.scene.image.Image;
 import libs.Card.Card;
-import libs.Interfaces.Harvestable;
 
 import java.util.Map;
 
+
 public abstract class HarvestableCard extends Card implements Harvestable {
     protected Image transformedImage;
-    protected boolean isProtected;
-    protected boolean isPlacedTraped;
     protected int parameter;
     protected int parameterToHarvest;
     protected String productMade;
@@ -26,11 +24,11 @@ public abstract class HarvestableCard extends Card implements Harvestable {
     }
 
     public boolean isProtected() {
-        return isProtected;
+        return appliedEffect.containsKey("Protect");
     }
 
-    public void setProtected(boolean isProtected) {
-        this.isProtected = isProtected;
+    public boolean isTrapped() {
+        return appliedEffect.containsKey("Trap");
     }
 
     public void setParameter(int parameter) {
@@ -61,4 +59,14 @@ public abstract class HarvestableCard extends Card implements Harvestable {
             return image;
         }
     }
+
+    @Override
+    public String getName() {
+        if (parameter >= parameterToHarvest) {
+            return productMade;
+        } else {
+            return name;
+        }
+    }
+
 }

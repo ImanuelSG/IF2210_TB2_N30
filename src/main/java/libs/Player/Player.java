@@ -1,4 +1,5 @@
 package libs.Player;
+
 import libs.Deck.ActiveDeck;
 import libs.Deck.Deck;
 import libs.Field.Ladang;
@@ -15,7 +16,7 @@ public class Player {
         this.gulden = gulden;
         this.deck = new Deck();
         this.activeDeck = new ActiveDeck();
-        this.field = new Ladang(4, 5);
+        this.field = new Ladang();
     }
 
     public String getName() {

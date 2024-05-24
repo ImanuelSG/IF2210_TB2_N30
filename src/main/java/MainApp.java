@@ -18,11 +18,10 @@ public class MainApp extends Application {
         primaryStage.setTitle("MooMoo Adventure");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        String css = this.getClass().getResource("/view/styles.css").toExternalForm();
-        scene.getStylesheets().add(css);
+        
 
-        primaryStage.show();
         primaryStage.setResizable(false);
+        primaryStage.show();
 
     }
 

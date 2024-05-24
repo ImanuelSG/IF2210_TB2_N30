@@ -1,4 +1,4 @@
-package libs.Interfaces;
+package libs.Card.Products;
 
 import libs.Card.Harvestable.AnimalCard;
 

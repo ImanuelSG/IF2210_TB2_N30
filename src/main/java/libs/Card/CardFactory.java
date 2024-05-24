@@ -14,7 +14,8 @@ import libs.Card.Harvestable.AnimalCard;
 import libs.Card.Harvestable.HarvestableCard;
 import libs.Card.Harvestable.PlantCard;
 import libs.Card.Products.ProductCard;
-import libs.Card.Useable.Useable;
+import libs.Card.Useable.*;
+
 
 public class CardFactory {
     private static CardFactory instance;
@@ -40,6 +41,39 @@ public class CardFactory {
             instance = new CardFactory();
         }
         return instance;
+    }
+
+    public static Card createCard(String name) {
+        if (isValidHarvestableCard(name)) {
+            return createHarvestableCard(name);
+        } else {
+            if (MapProduct.containsKey(name)) {
+                return createProductCard(name);
+            }
+            return createCard(name);
+        }
+    }
+
+    public static Card createItemCard(String name) {
+        if (name.equals("ACCELERATE")) {
+            Image image = new Image("/img/item/acccelerate.png");
+            return new AccelerateCard(name, image);
+        } else if (name.equals("BEAR_TRAP")) {
+            Image image = new Image("img/item/bear_trap.png");
+            return new TrapCard(name, image);
+        } else if (name.equals("DELAY")) {
+            Image image = new Image("img/item/delay.png");
+            return new DelayCard(name, image);
+        } else if (name.equals("DESTROY")) {
+            Image image = new Image("img/item/destroy.png");
+            return new DestroyCard(name, image);
+        } else if (name.equals("INSTANT_HARVEST")) {
+            Image image = new Image("img/item/instant_harvest.png");
+            return new InstantHarvestCard(name, image);
+        } else {
+            Image image = new Image("img/item/protect.png");
+            return new ProtectCard(name, image);
+        }
     }
 
     public static HarvestableCard createHarvestableCard(String name) {
@@ -86,10 +120,6 @@ public class CardFactory {
         String productMade = data.get(3);
 
         return new PlantCard(name, image, transformedImage, 0, growthTime, productMade);
-    }
-
-    private static Useable createUseableCard(String name) {
-        return null;
     }
 
     private void loadProductMap() {

@@ -2,10 +2,14 @@ package libs.Deck;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import controller.Observer;
+import controller.Observerable;
 import libs.Card.Card;
 
-public class Deck {
+public class Deck implements Observerable {
     protected ArrayList<Card> cards;
+    private ArrayList<Observer> observers;
 
     public void addCard(Card card) {
         cards.add(card);
@@ -39,8 +43,39 @@ public class Deck {
         return shuffledCards;
     }
 
+    public void removeCards(ArrayList<Card> cards) {
+        this.cards.removeAll(cards);
+        notifyObserver();
+    }
+
     public Card getCard(int index) {
 
         return cards.get(index);
+    }
+
+    public int getSize() {
+        return cards.size();
+    }
+
+    public Deck() {
+        cards = new ArrayList<>();
+        observers = new ArrayList<>();
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObserver() {
+        for (Observer observer : observers) {
+            observer.updateView();
+        }
     }
 }

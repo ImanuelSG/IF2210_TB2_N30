@@ -8,8 +8,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -127,9 +125,10 @@ public class LadangkuController implements Initializable, Observer {
         boolean success = false;
         if (db.hasString()) {
             String[] data = db.getString().split("_");
-            if (data.length == 2) {
+            if (data.length == 3) {
                 String args = data[0];
                 String type = data[1];
+                String pos = data[2];
                 int columnIndex = GridPane.getColumnIndex(borderPane);
                 int rowIndex = GridPane.getRowIndex(borderPane);
 
@@ -141,15 +140,20 @@ public class LadangkuController implements Initializable, Observer {
                     imageView.setImage(card.getImage());
                     label.setText(card.getName());
                     ladang.setHarvestable(rowIndex, columnIndex, card);
+                    GameWorld.getInstance().getCurrentPlayer().getActiveDeck().removeCard(Integer.parseInt(pos));
                     success = true;
+                } else if (type.equals("Product")) {
+
+                } else if (type.equals("UseableSelf")) {
+
+                } else if (type.equals("UseableEnemy")) {
+
                 }
             }
         }
 
         event.setDropCompleted(success);
         event.consume();
-
-        updateView();
     }
 
     private void handleCellClick(BorderPane borderPane) {
@@ -159,7 +163,8 @@ public class LadangkuController implements Initializable, Observer {
 
         if (card != null) {
             labelPopUp.setVisible(true);
-            titleLabel.setText(card.getName());;
+            titleLabel.setText(card.getName());
+            ;
 
             // Determine the parameter text based on the card type
             String parameterText = "";
@@ -184,6 +189,7 @@ public class LadangkuController implements Initializable, Observer {
 
         }
     }
+
     // Method to hide the labelPopUp
     public void hideLabelPopUp() {
         labelPopUp.setVisible(false);
@@ -204,6 +210,7 @@ public class LadangkuController implements Initializable, Observer {
         // Your logic for panenButton click
         System.out.println("panen");
     }
+
     @Override
     public void updateView() {
         ladang = GameWorld.getInstance().getCurrentPlayer().getField();

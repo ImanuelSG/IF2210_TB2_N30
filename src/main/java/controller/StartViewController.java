@@ -18,8 +18,7 @@ public class StartViewController {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        String css = this.getClass().getResource("/view/styles.css").toExternalForm();
-        scene.getStylesheets().add(css);
+
         stage.setResizable(false);
         stage.show();
     }
