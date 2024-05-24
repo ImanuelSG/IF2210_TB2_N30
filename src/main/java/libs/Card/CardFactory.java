@@ -51,7 +51,7 @@ public class CardFactory {
             if (MapProduct.containsKey(name)) {
                 return createProductCard(name);
             }
-            return createCard(name);
+            return createItemCard(name);
         }
     }
 

@@ -1,4 +1,5 @@
- <GameState>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<GameState>
     <CurrentTurn>1</CurrentTurn>
     <Shop>
         <ItemCount>5</ItemCount>
@@ -16,12 +17,12 @@
                 <Quantity>3</Quantity>
             </Item>
             <Item>
-                <Name>DAGING_KUDA</Name>
-                <Quantity>10</Quantity>
-            </Item>
-            <Item>
                 <Name>DAGING_BERUANG</Name>
                 <Quantity>1</Quantity>
+            </Item>
+            <Item>
+                <Name>DAGING_KUDA</Name>
+                <Quantity>10</Quantity>
             </Item>
         </Items>
     </Shop>
@@ -71,8 +72,7 @@
                 <Name>AYAM</Name>
                 <AgeOrWeight>0</AgeOrWeight>
                 <ActiveItemCount>0</ActiveItemCount>
-                <ActiveItems>
-                </ActiveItems>
+                <ActiveItems/>
             </LadangCard>
         </LadangCards>
     </Player2>

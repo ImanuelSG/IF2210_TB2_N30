@@ -14,7 +14,7 @@ public class Player {
     public Player(String name, int gulden, int decksize) {
         this.name = name;
         this.gulden = gulden;
-        this.deck = new Deck(40);
+        this.deck = new Deck(decksize);
         this.activeDeck = new ActiveDeck();
         this.field = new Ladang();
     }
@@ -47,4 +47,7 @@ public class Player {
         this.activeDeck = activeDeck;
     }
 
+    public void setField(Ladang field) {
+        this.field = field;
+    }
 }

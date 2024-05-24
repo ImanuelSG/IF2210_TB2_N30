@@ -20,7 +20,7 @@ public abstract class HarvestableCard extends Card implements Harvestable {
         this.parameter = parameter;
         this.parameterToHarvest = parameterToHarvest;
         this.productMade = productMade;
-        this.appliedEffect = new HashMap<>();
+        this.appliedEffect = new HashMap<String, Integer>();
     }
 
     public boolean isProtected() {
@@ -54,7 +54,15 @@ public abstract class HarvestableCard extends Card implements Harvestable {
         } else {
             appliedEffect.put(effect, 1);
         }
-        
+
+    }
+
+    public int getTotalEffectCount() {
+        int totalCount = 0;
+        for (int count : appliedEffect.values()) {
+            totalCount += count;
+        }
+        return totalCount;
     }
 
     @Override
