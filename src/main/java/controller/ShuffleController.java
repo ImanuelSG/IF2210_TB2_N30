@@ -91,7 +91,7 @@ public class ShuffleController {
             BorderPane cardPane = createGridCell(card);
             shuffleCards.add(cardPane, col, row);
             col++;
-            if (col == 3) { // Assuming 3 cards per row
+            if (col == 2) { // Assuming 3 cards per row
                 col = 0;
                 row++;
             }

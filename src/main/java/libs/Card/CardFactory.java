@@ -43,6 +43,9 @@ public class CardFactory {
         return instance;
     }
 
+    public  Map<String, ArrayList<String>> getMapProduct(){
+        return MapProduct;
+    }
     public static Card createCard(String name) {
         if (isValidHarvestableCard(name)) {
             return createHarvestableCard(name);

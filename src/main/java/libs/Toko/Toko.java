@@ -26,6 +26,7 @@ public class Toko {
         stock.put(productName, stock.getOrDefault(productName, 0) + quantity);
     }
 
+
     // Method to remove products from the stock
     public boolean removeProduct(String productName, int quantity) {
         if (stock.containsKey(productName) && stock.get(productName) >= quantity) {
