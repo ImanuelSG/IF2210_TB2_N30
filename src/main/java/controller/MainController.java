@@ -51,7 +51,7 @@ public class MainController implements Initializable, Observerable {
 
     @FXML
     public  void showToko() {
-        loadView("Toko.fxml");
+        loadView("TokoView.fxml");
     }
 
     @FXML

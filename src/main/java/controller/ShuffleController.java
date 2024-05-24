@@ -48,10 +48,17 @@ public class ShuffleController {
         Player currPlayer = GameWorld.getInstance().getCurrentPlayer();
         int slotActiveDeck = currPlayer.getActiveDeck().getRemainingSlot();
         this.shuffledCard = currPlayer.getDeck().shuffle(slotActiveDeck);
+        if (shuffledCard.size() > 0) {
+
+            System.out.println(shuffleCards);
+        } else {
+            System.out.println("kosong");
+        }
     }
 
     @FXML
     public void initialize() {
+        System.out.println("initialize");
         // Initialize your components and add event listeners if needed
         this.shuffledCard = new ArrayList<Card>();
         setCardList();
