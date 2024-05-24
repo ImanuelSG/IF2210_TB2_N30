@@ -45,8 +45,13 @@ public class MainController implements Initializable, Observerable {
     }
 
     @FXML
-    public void showView2() {
+    public void showLadangMusuh() {
         loadView("LadangMusuh.fxml");
+    }
+
+    @FXML
+    public  void showToko() {
+        loadView("Toko.fxml");
     }
 
     @FXML
@@ -54,6 +59,7 @@ public class MainController implements Initializable, Observerable {
         GameWorld main = GameWorld.getInstance();
         main.nextTurn();
         updateView();
+        loadView("LadangKu.fxml");
     }
 
     @Override
@@ -68,7 +74,6 @@ public class MainController implements Initializable, Observerable {
     }
 
     @Override
-
     public void notifyObserver() {
         for (Observer observer : observers) {
             observer.updateView();

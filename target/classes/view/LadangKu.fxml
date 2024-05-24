@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<GridPane fx:id="gridPane" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.LadangkuController" hgap="10" vgap="10" style="-fx-padding: 10;" prefWidth="600.0" prefHeight="800.0">
-    <!-- Placeholders for dynamic content -->
-</GridPane>
+<StackPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LadangkuController">
+    <children>
+        <GridPane fx:id="gridPane" hgap="10" style="-fx-padding: 10;" vgap="10">
+            <!-- Placeholders for dynamic content -->
+        </GridPane>
+        <VBox fx:id="labelPopUp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="583.0" spacing="10" style="-fx-background-color: #ffffff; -fx-border-color: #495749; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-padding: 15px; -fx-spacing: 15px;" stylesheets="styles.css">
+            <Text fx:id="titleLabel" wrappingWidth="148.0">
+            <font>
+               <Font name="Inter Semi Bold" size="34.0" />
+            </font></Text>
+            <HBox spacing="10">
+                <ImageView fx:id="imageView" fitHeight="131.0" fitWidth="165.0" preserveRatio="true" />
+                <VBox>
+                    <Label fx:id="descLabel" />
+                    <VBox fx:id="attrLabel" spacing="10">
+                    </VBox>
+                </VBox>
+            </HBox>
+              <HBox alignment="CENTER" style="-fx-spacing: 20px;">
+                  <Button fx:id="backButton" onAction="#handleBackButton" prefHeight="38.0" prefWidth="77.0" text="Kembali" stylesheets="/view/styles.css" styleClass="backButton" />
+                  <Button fx:id="panenButton" onAction="#handlePanenButton" prefHeight="39.0" prefWidth="73.0" text="Panen" stylesheets="/view/styles.css" styleClass="panenButton" />
+              </HBox>
+        </VBox>
+    </children>
+</StackPane>

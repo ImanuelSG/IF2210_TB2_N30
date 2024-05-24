@@ -15,9 +15,14 @@ public class MainApp extends Application {
         Toko.getInstance();
         
         Parent root = FXMLLoader.load(getClass().getResource("view/StartView.fxml"));
-        primaryStage.setTitle("Drag and Drop Example");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("MooMoo Adventure");
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        String css = this.getClass().getResource("/view/styles.css").toExternalForm();
+        scene.getStylesheets().add(css);
+
         primaryStage.show();
+        primaryStage.setResizable(false);
 
     }
 

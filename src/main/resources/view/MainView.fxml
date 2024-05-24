@@ -100,11 +100,11 @@
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" onAction="#showView2" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LADANG LAWAN" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" onAction="#showLadangMusuh" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LADANG LAWAN" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 40px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="TOKO" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#showToko" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 40px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="TOKO" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
