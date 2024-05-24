@@ -5,6 +5,8 @@ import libs.Card.Card;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
+
 
 public abstract class HarvestableCard extends Card implements Harvestable {
     protected Image transformedImage;
@@ -20,7 +22,7 @@ public abstract class HarvestableCard extends Card implements Harvestable {
         this.parameter = parameter;
         this.parameterToHarvest = parameterToHarvest;
         this.productMade = productMade;
-        this.appliedEffect = new HashMap<>();
+        this.appliedEffect = new HashMap<String, Integer>();
     }
 
     public boolean isProtected() {
@@ -55,6 +57,14 @@ public abstract class HarvestableCard extends Card implements Harvestable {
             appliedEffect.put(effect, 1);
         }
         
+    }
+
+    public int getTotalEffectCount() {
+        int totalCount = 0;
+        for (int count : appliedEffect.values()) {
+            totalCount += count;
+        }
+        return totalCount;
     }
 
     @Override

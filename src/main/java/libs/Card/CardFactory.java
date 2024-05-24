@@ -53,7 +53,7 @@ public class CardFactory {
             if (MapProduct.containsKey(name)) {
                 return createProductCard(name);
             }
-            return createCard(name);
+            return createItemCard(name);
         }
     }
 
@@ -220,9 +220,6 @@ public class CardFactory {
             }
         }
 
-        // Shuffle the deck
-        shuffleDeck(deck);
-
         return deck;
     }
 
@@ -231,15 +228,4 @@ public class CardFactory {
         String randomItemName = itemNames[random.nextInt(itemNames.length)];
         return createItemCard(randomItemName);
     }
-
-    private static void shuffleDeck(List<Card> deck) {
-        Random rnd = new Random();
-        for (int i = deck.size() - 1; i > 0; i--) {
-            int index = rnd.nextInt(i + 1);
-            Card temp = deck.get(index);
-            deck.set(index, deck.get(i));
-            deck.set(i, temp);
-        }
-    }
-
 }

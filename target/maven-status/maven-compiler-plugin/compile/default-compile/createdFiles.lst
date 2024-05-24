@@ -1,11 +1,12 @@
+<<<<<<< Updated upstream
 libs/Card/Useable/UseableOnEnemy.class
+=======
+libs/Card/Harvestable/PlantCard.class
+>>>>>>> Stashed changes
 libs/Card/Harvestable/HarvestableCard.class
 libs/Card/Harvestable/PlantCard.class
 controller/ActiveDeckController.class
 libs/Card/Harvestable/AnimalCard.class
-libs/Loader/FilePlugin.class
-libs/Loader/JsonPlugin.class
-libs/Card/Products/UseableOnAnimal.class
 libs/Card/Useable/DelayCard.class
 libs/Card/Card.class
 controller/StartViewController.class
@@ -21,5 +22,8 @@ libs/Card/Useable/UseableOnSelfCard.class
 libs/Card/Products/Transactionable.class
 libs/Loader/XmlPlugin.class
 controller/LadangkuController.class
+<<<<<<< Updated upstream
 libs/Card/Useable/InstantHarvestCard.class
 libs/Loader/Loader.class
+=======
+>>>>>>> Stashed changes
