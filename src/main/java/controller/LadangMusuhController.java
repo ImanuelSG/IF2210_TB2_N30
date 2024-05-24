@@ -25,9 +25,12 @@ public class LadangMusuhController implements Initializable, Observer {
     @FXML
     private GridPane gridPane;
 
+    private Ladang ladang;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GameWorld.getInstance().addObserver(this);
+        ladang = GameWorld.getInstance().getEnemy().getField();
         populateGrid();
         updateView();
     }
@@ -84,29 +87,34 @@ public class LadangMusuhController implements Initializable, Observer {
     }
 
     private void handleDragDropped(DragEvent event, BorderPane borderPane) {
+
+        // Get the dragboard content
         Dragboard db = event.getDragboard();
         boolean success = false;
         if (db.hasString()) {
 
-            Ladang playerField = GameWorld.getInstance().getCurrentPlayer().getField();
-
             int columnIndex = GridPane.getColumnIndex(borderPane);
             int rowIndex = GridPane.getRowIndex(borderPane);
-            if (playerField.getHarvestable(rowIndex, columnIndex) == null
-                    && CardFactory.isValidHarvestableCard(db.getString())) {
+
+            String args = db.getString().split("_")[0];
+            String type = db.getString().split("_")[1];
+            if (ladang.getHarvestable(rowIndex, columnIndex) == null
+                    && type.equals("Useable")) {
 
                 ImageView imageView = (ImageView) ((VBox) borderPane.getCenter()).getChildren().get(0);
                 Label label = (Label) ((VBox) borderPane.getCenter()).getChildren().get(1);
-                HarvestableCard card = CardFactory.createHarvestableCard(db.getString());
+                HarvestableCard card = CardFactory.createHarvestableCard(args);
                 imageView.setImage(card.getImage());
                 label.setText(card.getName());
-                playerField.setHarvestable(rowIndex, columnIndex, card);
+                ladang.setHarvestable(rowIndex, columnIndex, card);
                 success = true;
             }
             updateView();
         }
+
         event.setDropCompleted(success);
         event.consume();
+        
     }
 
     @Override

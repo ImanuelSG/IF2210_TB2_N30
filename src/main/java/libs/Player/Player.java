@@ -1,8 +1,4 @@
 package libs.Player;
-
-import java.util.ArrayList;
-
-import libs.Card.Card;
 import libs.Deck.ActiveDeck;
 import libs.Deck.Deck;
 import libs.Field.Ladang;
@@ -17,8 +13,8 @@ public class Player {
     public Player(String name, int gulden) {
         this.name = name;
         this.gulden = gulden;
-        this.deck = new Deck(name);
-        this.activeDeck = new ActiveDeck(name);
+        this.deck = new Deck();
+        this.activeDeck = new ActiveDeck();
         this.field = new Ladang(4, 5);
     }
 
@@ -48,10 +44,6 @@ public class Player {
 
     public void setActiveDeck(ActiveDeck activeDeck) {
         this.activeDeck = activeDeck;
-    }
-
-    public ArrayList<Card> drawCard() {
-        return this.deck.shuffle(6 - this.activeDeck.getCards().size());
     }
 
 }

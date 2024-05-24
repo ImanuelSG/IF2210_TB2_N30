@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import controller.Observer;
 import controller.Observerable;
+import libs.Card.CardFactory;
 import libs.Player.Player;
 
 // Karena singleton maka harus dibuat private constructor
@@ -21,6 +22,14 @@ public class GameWorld implements Observerable {
     private GameWorld() {
         player1 = new Player("Player 1", 0);
         player2 = new Player("Player 2", 0);
+        player1.getActiveDeck().add(CardFactory.createHarvestableCard("Ayam"));
+        player1.getActiveDeck().add(CardFactory.createProductCard("Daging Beruang"));
+        player1.getActiveDeck().add(CardFactory.createHarvestableCard("Sapi"));
+
+        player2.getActiveDeck().add(CardFactory.createHarvestableCard("Hiu Darat"));
+        player2.getActiveDeck().add(CardFactory.createProductCard("Daging Beruang"));
+        player2.getActiveDeck().add(CardFactory.createHarvestableCard("Beruang"));
+
         turn = 0;
         state = "Shuffling";
         currentPlayer = player1;
