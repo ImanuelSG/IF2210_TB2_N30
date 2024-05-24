@@ -136,12 +136,20 @@ public class LadangkuController implements Initializable, Observer {
                     ladang.setHarvestable(rowIndex, columnIndex, card);
                     GameWorld.getInstance().getCurrentPlayer().getActiveDeck().removeCard(Integer.parseInt(pos));
                     success = true;
-                } else if (type.equals("Product")) {
+                    // Handle product Drop
+                } else if (type.equals("Product")
+                        && ladang.getHarvestable(rowIndex, columnIndex) instanceof AnimalCard) {
+                    AnimalCard animal = (AnimalCard) ladang.getHarvestable(rowIndex, columnIndex);
+                    try {
+                        animal.feed(CardFactory.createProductCard(args));
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
 
-                } else if (type.equals("UseableSelf")) {
+                // Handle Item Drop
+                } else if (type.equals("UseableSelf") && ladang.getHarvestable(rowIndex, columnIndex) != null) {
 
-                } else if (type.equals("UseableEnemy")) {
-
+                    
                 }
             }
         }

@@ -26,7 +26,7 @@ public class InstantHarverst extends Card implements UseableOnSelf {
             ladang.removeHarvestable(target);
             deck.add(CardFactory.createProductCard(res));
         } else {
-
+           
         }
     }
 
