@@ -50,8 +50,8 @@ public class MainController implements Initializable, Observerable {
     }
 
     @FXML
-    public  void showToko() {
-        loadView("Toko.fxml");
+    public void showToko() {
+        loadView("ShuffleView.fxml");
     }
 
     @FXML
@@ -93,6 +93,12 @@ public class MainController implements Initializable, Observerable {
     private void updateView() {
         GameWorld main = GameWorld.getInstance();
 
+        if (main.getTurn() == 20) {
+            // End game
+            System.out.println();
+            return;
+        }
+
         // Update turn label
         turnLabel.setText("Turn: " + main.getTurn());
 
@@ -101,8 +107,16 @@ public class MainController implements Initializable, Observerable {
 
         // Update player 2 gulden label, ensuring it's a string
         player2GuldenLabel.setText(String.valueOf(main.getPlayer2().getGulden()));
+        play();
+
+    }
+
+    private void play() {
+        
+    }
+
+    private void seranganBeruang() {
 
     }
 
 }
-

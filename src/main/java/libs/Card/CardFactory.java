@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javafx.scene.image.Image;
 import libs.Card.Harvestable.AnimalCard;
@@ -28,6 +29,8 @@ public class CardFactory {
     private static Map<String, ArrayList<String>> MapTanaman;
     // Map of nama kartu, pathImageAsli, harga, penambahanParameter, allowedEater
     private static Map<String, ArrayList<String>> MapProduct;
+
+    private static final Random random = new Random();
 
     private CardFactory() {
         loadProductMap();
@@ -174,6 +177,68 @@ public class CardFactory {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Card> seedDeck(int size) {
+        ArrayList<Card> deck = new ArrayList<>();
+
+        // Calculate the number of cards to add from each map
+        int animalCount = Math.min(size / 2, MapHewan.size() * 2);
+        int plantCount = Math.min(size / 2, MapTanaman.size() * 2);
+        int productCount = Math.min(size / 2, MapProduct.size() * 2);
+        int itemCardCount = Math.min(size - animalCount - plantCount - productCount, 12);
+
+        // Add animal cards
+        MapHewan.forEach((key, value) -> {
+            if (deck.size() < size && deck.size() < animalCount) {
+                deck.add(createAnimalCard(key));
+                deck.add(createAnimalCard(key));
+            }
+        });
+
+        // Add plant cards
+        MapTanaman.forEach((key, value) -> {
+            if (deck.size() < size && deck.size() < animalCount + plantCount) {
+                deck.add(createPlantCard(key));
+                deck.add(createPlantCard(key));
+            }
+        });
+
+        // Add product cards
+        MapProduct.forEach((key, value) -> {
+            if (deck.size() < size && deck.size() < animalCount + plantCount + productCount) {
+                deck.add(createProductCard(key));
+                deck.add(createProductCard(key));
+            }
+        });
+
+        // Add item cards
+        if (deck.size() < size) {
+            for (int i = 0; i < itemCardCount; i++) {
+                deck.add(createRandomItemCard());
+            }
+        }
+
+        // Shuffle the deck
+        shuffleDeck(deck);
+
+        return deck;
+    }
+
+    public static Card createRandomItemCard() {
+        String[] itemNames = { "ACCELERATE", "BEAR_TRAP", "DELAY", "DESTROY", "INSTANT_HARVEST", "PROTECT" };
+        String randomItemName = itemNames[random.nextInt(itemNames.length)];
+        return createItemCard(randomItemName);
+    }
+
+    private static void shuffleDeck(List<Card> deck) {
+        Random rnd = new Random();
+        for (int i = deck.size() - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            Card temp = deck.get(index);
+            deck.set(index, deck.get(i));
+            deck.set(i, temp);
         }
     }
 
