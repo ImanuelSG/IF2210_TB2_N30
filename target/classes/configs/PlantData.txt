@@ -1,3 +1,3 @@
-Biji_Jagung,/img/tanaman/corn_seeds.png,/img/produk/corn.png,3,Jagung
-Biji_Stroberi,/img/tanaman/strawberry_seeds.png,/img/produk/strawberry.png,4,Stroberi
-Biji_Labu,/img/tanaman/pumpkin_seeds.png,/img/produk/pumpkin.png,5,Labu
+BIJI_JAGUNG,/img/tanaman/corn_seeds.png,/img/produk/corn.png,3,JAGUNG
+BIJI_STROBERI,/img/tanaman/strawberry_seeds.png,/img/produk/strawberry.png,4,STROBERI
+BIJI_LABU,/img/tanaman/pumpkin_seeds.png,/img/produk/pumpkin.png,5,LABU

@@ -29,7 +29,14 @@ public class LadangMusuhController implements Initializable, Observer {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        GameWorld.getInstance().addObserver(this);
+        GameWorld main = GameWorld.getInstance();
+        main.addObserver(this);
+        Ladang p1 = main.getPlayer1().getField();
+        Ladang p2 = main.getPlayer2().getField();
+
+        p1.addObserver(this);
+        p2.addObserver(this);
+
         ladang = GameWorld.getInstance().getEnemy().getField();
         populateGrid();
         updateView();
@@ -114,7 +121,7 @@ public class LadangMusuhController implements Initializable, Observer {
 
         event.setDropCompleted(success);
         event.consume();
-        
+
     }
 
     @Override

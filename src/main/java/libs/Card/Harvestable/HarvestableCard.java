@@ -3,8 +3,8 @@ package libs.Card.Harvestable;
 import javafx.scene.image.Image;
 import libs.Card.Card;
 
+import java.util.HashMap;
 import java.util.Map;
-
 
 public abstract class HarvestableCard extends Card implements Harvestable {
     protected Image transformedImage;
@@ -20,7 +20,7 @@ public abstract class HarvestableCard extends Card implements Harvestable {
         this.parameter = parameter;
         this.parameterToHarvest = parameterToHarvest;
         this.productMade = productMade;
-        this.appliedEffect = null;
+        this.appliedEffect = new HashMap<>();
     }
 
     public boolean isProtected() {
@@ -29,6 +29,10 @@ public abstract class HarvestableCard extends Card implements Harvestable {
 
     public boolean isTrapped() {
         return appliedEffect.containsKey("Trap");
+    }
+
+    public boolean isHarvestable() {
+        return parameter >= parameterToHarvest;
     }
 
     public void setParameter(int parameter) {
@@ -44,11 +48,13 @@ public abstract class HarvestableCard extends Card implements Harvestable {
     }
 
     public void applyEffect(String effect) {
+
         if (appliedEffect.containsKey(effect)) {
             appliedEffect.put(effect, appliedEffect.get(effect) + 1);
         } else {
             appliedEffect.put(effect, 1);
         }
+        
     }
 
     @Override

@@ -14,11 +14,6 @@ public class PlantCard extends HarvestableCard {
     }
 
     @Override
-    public void applyEffect(String effect) {
-        System.out.println("Tanaman diberi efek " + effect);
-    }
-
-    @Override
     public String harvest() {
         return this.productMade;
     }

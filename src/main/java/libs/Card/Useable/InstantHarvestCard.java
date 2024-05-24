@@ -26,7 +26,7 @@ public class InstantHarvestCard extends Card implements UseableOnSelf {
             ladang.removeHarvestable(target);
             deck.add(CardFactory.createProductCard(res));
         } else {
-           
+            throw new IllegalArgumentException("Deck is full");
         }
     }
 

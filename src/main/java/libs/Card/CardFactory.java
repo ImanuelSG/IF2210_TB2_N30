@@ -57,7 +57,7 @@ public class CardFactory {
     public static Card createItemCard(String name) {
         name.replace(" ", "_");
         if (name.equalsIgnoreCase("ACCELERATE")) {
-            Image image = new Image("/img/item/acccelerate.png");
+            Image image = new Image("/img/item/accelerate.png");
             return new AccelerateCard(name.replace("_", " "), image);
         } else if (name.equalsIgnoreCase("BEAR_TRAP")) {
             Image image = new Image("img/item/bear_trap.png");
@@ -79,6 +79,7 @@ public class CardFactory {
 
     public static HarvestableCard createHarvestableCard(String name) {
         name = name.replace(" ", "_");
+
         if (MapHewan.containsKey(name)) {
             return createAnimalCard(name);
         } else {
@@ -102,9 +103,6 @@ public class CardFactory {
     // Factory method to create a ProductCard
     public static ProductCard createProductCard(String name) {
         name = name.replace(" ", "_");
-
-        System.out.println(name);
-        System.out.println(MapProduct);
         List<String> data = MapProduct.get(name);
         Image image = new Image(data.get(0));
         int price = Integer.parseInt(data.get(1));

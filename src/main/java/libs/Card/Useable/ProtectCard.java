@@ -15,5 +15,4 @@ public class ProtectCard extends UseableOnSelfCard {
         target.applyEffect("Protect");
         field.notifyObserver();
     }
-
 }
