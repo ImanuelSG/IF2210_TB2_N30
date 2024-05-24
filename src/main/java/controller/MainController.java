@@ -13,7 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable, Observerable {
+public class MainController implements Initializable,Observer {
 
     @FXML
     private BorderPane contentPane;
@@ -27,11 +27,16 @@ public class MainController implements Initializable, Observerable {
     @FXML
     private Label player2GuldenLabel;
 
-    private ArrayList<Observer> observers = new ArrayList<>();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        GameWorld.getInstance();
+
+        GameWorld main = GameWorld.getInstance();
+        main.addObserver(this);
+        main.getCurrentPlayer().addObserver(this);
+        main.getEnemy().addObserver(this);
+
 
         loadView("LadangKu.fxml"); // Corrected to load "View1.fxml"
         updateView();
@@ -51,7 +56,7 @@ public class MainController implements Initializable, Observerable {
 
     @FXML
     public void showToko() {
-        loadView("ShuffleView.fxml");
+        loadView("TokoView.fxml");
     }
 
     @FXML
@@ -62,23 +67,8 @@ public class MainController implements Initializable, Observerable {
         play();
     }
 
-    @Override
-    public void addObserver(Observer observer) {
-        observers.add(observer);
-    }
 
-    @Override
 
-    public void removeObserver(Observer observer) {
-        observers.remove(observer);
-    }
-
-    @Override
-    public void notifyObserver() {
-        for (Observer observer : observers) {
-            observer.updateView();
-        }
-    }
 
     private void loadView(String fxml) {
         try {
@@ -90,7 +80,7 @@ public class MainController implements Initializable, Observerable {
         }
     }
 
-    private void updateView() {
+    public void updateView() {
         GameWorld main = GameWorld.getInstance();
 
         if (main.getTurn() == 20) {

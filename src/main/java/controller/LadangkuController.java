@@ -39,6 +39,8 @@ public class LadangkuController implements Initializable, Observer {
     @FXML
     private VBox labelPopUp;
 
+    @FXML
+    private ImageView sellBoxImage;
 
     @FXML
     private Text titleLabel;

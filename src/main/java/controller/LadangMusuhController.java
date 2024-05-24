@@ -25,6 +25,7 @@ public class LadangMusuhController implements Initializable, Observer {
     @FXML
     private GridPane gridPane;
 
+
     private Ladang ladang;
 
     @Override
