@@ -24,8 +24,8 @@
                 </VBox>
             </HBox>
               <HBox alignment="CENTER" style="-fx-spacing: 20px;">
-                  <Button fx:id="backButton" onAction="#handleBackButton" prefHeight="38.0" prefWidth="77.0" text="Kembali" stylesheets="/view/styles.css" styleClass="backButton" />
-                  <Button fx:id="panenButton"  prefHeight="39.0" prefWidth="73.0" text="Panen" stylesheets="/view/styles.css" styleClass="panenButton" />
+                  <Button fx:id="backButton" onAction="#handleBackButton" prefHeight="38.0" prefWidth="77.0" text="Kembali" stylesheets="/view/styles.css" styleClass="brownButton" />
+                  <Button fx:id="panenButton"  prefHeight="39.0" prefWidth="73.0" text="Panen" stylesheets="/view/styles.css" styleClass="greenButton" />
               </HBox>
         </VBox>
     </children>

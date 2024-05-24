@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import libs.Card.Card;
+import libs.Deck.ActiveDeck;
+import libs.Deck.Deck;
 import libs.GameWorld.GameWorld;
 import libs.Player.Player;
 
@@ -32,11 +34,23 @@ public class ShuffleController {
     @FXML
     private void handleReshuffleButton() {
         setCardList();
+        populateShuffleCards();
+
     }
 
     @FXML
     private void handleAccButton() {
+        // Remove from deck, add to active deck
+        Player currPlayer = GameWorld.getInstance().getCurrentPlayer();
 
+        Deck maindeck = currPlayer.getDeck();
+        ActiveDeck deck = currPlayer.getActiveDeck();
+        for (Card card : this.shuffledCard) {
+
+            deck.add(card);
+
+            maindeck.removeCard(card);
+        }
     }
 
     private ArrayList<Card> shuffledCard;
@@ -44,6 +58,9 @@ public class ShuffleController {
     private void setCardList() {
         Player currPlayer = GameWorld.getInstance().getCurrentPlayer();
         int slotActiveDeck = currPlayer.getActiveDeck().getRemainingSlot();
+        if (slotActiveDeck > 4) {
+            slotActiveDeck = 4;
+        }
         this.shuffledCard = currPlayer.getDeck().shuffle(slotActiveDeck);
     }
 
@@ -88,10 +105,11 @@ public class ShuffleController {
             BorderPane cardPane = createGridCell(card);
             shuffleCards.add(cardPane, col, row);
             col++;
-            if (col == 3) { // Assuming 3 cards per row
+            if (col == 2) { // Assuming 3 cards per row
                 col = 0;
                 row++;
             }
         }
     }
+
 }

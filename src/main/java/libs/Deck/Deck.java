@@ -62,11 +62,7 @@ public class Deck implements Observerable {
         cards = new ArrayList<>();
         observers = new ArrayList<>();
 
-        CardFactory factory = CardFactory.getInstance();
-        for (int i = 0; i < size; i++) {
-            
-
-        }
+        cards = CardFactory.seedDeck(size);
 
     }
 

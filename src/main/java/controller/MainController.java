@@ -59,7 +59,7 @@ public class MainController implements Initializable, Observerable {
         GameWorld main = GameWorld.getInstance();
         main.nextTurn();
         updateView();
-        loadView("LadangKu.fxml");
+        play();
     }
 
     @Override
@@ -107,12 +107,17 @@ public class MainController implements Initializable, Observerable {
 
         // Update player 2 gulden label, ensuring it's a string
         player2GuldenLabel.setText(String.valueOf(main.getPlayer2().getGulden()));
-        play();
 
     }
 
     private void play() {
-        
+        // Shuffling phase
+        this.loadView("ShuffleView.fxml");
+
+
+        // if 
+
+
     }
 
     private void seranganBeruang() {
