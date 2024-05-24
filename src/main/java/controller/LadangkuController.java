@@ -34,6 +34,7 @@ public class LadangkuController implements Initializable, Observer {
     public void initialize(URL location, ResourceBundle resources) {
         GameWorld.getInstance().addObserver(this);
         ladang = GameWorld.getInstance().getCurrentPlayer().getField();
+
         populateGrid();
         updateView();
     }
@@ -95,9 +96,10 @@ public class LadangkuController implements Initializable, Observer {
         boolean success = false;
         if (db.hasString()) {
             String[] data = db.getString().split("_");
-            if (data.length == 2) {
+            if (data.length == 3) {
                 String args = data[0];
                 String type = data[1];
+                String pos = data[2];
                 int columnIndex = GridPane.getColumnIndex(borderPane);
                 int rowIndex = GridPane.getRowIndex(borderPane);
 
@@ -109,7 +111,15 @@ public class LadangkuController implements Initializable, Observer {
                     imageView.setImage(card.getImage());
                     label.setText(card.getName());
                     ladang.setHarvestable(rowIndex, columnIndex, card);
+                    GameWorld.getInstance().getCurrentPlayer().getActiveDeck().removeCard(Integer.parseInt(pos));
+
                     success = true;
+                } else if (type.equals("Product")) {
+
+                } else if (type.equals("UseableSelf")) {
+
+                } else if (type.equals("UseableEnemy")) {
+
                 }
             }
         }

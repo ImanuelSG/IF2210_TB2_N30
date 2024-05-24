@@ -3,8 +3,6 @@ package libs.Card.Products;
 import javafx.scene.image.Image;
 import libs.Card.Card;
 import libs.Card.Harvestable.AnimalCard;
-import libs.Interfaces.Transactionable;
-import libs.Interfaces.UseableOnAnimal;
 
 public class ProductCard extends Card implements Transactionable, UseableOnAnimal {
     private int price;

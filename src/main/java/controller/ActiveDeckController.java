@@ -14,7 +14,8 @@ import javafx.scene.layout.VBox;
 import libs.Card.Card;
 import libs.Card.Harvestable.HarvestableCard;
 import libs.Card.Products.ProductCard;
-import libs.Card.Useable.Useable;
+import libs.Card.Useable.UseableOnSelfCard;
+import libs.Card.Useable.UseableOnEnemyCard;
 import libs.Deck.ActiveDeck;
 import libs.GameWorld.GameWorld;
 
@@ -30,8 +31,15 @@ public class ActiveDeckController implements Initializable, Observer {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        activeDeck = GameWorld.getInstance().getCurrentPlayer().getActiveDeck();
-        GameWorld.getInstance().addObserver(this);
+        GameWorld main = GameWorld.getInstance();
+        ActiveDeck p1 = main.getPlayer1().getActiveDeck();
+        ActiveDeck p2 = main.getPlayer2().getActiveDeck();
+
+        main.addObserver(this);
+
+        activeDeck = main.getCurrentPlayer().getActiveDeck();
+        p1.addObserver(this);
+        p2.addObserver(this);
         populateGrid();
         updateView();
     }
@@ -72,31 +80,24 @@ public class ActiveDeckController implements Initializable, Observer {
                 ClipboardContent content = new ClipboardContent();
                 content.putImage(imageView.getImage());
 
-                Card curr = activeDeck.getCard(container.getChildren().indexOf(borderPane));
+                int index = container.getChildren().indexOf(borderPane);
+                Card curr = activeDeck.getCard(index);
                 String type = "";
                 if (curr instanceof HarvestableCard) {
                     type = "Harvestable";
                 } else if (curr instanceof ProductCard) {
                     type = "Product";
-                } else if (curr instanceof Useable) {
-                    type = "Useable";
+                } else if (curr instanceof UseableOnSelfCard) {
+                    type = "UseableSelf";
+                } else if (curr instanceof UseableOnEnemyCard) {
+                    type = "UseableEnemy";
                 }
 
-                content.putString(label.getText() + "_" + type);
+                content.putString(label.getText() + "_" + type + "_" + index);
 
                 dragboard.setContent(content);
 
                 event.consume();
-
-            });
-
-            imageView.setOnDragDone(event -> {
-
-                if (event.isDropCompleted()) {
-
-                    activeDeck.removeCard(container.getChildren().indexOf(borderPane));
-                    updateView();
-                }
             });
 
         }
@@ -127,6 +128,7 @@ public class ActiveDeckController implements Initializable, Observer {
     @Override
     public void updateView() {
         activeDeck = GameWorld.getInstance().getCurrentPlayer().getActiveDeck();
+        System.out.println("AYam");
         for (int i = 0; i < 6; i++) {
             Card card = activeDeck.getCard(i);
             if (card != null) {

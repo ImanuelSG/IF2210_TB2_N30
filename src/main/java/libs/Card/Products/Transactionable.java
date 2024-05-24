@@ -1,4 +1,4 @@
-package libs.Interfaces;
+package libs.Card.Products;
 
 public interface Transactionable {
     int getPrice();

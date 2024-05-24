@@ -1,19 +1,18 @@
 package libs.Card.Useable;
 
-import libs.Card.Card;
 import libs.Card.Harvestable.AnimalCard;
 import libs.Card.Harvestable.HarvestableCard;
 import libs.Card.Harvestable.PlantCard;
-import libs.Interfaces.UseableOnHarvestable;
+import libs.Player.Player;
 
-public class DelayCard extends Card implements UseableOnHarvestable {
+public class DelayCard extends UseableOnEnemyCard {
 
     public DelayCard(String name, javafx.scene.image.Image image) {
-        super(name, image); 
+        super(name, image);
     }
 
     @Override
-    public void use(HarvestableCard target) {
+    public void use(HarvestableCard target, Player enemyPlayer) {
         if (target instanceof AnimalCard) {
             target.setParameter(target.getParameter() > 5 ? target.getParameter() - 5 : 0);
 

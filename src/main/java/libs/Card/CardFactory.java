@@ -14,7 +14,7 @@ import libs.Card.Harvestable.AnimalCard;
 import libs.Card.Harvestable.HarvestableCard;
 import libs.Card.Harvestable.PlantCard;
 import libs.Card.Products.ProductCard;
-import libs.Card.Useable.Useable;
+
 
 public class CardFactory {
     private static CardFactory instance;
@@ -86,10 +86,6 @@ public class CardFactory {
         String productMade = data.get(3);
 
         return new PlantCard(name, image, transformedImage, 0, growthTime, productMade);
-    }
-
-    private static Useable createUseableCard(String name) {
-        return null;
     }
 
     private void loadProductMap() {

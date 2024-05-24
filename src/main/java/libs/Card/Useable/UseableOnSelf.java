@@ -1,7 +1,7 @@
-package libs.Interfaces;
+package libs.Card.Useable;
 
 import libs.Card.Harvestable.HarvestableCard;
 
-public interface UseableOnHarvestable {
+public interface UseableOnSelf {
     void use(HarvestableCard target);
 }
