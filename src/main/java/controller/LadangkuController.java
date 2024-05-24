@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -8,7 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -16,6 +19,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import libs.Card.CardFactory;
 import libs.Card.Harvestable.AnimalCard;
 import libs.Card.Harvestable.HarvestableCard;
@@ -30,10 +34,32 @@ public class LadangkuController implements Initializable, Observer {
 
     private Ladang ladang;
 
+    @FXML
+    private VBox labelPopUp;
+
+    @FXML
+    private Text titleLabel;
+
+    @FXML
+    private ImageView imageView;
+
+    @FXML
+    private Label descLabel;
+
+    @FXML
+    private VBox attrLabel;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private Button panenButton;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GameWorld.getInstance().addObserver(this);
         ladang = GameWorld.getInstance().getCurrentPlayer().getField();
+        labelPopUp.setVisible(false);
         populateGrid();
         updateView();
     }
@@ -126,9 +152,8 @@ public class LadangkuController implements Initializable, Observer {
         HarvestableCard card = ladang.getHarvestable(rowIndex, columnIndex);
 
         if (card != null) {
-            Alert dialog = new Alert(AlertType.INFORMATION);
-            dialog.setTitle("Card Details");
-            dialog.setHeaderText(null);
+            labelPopUp.setVisible(true);
+            titleLabel.setText(card.getName());;
 
             // Determine the parameter text based on the card type
             String parameterText = "";
@@ -138,13 +163,38 @@ public class LadangkuController implements Initializable, Observer {
                 parameterText = "Weight: " + ((AnimalCard) card).getParameter();
             }
 
-            dialog.setContentText("Name: " + card.getName() + "\n" +
-                    parameterText);
+            descLabel.setText(parameterText);
 
-            dialog.showAndWait();
+            Map<String, Integer> attributes = card.getAppliedEffect();
+            if (attributes != null) {
+                for (Map.Entry<String, Integer> entry : attributes.entrySet()) {
+                    Label attributeLabel = new Label(entry.getKey() + ": " + entry.getValue());
+                    attrLabel.getChildren().add(attributeLabel);
+                }
+            }
+
+            Image img = card.getImage();
+            imageView.setImage(img);
+
         }
     }
+    // Method to hide the labelPopUp
+    public void hideLabelPopUp() {
+        labelPopUp.setVisible(false);
+    }
 
+    // Event handler for backButton
+    @FXML
+    private void handleBackButton() {
+        hideLabelPopUp();
+    }
+
+    // Event handler for panenButton
+    @FXML
+    private void handlePanenButton() {
+        // Your logic for panenButton click
+        System.out.println("panen");
+    }
     @Override
     public void updateView() {
         ladang = GameWorld.getInstance().getCurrentPlayer().getField();

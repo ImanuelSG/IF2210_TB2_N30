@@ -45,8 +45,13 @@ public class MainController implements Initializable, Observerable {
     }
 
     @FXML
-    public void showView2() {
+    public void showLadangMusuh() {
         loadView("LadangMusuh.fxml");
+    }
+
+    @FXML
+    public  void showToko() {
+        loadView("Toko.fxml");
     }
 
     @FXML

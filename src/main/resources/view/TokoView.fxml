@@ -1,0 +1,12 @@
+<?import javafx.scene.layout.BorderPane?>
+
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.TokoController">
+    <center>
+        <VBox>
+            <Text>TokoA</Text>
+        </VBox>
+    </center>
+</BorderPane>

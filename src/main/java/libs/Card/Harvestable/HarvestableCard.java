@@ -41,6 +41,10 @@ public abstract class HarvestableCard extends Card implements Harvestable {
         return parameter;
     }
 
+    public Map<String, Integer> getAppliedEffect() {
+        return appliedEffect;
+    }
+
     public void applyEffect(String effect) {
         if (appliedEffect.containsKey(effect)) {
             appliedEffect.put(effect, appliedEffect.get(effect) + 1);
