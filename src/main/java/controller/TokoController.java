@@ -22,6 +22,13 @@ public class TokoController {
 
     @FXML
     public void initialize() {
+        Toko.getInstance().addProduct("SUSU",10);
+        Toko.getInstance().addProduct("TELUR",10);
+        Toko.getInstance().addProduct("STROBERI",10);
+        Toko.getInstance().addProduct("JAGUNG",10);
+        Toko.getInstance().addProduct("DAGING_KUDA",10);
+        Toko.getInstance().addProduct("DAGING_DOMBA",10);
+        Toko.getInstance().addProduct("DAGING_BERUANG",10);
         this.stock = new HashMap<String, Integer>();
         this.stock = Toko.getInstance().getStock();
 

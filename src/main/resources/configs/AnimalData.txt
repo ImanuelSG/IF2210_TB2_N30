@@ -1,6 +1,6 @@
-Hiu Darat,/img/hewan/hiu_darat.png,/img/produk/shark_fin.png,20,Carnivore,Sirip Hiu
-Sapi,/img/hewan/cow.png,/img/produk/susu.png,10,Herbivore,Susu
-Domba,/img/hewan/sheep.png,/img/produk/daging_domba.png,12,Herbivore,Daging Domba
-Kuda,/img/hewan/horse.png,/img/produk/daging_kuda.png,14,Herbivore,Daging Kuda
-Ayam,/img/hewan/chicken.png,/img/produk/telur.png,5,Omnivore,Telur Ayam
-Beruang,/img/hewan/bear.png,/img/produk/daging_beruang.png,25,Omnivore,Kulit Beruang
+HIU_DARAT,/img/hewan/hiu_darat.png,/img/produk/shark_fin.png,20,CARNIVORE,SIRIP_HIU
+SAPI,/img/hewan/cow.png,/img/produk/susu.png,10,HERBIVORE,SUSU
+DOMBA,/img/hewan/sheep.png,/img/produk/daging_domba.png,12,HERBIVORE,DAGING_DOMBA
+KUDA,/img/hewan/horse.png,/img/produk/daging_kuda.png,14,HERBIVORE,DAGING_KUDA
+AYAM,/img/hewan/chicken.png,/img/produk/telur.png,5,OMNIVORE,TELUR
+BERUANG,/img/hewan/bear.png,/img/produk/daging_beruang.png,25,OMNIVORE,DAGING_BERUANG

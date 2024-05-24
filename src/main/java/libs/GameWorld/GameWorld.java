@@ -22,13 +22,13 @@ public class GameWorld implements Observerable {
     private GameWorld() {
         player1 = new Player("Player 1", 0);
         player2 = new Player("Player 2", 0);
-        player1.getActiveDeck().add(CardFactory.createHarvestableCard("Ayam"));
-        player1.getActiveDeck().add(CardFactory.createProductCard("Daging Beruang"));
-        player1.getActiveDeck().add(CardFactory.createHarvestableCard("Sapi"));
+        player1.getActiveDeck().add(CardFactory.createHarvestableCard("AYAM"));
+        player1.getActiveDeck().add(CardFactory.createProductCard("DAGING BERUANG"));
+        player1.getActiveDeck().add(CardFactory.createHarvestableCard("SAPI"));
 
-        player2.getActiveDeck().add(CardFactory.createHarvestableCard("Hiu Darat"));
-        player2.getActiveDeck().add(CardFactory.createProductCard("Daging Beruang"));
-        player2.getActiveDeck().add(CardFactory.createHarvestableCard("Beruang"));
+        player2.getActiveDeck().add(CardFactory.createHarvestableCard("HIU DARAT"));
+        player2.getActiveDeck().add(CardFactory.createProductCard("DAGING BERUANG"));
+        player2.getActiveDeck().add(CardFactory.createHarvestableCard("BERUANG"));
 
         turn = 0;
         state = "Shuffling";
