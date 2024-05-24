@@ -12,10 +12,7 @@ public class ProtectCard extends UseableOnSelfCard {
     @Override
     public void use(HarvestableCard target) {
         Ladang field = GameWorld.getInstance().getCurrentPlayer().getField();
-
-        
         target.applyEffect("Protect");
-
+        field.notifyObserver();
     }
-
 }

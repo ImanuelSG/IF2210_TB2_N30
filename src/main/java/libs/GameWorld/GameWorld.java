@@ -12,7 +12,7 @@ public class GameWorld implements Observerable {
     private int turn;
     private Player player1;
     private Player player2;
-    private String state;
+    private int state;
     private Player currentPlayer;
 
     private ArrayList<Observer> observers = new ArrayList<>();
@@ -20,18 +20,23 @@ public class GameWorld implements Observerable {
     private static GameWorld instance;
 
     private GameWorld() {
-        player1 = new Player("Player 1", 0);
-        player2 = new Player("Player 2", 0);
+        player1 = new Player("Player 1", 0, 40);
+        player2 = new Player("Player 2", 0, 40);
         player1.getActiveDeck().add(CardFactory.createHarvestableCard("AYAM"));
         player1.getActiveDeck().add(CardFactory.createProductCard("DAGING BERUANG"));
-        player1.getActiveDeck().add(CardFactory.createHarvestableCard("SAPI"));
+        player1.getActiveDeck().add(CardFactory.createHarvestableCard("BIJI_JAGUNG"));
+        player1.getActiveDeck().add(CardFactory.createProductCard("DAGING BERUANG"));
+        player1.getActiveDeck().add(CardFactory.createItemCard("ACCELERATE"));
 
         player2.getActiveDeck().add(CardFactory.createHarvestableCard("HIU DARAT"));
         player2.getActiveDeck().add(CardFactory.createProductCard("DAGING BERUANG"));
         player2.getActiveDeck().add(CardFactory.createHarvestableCard("BERUANG"));
+        player2.getActiveDeck().add(CardFactory.createHarvestableCard("HIU DARAT"));
+        player2.getActiveDeck().add(CardFactory.createProductCard("DAGING BERUANG"));
+        player2.getActiveDeck().add(CardFactory.createHarvestableCard("BERUANG"));
 
-        turn = 0;
-        state = "Shuffling";
+        turn = 1;
+        state = 0;
         currentPlayer = player1;
     }
 
@@ -50,6 +55,15 @@ public class GameWorld implements Observerable {
         notifyObserver();
     }
 
+    public void movePhase() {
+        if (state == 0) {
+
+        } else {
+            state = 0;
+            nextTurn();
+        }
+    }
+
     public int getTurn() {
         return turn;
     }
@@ -66,7 +80,7 @@ public class GameWorld implements Observerable {
         return player2;
     }
 
-    public String getState() {
+    public int getState() {
         return state;
 
     }
@@ -75,7 +89,7 @@ public class GameWorld implements Observerable {
         this.turn = turn;
     }
 
-    public void setState(String state) {
+    public void setState(int state) {
         this.state = state;
     }
 

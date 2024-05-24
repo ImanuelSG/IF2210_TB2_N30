@@ -11,10 +11,10 @@ public class Player {
     private ActiveDeck activeDeck;
     private Ladang field;
 
-    public Player(String name, int gulden) {
+    public Player(String name, int gulden, int decksize) {
         this.name = name;
         this.gulden = gulden;
-        this.deck = new Deck();
+        this.deck = new Deck(40);
         this.activeDeck = new ActiveDeck();
         this.field = new Ladang();
     }

@@ -25,8 +25,9 @@ public class ProductCard extends Card implements Transactionable, UseableOnAnima
     }
 
     @Override
-    public void use(AnimalCard target) {
-        System.out.println("Produk digunakan");
+    public boolean use(AnimalCard target) {
+
+        return target.getType().equals("OMNIVORE") || target.getType().equals(allowedEater);
     }
 
     @Override

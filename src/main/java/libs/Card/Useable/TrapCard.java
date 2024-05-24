@@ -12,7 +12,7 @@ public class TrapCard extends Card implements UseableOnSelf {
 
     @Override
     public void use(HarvestableCard target) {
-        
+
         target.applyEffect("Trap");
     }
 }

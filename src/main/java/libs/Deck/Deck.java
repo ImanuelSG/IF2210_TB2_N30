@@ -6,6 +6,7 @@ import java.util.Collections;
 import controller.Observer;
 import controller.Observerable;
 import libs.Card.Card;
+import libs.Card.CardFactory;
 
 public class Deck implements Observerable {
     protected ArrayList<Card> cards;
@@ -57,9 +58,12 @@ public class Deck implements Observerable {
         return cards.size();
     }
 
-    public Deck() {
+    public Deck(int size) {
         cards = new ArrayList<>();
         observers = new ArrayList<>();
+
+        cards = CardFactory.seedDeck(size);
+
     }
 
     @Override

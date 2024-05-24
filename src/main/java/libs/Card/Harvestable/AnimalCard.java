@@ -13,23 +13,20 @@ public class AnimalCard extends HarvestableCard {
     }
 
     public void feed(ProductCard product) {
-        switch (type) {
-            case "herbivore":
-                System.out.println("Hewan herbivora diberi makan ");
-                break;
-            case "carnivore":
-                System.out.println("Hewan karnivora diberi makan ");
-                break;
-            default:
-                System.out.println("Hewan diberi makan ");
-                break;
+        if (product.use(this)) {
+            this.setParameter(this.getParameter() + product.getAddedParameter());
+        } else {
+            throw new IllegalArgumentException("This animal can't eat this product");
         }
-        System.out.println("Makan hewan");
     }
 
     @Override
     public String harvest() {
         return this.productMade;
+    }
+
+    public String getType() {
+        return type;
     }
 
 }

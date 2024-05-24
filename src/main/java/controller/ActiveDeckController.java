@@ -128,7 +128,7 @@ public class ActiveDeckController implements Initializable, Observer {
     @Override
     public void updateView() {
         activeDeck = GameWorld.getInstance().getCurrentPlayer().getActiveDeck();
-        System.out.println("AYam");
+        
         for (int i = 0; i < 6; i++) {
             Card card = activeDeck.getCard(i);
             if (card != null) {

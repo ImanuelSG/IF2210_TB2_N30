@@ -1,7 +1,6 @@
 package controller;
 
 import java.net.URL;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -19,11 +18,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import libs.Card.Card;
 import libs.Card.CardFactory;
 import libs.Card.Harvestable.AnimalCard;
 import libs.Card.Harvestable.HarvestableCard;
 import libs.Card.Harvestable.PlantCard;
+import libs.Card.Useable.UseableOnSelfCard;
+import libs.Deck.ActiveDeck;
 import libs.Field.Ladang;
 import libs.GameWorld.GameWorld;
 
@@ -61,8 +61,13 @@ public class LadangkuController implements Initializable, Observer {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        GameWorld.getInstance().addObserver(this);
+        GameWorld main = GameWorld.getInstance();
+        main.addObserver(this);
+        main.getCurrentPlayer().getField().addObserver(this);
+        main.getEnemy().getField().addObserver(this);
+
         ladang = GameWorld.getInstance().getCurrentPlayer().getField();
+
         labelPopUp.setVisible(false);
         populateGrid();
         updateView();
@@ -131,6 +136,7 @@ public class LadangkuController implements Initializable, Observer {
                 String pos = data[2];
                 int columnIndex = GridPane.getColumnIndex(borderPane);
                 int rowIndex = GridPane.getRowIndex(borderPane);
+                ActiveDeck activeDeck = GameWorld.getInstance().getCurrentPlayer().getActiveDeck();
 
                 if (ladang.getHarvestable(rowIndex, columnIndex) == null && type.equals("Harvestable")) {
                     VBox centerBox = (VBox) borderPane.getCenter();
@@ -140,15 +146,33 @@ public class LadangkuController implements Initializable, Observer {
                     imageView.setImage(card.getImage());
                     label.setText(card.getName());
                     ladang.setHarvestable(rowIndex, columnIndex, card);
-                    GameWorld.getInstance().getCurrentPlayer().getActiveDeck().removeCard(Integer.parseInt(pos));
+                    activeDeck.removeCard(Integer.parseInt(pos));
                     success = true;
-                } else if (type.equals("Product")) {
+                    // Handle product Drop
+                } else if (type.equals("Product")
+                        && ladang.getHarvestable(rowIndex, columnIndex) instanceof AnimalCard) {
+                    AnimalCard animal = (AnimalCard) ladang.getHarvestable(rowIndex, columnIndex);
+                    try {
+                        animal.feed(CardFactory.createProductCard(args));
+                        activeDeck.removeCard(Integer.parseInt(pos));
 
-                } else if (type.equals("UseableSelf")) {
+                        success = true;
+                    } catch (Exception e) {
+                        System.out.println(e);
 
-                } else if (type.equals("UseableEnemy")) {
+                    }
+                    // Handle Item Drop
+                } else if (type.equals("UseableSelf") && ladang.getHarvestable(rowIndex, columnIndex) != null) {
+                    HarvestableCard card = ladang.getHarvestable(rowIndex, columnIndex);
+
+                    System.out.println(args);
+                    UseableOnSelfCard usecard = (UseableOnSelfCard) CardFactory.createItemCard(args);
+                    usecard.use(card);
+                    activeDeck.removeCard(Integer.parseInt(pos));
+                    success = true;
 
                 }
+                updateView();
             }
         }
 
@@ -162,7 +186,9 @@ public class LadangkuController implements Initializable, Observer {
         HarvestableCard card = ladang.getHarvestable(rowIndex, columnIndex);
 
         if (card != null) {
+            attrLabel.getChildren().clear();
             labelPopUp.setVisible(true);
+
             titleLabel.setText(card.getName());
             ;
 
@@ -177,8 +203,10 @@ public class LadangkuController implements Initializable, Observer {
             descLabel.setText(parameterText);
 
             Map<String, Integer> attributes = card.getAppliedEffect();
+            System.out.println(attributes);
             if (attributes != null) {
                 for (Map.Entry<String, Integer> entry : attributes.entrySet()) {
+                    System.out.println("Ayam");
                     Label attributeLabel = new Label(entry.getKey() + ": " + entry.getValue());
                     attrLabel.getChildren().add(attributeLabel);
                 }
@@ -186,6 +214,10 @@ public class LadangkuController implements Initializable, Observer {
 
             Image img = card.getImage();
             imageView.setImage(img);
+
+            this.panenButton.setDisable(!card.isHarvestable()
+                    || GameWorld.getInstance().getCurrentPlayer().getActiveDeck().getRemainingSlot() == 0);
+            this.panenButton.setOnAction(e -> handlePanenButton(card));
 
         }
     }
@@ -206,9 +238,13 @@ public class LadangkuController implements Initializable, Observer {
 
     // Event handler for panenButton
     @FXML
-    private void handlePanenButton() {
-        // Your logic for panenButton click
-        System.out.println("panen");
+    private void handlePanenButton(HarvestableCard card) {
+        String product = card.harvest();
+        CardFactory.createProductCard(product);
+        GameWorld.getInstance().getCurrentPlayer().getActiveDeck().add(CardFactory.createProductCard(product));
+        ladang.removeHarvestable(card);
+
+        hideLabelPopUp();
     }
 
     @Override
@@ -229,6 +265,7 @@ public class LadangkuController implements Initializable, Observer {
                 }
             }
         }
+
     }
 
 }

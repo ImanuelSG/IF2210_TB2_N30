@@ -5,13 +5,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+
 import libs.Card.Card;
+import libs.Deck.ActiveDeck;
+import libs.Deck.Deck;
 import libs.GameWorld.GameWorld;
 import libs.Player.Player;
 
@@ -33,20 +34,33 @@ public class ShuffleController {
     @FXML
     private void handleReshuffleButton() {
         setCardList();
+        populateShuffleCards();
+
     }
+
     @FXML
     private void handleAccButton() {
+        // Remove from deck, add to active deck
+        Player currPlayer = GameWorld.getInstance().getCurrentPlayer();
 
+        Deck maindeck = currPlayer.getDeck();
+        ActiveDeck deck = currPlayer.getActiveDeck();
+        for (Card card : this.shuffledCard) {
+
+            deck.add(card);
+
+            maindeck.removeCard(card);
+        }
     }
-
-
-
 
     private ArrayList<Card> shuffledCard;
 
     private void setCardList() {
         Player currPlayer = GameWorld.getInstance().getCurrentPlayer();
         int slotActiveDeck = currPlayer.getActiveDeck().getRemainingSlot();
+        if (slotActiveDeck > 4) {
+            slotActiveDeck = 4;
+        }
         this.shuffledCard = currPlayer.getDeck().shuffle(slotActiveDeck);
         if (shuffledCard.size() > 0) {
 
@@ -104,5 +118,5 @@ public class ShuffleController {
             }
         }
     }
-}
 
+}
