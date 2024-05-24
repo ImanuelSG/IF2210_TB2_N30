@@ -1,4 +1,4 @@
-.backButton {
+.brownButton {
     -fx-background-color : #5E3D19;
     -fx-border-color:#976732;
     -fx-border-width: 2px;
@@ -9,7 +9,7 @@
     -fx-pref-height: 40px;
     -fx-pref-width: 120px;
 }
-.panenButton {
+.greenButton {
     -fx-background-color : #9FC47C;
     -fx-border-color:#7D912A;
     -fx-border-width: 2px;

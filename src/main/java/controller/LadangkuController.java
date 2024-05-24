@@ -1,6 +1,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -18,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import libs.Card.Card;
 import libs.Card.CardFactory;
 import libs.Card.Harvestable.AnimalCard;
 import libs.Card.Harvestable.HarvestableCard;
@@ -30,10 +32,13 @@ public class LadangkuController implements Initializable, Observer {
     @FXML
     private GridPane gridPane;
 
+
+    @FXML
     private Ladang ladang;
 
     @FXML
     private VBox labelPopUp;
+
 
     @FXML
     private Text titleLabel;
@@ -52,6 +57,7 @@ public class LadangkuController implements Initializable, Observer {
 
     @FXML
     private Button panenButton;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -189,6 +195,9 @@ public class LadangkuController implements Initializable, Observer {
         labelPopUp.setVisible(false);
     }
 
+
+
+
     // Event handler for backButton
     @FXML
     private void handleBackButton() {
@@ -221,4 +230,5 @@ public class LadangkuController implements Initializable, Observer {
             }
         }
     }
+
 }
