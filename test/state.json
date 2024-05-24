@@ -1,0 +1,60 @@
+{
+    "turn": 1,
+    "toko": {
+        "itemCount": 5,
+        "items": [
+            { "name": "SIRIP_HIU", "quantity": 5 },
+            { "name": "SUSU", "quantity": 2 },
+            { "name": "DAGING_DOMBA", "quantity": 3 },
+            { "name": "DAGING_KUDA", "quantity": 10 },
+            { "name": "DAGING_BERUANG", "quantity": 1 }
+        ]
+    },
+    "player1": {
+        "gulden": 500,
+        "deckCount": 39,
+        "activeDeckCount": 1,
+        "activeDeck": [
+            { 
+                "location": "A01",
+                "card": "BERUANG"
+            }
+        ],
+        "ladangCardCount": 1,
+        "ladangCards": [
+            {
+                "location": "A01",
+                "card": "DOMBA",
+                "ageOrWeight": 5,
+                "activeItemCount": 3,
+                "activeItems": ["ACCELERATE", "DELAY", "PROTECT"]
+            }
+        ]
+    },
+    "player2": {
+        "gulden": 300,
+        "deckCount": 38,
+        "activeDeckCount": 2,
+        "activeDeck": [
+            { 
+                "location": "A01", 
+                "card": "BERUANG" 
+            },
+            { 
+                "location": "B01", 
+                "card": "BERUANG" 
+            }
+        ],
+        "ladangCardCount": 1,
+        "ladangCards": [
+          {
+            "location": "B02",
+            "card": "AYAM",
+            "ageOrWeight": 0,
+            "activeItemCount": 0,
+            "activeItems": []
+          }
+        ]
+      }
+  }
+  

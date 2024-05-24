@@ -9,9 +9,9 @@ import libs.Field.Ladang;
 import libs.GameWorld.GameWorld;
 import libs.Player.Player;
 
-public class InstantHarverst extends Card implements UseableOnSelf {
+public class InstantHarvestCard extends Card implements UseableOnSelf {
 
-    public InstantHarverst(String name, Image image) {
+    public InstantHarvestCard(String name, Image image) {
         super(name, image);
     }
 
