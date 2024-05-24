@@ -9,6 +9,7 @@
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/controller/StartViewController.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/controller/Observer.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/DelayCard.java
+/home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/GameWorld/SpecialObserverable.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/CardFactory.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/GameWorld/GameWorld.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/controller/LadangMusuhController.java
@@ -27,6 +28,7 @@
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/DestroyCard.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Harvestable/AnimalCard.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/UseableOnSelfCard.java
+/home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/GameWorld/SpecialObserver.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/MainTestLoad.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/controller/LadangkuController.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/controller/TokoController.java

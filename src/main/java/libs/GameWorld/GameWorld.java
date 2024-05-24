@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import controller.Observer;
 import controller.Observerable;
-import libs.Card.CardFactory;
+
+import libs.Card.Harvestable.PlantCard;
+import libs.Field.Ladang;
 import libs.Player.Player;
 
 // Karena singleton maka harus dibuat private constructor
-public class GameWorld implements Observerable {
+public class GameWorld implements Observerable, SpecialObserverable {
     private int turn;
     private Player player1;
     private Player player2;
@@ -17,24 +19,13 @@ public class GameWorld implements Observerable {
 
     private ArrayList<Observer> observers = new ArrayList<>();
 
+    private ArrayList<SpecialObserver> specialobservers = new ArrayList<>();
+
     private static GameWorld instance;
 
     private GameWorld() {
         player1 = new Player("Player 1", 0, 40);
         player2 = new Player("Player 2", 0, 40);
-        player1.getActiveDeck().add(CardFactory.createHarvestableCard("AYAM"));
-        player1.getActiveDeck().add(CardFactory.createProductCard("DAGING BERUANG"));
-        player1.getActiveDeck().add(CardFactory.createHarvestableCard("BIJI_JAGUNG"));
-        player1.getActiveDeck().add(CardFactory.createProductCard("DAGING BERUANG"));
-        player1.getActiveDeck().add(CardFactory.createItemCard("ACCELERATE"));
-
-        player2.getActiveDeck().add(CardFactory.createHarvestableCard("HIU DARAT"));
-        player2.getActiveDeck().add(CardFactory.createProductCard("DAGING BERUANG"));
-        player2.getActiveDeck().add(CardFactory.createHarvestableCard("BERUANG"));
-        player2.getActiveDeck().add(CardFactory.createHarvestableCard("HIU DARAT"));
-        player2.getActiveDeck().add(CardFactory.createProductCard("DAGING BERUANG"));
-        player2.getActiveDeck().add(CardFactory.createHarvestableCard("BERUANG"));
-
         turn = 1;
         state = 0;
         currentPlayer = player1;
@@ -49,19 +40,51 @@ public class GameWorld implements Observerable {
     }
 
     public void nextTurn() {
+
+        Ladang lp1 = player1.getField();
+        Ladang lp2 = player2.getField();
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (lp1.getHarvestable(i, j) != null) {
+                    if (lp1.getHarvestable(i, j) instanceof PlantCard) {
+                        PlantCard plant = (PlantCard) lp1.getHarvestable(i, j);
+                        plant.addPlantAge();
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (lp2.getHarvestable(i, j) != null) {
+                    if (lp2.getHarvestable(i, j) instanceof PlantCard) {
+                        PlantCard plant = (PlantCard) lp2.getHarvestable(i, j);
+                        plant.addPlantAge();
+                    }
+                }
+            }
+        }
+
         turn++;
-        currentPlayer = (turn % 2 == 0) ? player1 : player2;
-        System.out.println("Turn " + turn + " " + currentPlayer.getName() + " " + state);
+
+        currentPlayer = (turn % 2 == 0) ? player2 : player1;
+
+        System.out.println(currentPlayer.getName());
+        movePhase(2);
         notifyObserver();
     }
 
-    public void movePhase() {
-        if (state == 0) {
+    public void movePhase(int lastState) {
 
+        if (lastState == 0) {
+            state = 2;
+        } else if (lastState == 1) {
+            state = 2;
         } else {
             state = 0;
-            nextTurn();
         }
+        notifySpecial();
     }
 
     public int getTurn() {
@@ -128,6 +151,23 @@ public class GameWorld implements Observerable {
     public void notifyObserver() {
         for (Observer observer : observers) {
             observer.updateView();
+        }
+    }
+
+    @Override
+    public void registerObserver(SpecialObserver observer) {
+        specialobservers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(SpecialObserver observer) {
+        specialobservers.remove(observer);
+    }
+
+    @Override
+    public void notifySpecial() {
+        for (SpecialObserver observer : specialobservers) {
+            observer.update();
         }
     }
 }

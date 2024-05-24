@@ -30,8 +30,6 @@ public class CardFactory {
     // Map of nama kartu, pathImageAsli, harga, penambahanParameter, allowedEater
     private static Map<String, ArrayList<String>> MapProduct;
 
-    private static final Random random = new Random();
-
     private CardFactory() {
         loadProductMap();
         loadHewanMap();
@@ -58,7 +56,8 @@ public class CardFactory {
     }
 
     public static Card createItemCard(String name) {
-        name.replace(" ", "_");
+
+        name = name.replace(" ", "_");
         if (name.equalsIgnoreCase("ACCELERATE")) {
             Image image = new Image("/img/item/accelerate.png");
             return new AccelerateCard(name.replace("_", " "), image);
@@ -72,6 +71,7 @@ public class CardFactory {
             Image image = new Image("img/item/destroy.png");
             return new DestroyCard(name.replace("_", " "), image);
         } else if (name.equalsIgnoreCase("INSTANT_HARVEST")) {
+
             Image image = new Image("img/item/instant_harvest.png");
             return new InstantHarvestCard(name.replace("_", " "), image);
         } else {
@@ -182,54 +182,50 @@ public class CardFactory {
 
     public static ArrayList<Card> seedDeck(int size) {
         ArrayList<Card> deck = new ArrayList<>();
-
+        String[] itemNames = { "ACCELERATE", "BEAR_TRAP", "DELAY", "DESTROY", "INSTANT_HARVEST", "PROTECT" };
         // Calculate the number of cards to add from each map
-        int animalCount = Math.min(size / 2, MapHewan.size() * 2);
-        int plantCount = Math.min(size / 2, MapTanaman.size() * 2);
-        int productCount = Math.min(size / 2, MapProduct.size() * 2);
-        int itemCardCount = Math.min(size - animalCount - plantCount - productCount, 12);
+
+        if (deck.size() < size) {
+            for (int i = 0; i < 6; i++) {
+                deck.add(CardFactory.createItemCard(itemNames[i]));
+                if (deck.size() < size)
+                    deck.add(CardFactory.createItemCard(itemNames[i]));
+            }
+        }
 
         // Add animal cards
         MapHewan.forEach((key, value) -> {
-            if (deck.size() < size && deck.size() < animalCount) {
+            if (deck.size() < size && !key.equals("BERUANG")) {
                 deck.add(createAnimalCard(key));
-                deck.add(createAnimalCard(key));
+                if (deck.size() < size)
+                    deck.add(createAnimalCard(key));
             }
         });
 
         // Add plant cards
         MapTanaman.forEach((key, value) -> {
-            if (deck.size() < size && deck.size() < animalCount + plantCount) {
+            if (deck.size() < size) {
                 deck.add(createPlantCard(key));
-                deck.add(createPlantCard(key));
+                if (deck.size() < size)
+                    deck.add(createPlantCard(key));
             }
         });
 
         // Add product cards
         MapProduct.forEach((key, value) -> {
-            if (deck.size() < size && deck.size() < animalCount + plantCount + productCount) {
+            if (deck.size() < size) {
                 deck.add(createProductCard(key));
-                deck.add(createProductCard(key));
+                if (deck.size() < size)
+                    deck.add(createProductCard(key));
             }
         });
 
         // Add item cards
-        if (deck.size() < size) {
-            for (int i = 0; i < itemCardCount; i++) {
-                deck.add(createRandomItemCard());
-            }
-        }
 
         // Shuffle the deck
         shuffleDeck(deck);
 
         return deck;
-    }
-
-    public static Card createRandomItemCard() {
-        String[] itemNames = { "ACCELERATE", "BEAR_TRAP", "DELAY", "DESTROY", "INSTANT_HARVEST", "PROTECT" };
-        String randomItemName = itemNames[random.nextInt(itemNames.length)];
-        return createItemCard(randomItemName);
     }
 
     private static void shuffleDeck(List<Card> deck) {

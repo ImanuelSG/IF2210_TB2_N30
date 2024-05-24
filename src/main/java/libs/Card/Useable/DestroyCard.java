@@ -13,8 +13,12 @@ public class DestroyCard extends UseableOnEnemyCard {
     @Override
     public void use(HarvestableCard target, Player player) {
         Ladang enemyField = player.getField();
-
-        enemyField.removeHarvestable(target);
+        if (!target.isProtected()) {
+            target.applyEffect("Destroy");
+            enemyField.removeHarvestable(target);
+        } else {
+            throw new IllegalArgumentException("Card is protected");
+        }
 
     }
 

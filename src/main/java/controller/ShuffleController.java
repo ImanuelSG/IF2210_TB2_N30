@@ -51,6 +51,8 @@ public class ShuffleController {
 
             maindeck.removeCard(card);
         }
+        
+        GameWorld.getInstance().movePhase(0);
     }
 
     private ArrayList<Card> shuffledCard;

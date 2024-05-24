@@ -7,13 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import libs.GameWorld.GameWorld;
+import libs.GameWorld.SpecialObserver;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable, Observerable {
+public class MainController implements Initializable, Observerable, SpecialObserver {
 
     @FXML
     private BorderPane contentPane;
@@ -32,11 +33,9 @@ public class MainController implements Initializable, Observerable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GameWorld.getInstance();
-
-        loadView("LadangKu.fxml"); // Corrected to load "View1.fxml"
+        GameWorld.getInstance().registerObserver(this);
         updateView();
-        // main.run();
-
+        play(0);
     }
 
     @FXML
@@ -58,8 +57,6 @@ public class MainController implements Initializable, Observerable {
     public void handleNextTurn() {
         GameWorld main = GameWorld.getInstance();
         main.nextTurn();
-        updateView();
-        play();
     }
 
     @Override
@@ -110,18 +107,34 @@ public class MainController implements Initializable, Observerable {
 
     }
 
-    private void play() {
-        // Shuffling phase
-        this.loadView("ShuffleView.fxml");
+    private void play(int state) {
+        
+        System.out.println(GameWorld.getInstance().getCurrentPlayer().getName());
+        switch (state) {
+            case 0:
+                this.loadView("ShuffleView.fxml");
+                break;
+            case 1:
+                seranganBeruang();
+            case 2:
+                // Harvesting phase
+                this.loadView("LadangKu.fxml");
+                break;
+        }
+    }
 
-
-        // if 
-
-
+    @Override
+    public void update() {
+        // Update the view
+        GameWorld main = GameWorld.getInstance();
+        int state = main.getState();
+        updateView();
+        play(state);
     }
 
     private void seranganBeruang() {
-
+        System.out.println("Serangan Beruang");
+        GameWorld.getInstance().movePhase(1);
     }
 
 }

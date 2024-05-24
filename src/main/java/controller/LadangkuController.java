@@ -32,13 +32,11 @@ public class LadangkuController implements Initializable, Observer {
     @FXML
     private GridPane gridPane;
 
-
     @FXML
     private Ladang ladang;
 
     @FXML
     private VBox labelPopUp;
-
 
     @FXML
     private Text titleLabel;
@@ -57,7 +55,6 @@ public class LadangkuController implements Initializable, Observer {
 
     @FXML
     private Button panenButton;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -165,9 +162,10 @@ public class LadangkuController implements Initializable, Observer {
                 } else if (type.equals("UseableSelf") && ladang.getHarvestable(rowIndex, columnIndex) != null) {
                     HarvestableCard card = ladang.getHarvestable(rowIndex, columnIndex);
 
-                    System.out.println(args);
                     UseableOnSelfCard usecard = (UseableOnSelfCard) CardFactory.createItemCard(args);
+
                     usecard.use(card);
+
                     activeDeck.removeCard(Integer.parseInt(pos));
                     success = true;
 
@@ -226,9 +224,6 @@ public class LadangkuController implements Initializable, Observer {
     public void hideLabelPopUp() {
         labelPopUp.setVisible(false);
     }
-
-
-
 
     // Event handler for backButton
     @FXML

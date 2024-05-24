@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import libs.Card.CardFactory;
 import libs.Card.Harvestable.HarvestableCard;
+import libs.Card.Useable.UseableOnEnemyCard;
 import libs.Field.Ladang;
 import libs.GameWorld.GameWorld;
 import libs.Player.Player;
@@ -103,18 +104,25 @@ public class LadangMusuhController implements Initializable, Observer {
             int columnIndex = GridPane.getColumnIndex(borderPane);
             int rowIndex = GridPane.getRowIndex(borderPane);
 
-            String args = db.getString().split("_")[0];
-            String type = db.getString().split("_")[1];
-            if (ladang.getHarvestable(rowIndex, columnIndex) == null
-                    && type.equals("Useable")) {
+            String[] full = db.getString().split("_");
+            String args = full[0];
+            String type = full[1];
+            String idx = full[2];
 
-                ImageView imageView = (ImageView) ((VBox) borderPane.getCenter()).getChildren().get(0);
-                Label label = (Label) ((VBox) borderPane.getCenter()).getChildren().get(1);
-                HarvestableCard card = CardFactory.createHarvestableCard(args);
-                imageView.setImage(card.getImage());
-                label.setText(card.getName());
-                ladang.setHarvestable(rowIndex, columnIndex, card);
-                success = true;
+            if (type.equals("UseableEnemy")) {
+                HarvestableCard card = ladang.getHarvestable(rowIndex, columnIndex);
+                if (card != null) {
+                    try {
+                        Player enemy = GameWorld.getInstance().getEnemy();
+                        UseableOnEnemyCard useable = (UseableOnEnemyCard) CardFactory.createItemCard(args);
+                        useable.use(card, enemy);
+                        success = true;
+                        GameWorld.getInstance().getCurrentPlayer().getActiveDeck().removeCard(Integer.parseInt(idx));
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+
+                    }
+                }
             }
             updateView();
         }
