@@ -135,7 +135,6 @@ public class LadangkuController implements Initializable, Observer {
                     label.setText(card.getName());
                     ladang.setHarvestable(rowIndex, columnIndex, card);
                     GameWorld.getInstance().getCurrentPlayer().getActiveDeck().removeCard(Integer.parseInt(pos));
-
                     success = true;
                 } else if (type.equals("Product")) {
 
@@ -149,8 +148,6 @@ public class LadangkuController implements Initializable, Observer {
 
         event.setDropCompleted(success);
         event.consume();
-
-        updateView();
     }
 
     private void handleCellClick(BorderPane borderPane) {

@@ -1,12 +1,19 @@
 package libs.Field;
 
+import java.util.ArrayList;
+
+import controller.Observer;
+import controller.Observerable;
 import libs.Card.Harvestable.HarvestableCard;
 
-public class Ladang {
+public class Ladang implements Observerable {
     private HarvestableCard[][] field;
+
+    private ArrayList<Observer> observers;
 
     public Ladang() {
         field = new HarvestableCard[4][5];
+        observers = new ArrayList<>();
     }
 
     public HarvestableCard[][] getField() {
@@ -15,6 +22,7 @@ public class Ladang {
 
     public void removeHarvestable(int row, int col) {
         field[row][col] = null;
+        notifyObserver();
     }
 
     public void removeHarvestable(HarvestableCard card) {
@@ -22,10 +30,12 @@ public class Ladang {
             for (int j = 0; j < field[i].length; j++) {
                 if (field[i][j] != null && field[i][j].equals(card)) {
                     field[i][j] = null;
+                    notifyObserver();
                     return;
                 }
             }
         }
+
     }
 
     public HarvestableCard getHarvestable(int row, int col) {
@@ -34,6 +44,7 @@ public class Ladang {
 
     public void setHarvestable(int row, int col, HarvestableCard harvestable) {
         field[row][col] = harvestable;
+        notifyObserver();
     }
 
     public HarvestableCard getCardByName(String name) {
@@ -48,4 +59,28 @@ public class Ladang {
         }
         return null;
     }
+
+    public void moveHarvestable(int fromRow, int fromCol, int toRow, int toCol) {
+        field[toRow][toCol] = field[fromRow][fromCol];
+        field[fromRow][fromCol] = null;
+        notifyObserver();
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObserver() {
+        for (Observer observer : observers) {
+            observer.updateView();
+        }
+    }
+
 }

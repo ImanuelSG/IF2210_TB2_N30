@@ -14,7 +14,6 @@ public class ProtectCard extends UseableOnSelfCard {
         Ladang field = GameWorld.getInstance().getCurrentPlayer().getField();
 
         
-
         target.applyEffect("Protect");
 
     }
