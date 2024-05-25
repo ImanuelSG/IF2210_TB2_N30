@@ -7,6 +7,7 @@ import libs.GameWorld.GameWorld;
 import libs.Toko.Toko;
 import libs.Player.Player;
 import libs.Deck.ActiveDeck;
+import libs.Deck.Deck;
 import libs.Card.CardFactory;
 import libs.Field.Ladang;
 import libs.Card.Harvestable.HarvestableCard;
@@ -60,16 +61,25 @@ public class JsonPlugin implements FilePlugin {
     private void loadPlayerData(JSONObject playerJSON, GameWorld gameWorld, String playerName) {
         int gulden = playerJSON.getInt("gulden");
         int deckCount = playerJSON.getInt("deckCount");
-        Player player = new Player(playerName, gulden, deckCount);
+        Player player;
 
         if (playerName.equals("player1")) {
-            gameWorld.setPlayer1(player);
+            player = gameWorld.getPlayer1();
         } else {
-            gameWorld.setPlayer2(player);
+            player = gameWorld.getPlayer2();
         }
+        
+        player.setGulden(gulden);
+
+        Deck deck1 = player.getDeck();
+        deck1.setCards(CardFactory.seedDeck(deckCount));
 
         int activeDeckCount = playerJSON.getInt("activeDeckCount");
-        ActiveDeck activeDeck = new ActiveDeck();
+        ActiveDeck activeDeck = player.getActiveDeck();
+        for (int j = 0; j < 6; j++) {
+            activeDeck.removeCard(j);
+        }
+        activeDeck.setCardCount(0);
         JSONArray activeDeckArray = playerJSON.getJSONArray("activeDeck");
         for (int i = 0; i < activeDeckCount; i++) {
             JSONObject cardObject = activeDeckArray.getJSONObject(i);
@@ -80,7 +90,12 @@ public class JsonPlugin implements FilePlugin {
         player.setActiveDeck(activeDeck);
 
         int ladangCardCount = playerJSON.getInt("ladangCardCount");
-        Ladang ladang = new Ladang();
+        Ladang ladang = player.getField();
+        for (int j = 0; j < 4; j++) {
+            for (int k = 0; k < 5; k++) {
+                ladang.removeHarvestable(j, k);
+            }
+        }        
         JSONArray ladangCardsArray = playerJSON.getJSONArray("ladangCards");
         for (int i = 0; i < ladangCardCount; i++) {
             JSONObject ladangCardObject = ladangCardsArray.getJSONObject(i);
@@ -129,7 +144,7 @@ public class JsonPlugin implements FilePlugin {
         Player player2 = g.getPlayer2();
         gameState.put("player2", createPlayerJson(player2));
 
-        String filePath = Paths.get(directory, "state.txt").toString();
+        String filePath = Paths.get(directory, "state.json").toString();
 
         try (FileWriter file = new FileWriter(filePath)) {
             file.write(gameState.toString(4));
@@ -192,7 +207,7 @@ public class JsonPlugin implements FilePlugin {
 
 
     @Override
-    public boolean supports(String fileExtension) {
-        return "json".equalsIgnoreCase(fileExtension);
+    public String getSupportedExtension() {
+        return "json";
     }
 }

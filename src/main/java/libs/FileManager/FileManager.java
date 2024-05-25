@@ -28,9 +28,12 @@ import java.util.Map;
 public class FileManager {
     private static FileManager instance;
     private List<FilePlugin> plugins;
+    private List<String> supportedExtensions;
 
     private FileManager() {
         plugins = new ArrayList<>();
+        supportedExtensions = new ArrayList<>();
+        supportedExtensions.add("txt");
     }
 
     public static synchronized FileManager getInstance() {
@@ -40,8 +43,11 @@ public class FileManager {
         return instance;
     }
 
-    public void loadJar(String jarFilePath) throws Exception {
-        File jarFile = new File(jarFilePath);
+    public List<String> getSupportedExtensions() {
+        return supportedExtensions;
+    }
+
+    public void loadJar(File jarFile) throws Exception {
         URL jarUrl = jarFile.toURI().toURL();
 
         try (URLClassLoader classLoader = new URLClassLoader(new URL[] { jarUrl }, FilePlugin.class.getClassLoader());
@@ -61,6 +67,9 @@ public class FileManager {
                         if (FilePlugin.class.isAssignableFrom(clazz)) {
                             FilePlugin plugin = (FilePlugin) clazz.getDeclaredConstructor().newInstance();
                             plugins.add(plugin);
+                            if (!supportedExtensions.contains(plugin.getSupportedExtension())) {
+                                supportedExtensions.add(plugin.getSupportedExtension());
+                            }
                             System.out.println("Loaded plugin: " + plugin.getClass().getName());
                             return;
                         }
@@ -81,7 +90,7 @@ public class FileManager {
             loadTxt(file);
         } else {
             for (FilePlugin plugin : plugins) {
-                if (plugin.supports(extension)) {
+                if (plugin.getSupportedExtension().equalsIgnoreCase(extension)) {
                     plugin.load(file);
                     return;
                 }
@@ -95,13 +104,21 @@ public class FileManager {
             saveTxt(filePath);
         } else {
             for (FilePlugin plugin : plugins) {
-                if (plugin.supports(extension)) {
+                if (plugin.getSupportedExtension().equals(extension)) {
                     plugin.save(filePath);
                     return;
                 }
             }
             System.out.println("No plugin found to support the file extension: " + extension);
         }
+    }
+
+    public String getFileExtension(String filePath) {
+        int dotIndex = filePath.lastIndexOf('.');
+        if (dotIndex > 0 && dotIndex < filePath.length() - 1) {
+            return filePath.substring(dotIndex + 1);
+        }
+        return "";
     }
 
     public void loadTxt(File file) {

@@ -38,6 +38,9 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     private VBox loadStateBox;
 
     @FXML
+    private VBox loadPluginBox;
+
+    @FXML
     private Label timerLabel;
 
     @FXML
@@ -79,7 +82,7 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
 
         saveStateBox.setVisible(false);
         loadStateBox.setVisible(false);
-
+        loadPluginBox.setVisible(false);
         main.registerObserver(this);
         main.addListener(this);
 
@@ -168,6 +171,11 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     public void showLoadState() {
         loadStateBox.setVisible(!loadStateBox.isVisible());
         saveStateBox.setVisible(false);
+    }
+
+    @FXML
+    public void showPlugin() {
+        loadPluginBox.setVisible(!loadPluginBox.isVisible());
     }
 
     @FXML

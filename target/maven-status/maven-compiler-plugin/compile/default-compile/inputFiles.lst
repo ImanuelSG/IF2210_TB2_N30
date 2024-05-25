@@ -22,6 +22,7 @@
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/UseableOnSelfCard.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/GameWorld/SpecialObserver.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/FileManager/FilePlugin.java
+/home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/MainTestLoad.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/controller/LadangkuController.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/controller/TokoController.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/UseableOnEnemyCard.java
@@ -39,6 +40,7 @@
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/CardFactory.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/controller/LadangMusuhController.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Products/Transactionable.java
+/home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/controller/PluginController.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/UseableOnSelf.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/ProtectCard.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Field/Ladang.java

@@ -20,6 +20,7 @@ import libs.GameWorld.GameWorld;
 import libs.Toko.Toko;
 import libs.Player.Player;
 import libs.Deck.ActiveDeck;
+import libs.Deck.Deck;
 import libs.Card.CardFactory;
 import libs.Field.Ladang;
 import libs.Card.Harvestable.HarvestableCard;
@@ -59,12 +60,19 @@ public class XmlPlugin implements FilePlugin {
             Element player1Element = (Element) gameStateElement.getElementsByTagName("Player1").item(0);
             int gulden1 = Integer.parseInt(getTagValue("Gulden", player1Element));
             int deckCount1 = Integer.parseInt(getTagValue("DeckCount", player1Element));
-            Player player1 = new Player("Player1", gulden1, deckCount1);
-            gameWorld.setPlayer1(player1);
+            Player player1 = gameWorld.getPlayer1();
+            player1.setGulden(gulden1);
+
+            Deck deck1 = player1.getDeck();
+            deck1.setCards(CardFactory.seedDeck(deckCount1));
 
     
             int activeDeckCount1 = Integer.parseInt(getTagValue("ActiveDeckCount", player1Element));
-            ActiveDeck activeDeck1 = new ActiveDeck();
+            ActiveDeck activeDeck1 = player1.getActiveDeck();
+            for (int j = 0; j < 6; j++) {
+                activeDeck1.removeCard(j);
+            }
+            activeDeck1.setCardCount(0);           
             NodeList activeDeckNodes1 = player1Element.getElementsByTagName("Card");
             for (int i = 0; i < activeDeckCount1; i++) {
                 Element cardElement = (Element) activeDeckNodes1.item(i);
@@ -76,7 +84,12 @@ public class XmlPlugin implements FilePlugin {
     
             // Load ladang (field)
             int ladangCardCount1 = Integer.parseInt(getTagValue("LadangCardCount", player1Element));
-            Ladang ladang1 = new Ladang();
+            Ladang ladang1 = player1.getField();
+            for (int j = 0; j < 4; j++) {
+                for (int k = 0; k < 5; k++) {
+                    ladang1.removeHarvestable(j, k);
+                }
+            }            
             NodeList ladangCardNodes1 = player1Element.getElementsByTagName("LadangCard");
             for (int i = 0; i < ladangCardCount1; i++) {
                 Element ladangCardElement = (Element) ladangCardNodes1.item(i);
@@ -102,11 +115,18 @@ public class XmlPlugin implements FilePlugin {
             Element player2Element = (Element) gameStateElement.getElementsByTagName("Player2").item(0);
             int gulden2 = Integer.parseInt(getTagValue("Gulden", player2Element));
             int deckCount2 = Integer.parseInt(getTagValue("DeckCount", player2Element));
-            Player player2 = new Player("Player2", gulden2, deckCount2);
-            gameWorld.setPlayer2(player2);
+            Player player2 = gameWorld.getPlayer2();
+            player2.setGulden(gulden2);
+
+            Deck deck2 = player2.getDeck();
+            deck2.setCards(CardFactory.seedDeck(deckCount2));
     
             int activeDeckCount2 = Integer.parseInt(getTagValue("ActiveDeckCount", player2Element));
-            ActiveDeck activeDeck2 = new ActiveDeck();
+            ActiveDeck activeDeck2 = player2.getActiveDeck();
+            for (int j = 0; j < 6; j++) {
+                activeDeck2.removeCard(j);
+            }
+            activeDeck2.setCardCount(0);
             NodeList activeDeckNodes2 = player2Element.getElementsByTagName("Card");
             for (int i = 0; i < activeDeckCount2; i++) {
                 Element cardElement = (Element) activeDeckNodes2.item(i);
@@ -118,7 +138,12 @@ public class XmlPlugin implements FilePlugin {
     
             // Load ladang (field)
             int ladangCardCount2 = Integer.parseInt(getTagValue("LadangCardCount", player2Element));
-            Ladang ladang2 = new Ladang();
+            Ladang ladang2 = player2.getField();
+            for (int j = 0; j < 4; j++) {
+                for (int k = 0; k < 5; k++) {
+                    ladang2.removeHarvestable(j, k);
+                }
+            }
             NodeList ladangCardNodes2 = player2Element.getElementsByTagName("LadangCard");
             for (int i = 0; i < ladangCardCount2; i++) {
                 Element ladangCardElement = (Element) ladangCardNodes2.item(i);
@@ -207,7 +232,7 @@ public class XmlPlugin implements FilePlugin {
             Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource source = new DOMSource(doc);
-            String filePath = Paths.get(directory, "state.txt").toString();
+            String filePath = Paths.get(directory, "state.xml").toString();
             StreamResult result = new StreamResult(new File(filePath));
 
             transformer.transform(source, result);
@@ -313,7 +338,7 @@ public class XmlPlugin implements FilePlugin {
     }
 
     @Override
-    public boolean supports(String fileExtension) {
-        return "xml".equalsIgnoreCase(fileExtension);
+    public String getSupportedExtension() {
+        return "xml";
     }
 }
