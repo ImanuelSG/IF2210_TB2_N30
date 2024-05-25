@@ -178,10 +178,11 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     public void updateView() {
         GameWorld main = GameWorld.getInstance();
 
-        if (main.getTurn() == 20) {
+        if (main.getTurn() == 21) {
             // End game
             System.out.println();
-            return;
+//            loadView();
+
         }
 
         // Update turn label

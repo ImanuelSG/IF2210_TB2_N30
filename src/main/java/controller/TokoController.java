@@ -38,12 +38,44 @@ public class TokoController {
     @FXML
     private Label sellBoxText;
 
+    @FXML
+    private  VBox labelPopUp;
+
+    @FXML
+    private Label confirmSellText;
+
+    @FXML
+    private ImageView confirmImg;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private Label moneySellLabel;
+
+    @FXML
+    private VBox exceptionPopUp;
+
+    @FXML
+    private Label exceptionLabel;
+
+    @FXML
+    private Label exceptionText;
+
+    @FXML
+    private ImageView exceptionImg;
+
+    @FXML
+    private Button backExceptionButton;
 
 
     @FXML
     public void initialize() {
         this.stock = new HashMap<String, Integer>();
         this.stock = Toko.getInstance().getStock();
+        labelPopUp.setVisible(false);
+        exceptionPopUp.setVisible(false);
+
 
         populateToko();
         setupSellBoxDrag();
@@ -96,11 +128,8 @@ public class TokoController {
                 partLabel.setWrapText(true);
                 labelsContainer.getChildren().add(partLabel);
             }
-
-            // Add the container of labels to the scene
             cardLabel.setGraphic(labelsContainer);
         } else {
-            // If there's only one part after splitting
             cardLabel.setText(string.replace("_", "\n")); // Replace underscores with newlines
             cardLabel.setStyle("-fx-text-fill: black; -fx-font-weight: bold;");
             cardLabel.setWrapText(true);
@@ -206,9 +235,15 @@ public class TokoController {
                     Player currPlayer = GameWorld.getInstance().getCurrentPlayer();
                     if (type.equals("Product")) {
                         Toko.getInstance().sell(currPlayer,args,pos);
+
+
                         refetch();
                         populateToko();
                         success = true;
+
+                        initializeConfirmPopUp();
+                        labelPopUp.setVisible(true);
+
                     }
 
                 }
@@ -225,6 +260,25 @@ public class TokoController {
         sellBoxImage.setFitHeight(100);
     }
 
+    private void initializeConfirmPopUp()
+    {
+        confirmSellText.setText("BERHASIL");
+        moneySellLabel.setText("Anda berhasil menjual barang Anda!");
+        confirmImg.setImage(new Image("/img/gui/sell_img.png"));
+        confirmImg.setFitHeight(150);
+        confirmImg.setFitWidth(150);
+
+    }
+
+    private void initializeExceptionPopUp(String error)
+    {
+        exceptionText.setText("GAGAL!");
+        exceptionLabel.setText(error);
+        exceptionImg.setImage(new Image("/img/gui/no_money_ex.png"));
+        exceptionImg.setFitHeight(150);
+        exceptionImg.setFitWidth(150);
+
+    }
     private void showConfirmation(BorderPane borderPane, String item, Integer quantity) {
         Player currPlayer = GameWorld.getInstance().getCurrentPlayer();
         Map<String, ArrayList<String>> products = CardFactory.getInstance().getMapProduct();
@@ -291,11 +345,22 @@ public class TokoController {
         try {
             Toko.getInstance().buy(item,currPlayer);
         } catch (Exception e) {
-            e.getMessage();
+            initializeExceptionPopUp(e.getMessage());
+            exceptionPopUp.setVisible(true);
         }
         populateToko();
 
 
+    }
+
+    @FXML
+    private void  handleBackButton(){
+        labelPopUp.setVisible(false);
+    }
+
+    @FXML
+    private void handleExceptionBackButton() {
+        exceptionPopUp.setVisible(false);
     }
 
 }

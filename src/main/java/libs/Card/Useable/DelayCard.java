@@ -14,7 +14,7 @@ public class DelayCard extends UseableOnEnemyCard {
     @Override
     public void use(HarvestableCard target, Player enemyPlayer) {
         if (target.isProtected()) {
-            throw new IllegalArgumentException("Card is protected");
+            throw new IllegalArgumentException("Tidak bisa menggunakan kartu Delay");
         } else {
             if (target instanceof AnimalCard) {
                 target.setParameter(target.getParameter() > 5 ? target.getParameter() - 5 : 0);
