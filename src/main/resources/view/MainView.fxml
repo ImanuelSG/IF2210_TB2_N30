@@ -72,7 +72,7 @@
                      </VBox>
                   </StackPane>
                   <Label fx:id="turnLabel" alignment="CENTER" prefHeight="63.0" prefWidth="141.0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" text="TURN : 0" />
-                                    <Label fx:id="phaseLabel" alignment="CENTER" prefHeight="63.0" prefWidth="141.0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" text="Phase : 0" />
+                                    <Label fx:id="phaseLabel" alignment="CENTER" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" text="Phase : 0" />
                </children>
             </HBox>
             <children>
@@ -100,7 +100,7 @@
    </center>
    <right>
       <!--SIDE BAR-->
-      <VBox prefHeight="1000.0" prefWidth="304.0" style="-fx-padding: 20px; -fx-spacing: 150px; -fx-background-image: url('img/gui/bg_sidebar.png'); -fx-background-size: cover;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="304.0" style="-fx-padding: 20px; -fx-spacing: 150px; -fx-background-image: url('img/gui/bg_sidebar.png'); -fx-background-size: cover;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="nextButton" mnemonicParsing="false" onAction="#handleNextTurn" prefHeight="72.0" prefWidth="96.0" style="-fx-background-color: #68441D; -fx-background-radius: 8px;" text="NEXT" textFill="WHITE">
                <font>
@@ -120,7 +120,12 @@
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button fx:id="loadStateButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="LOAD STATE" textFill="WHITE">
+                     <Button fx:id="saveStateButton" mnemonicParsing="false" onAction="#showSaveState" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="SAVE STATE" textFill="WHITE">
+                     <font>
+                        <Font name="Inter Semi Bold" size="20.0" />
+                     </font></Button>
+                  
+                  <Button fx:id="loadStateButton" onAction = "#showLoadState" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="LOAD STATE" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
@@ -135,7 +140,7 @@
                      </font>
                   </Label>
                    
-        <Label fx:id="timerLabel" text="Timer: 0.0" />
+        <Label fx:id="timerLabel" text="Timer: 0.0" style="-fx-font-size: 20px; -fx-text-fill: red; -fx-font-weight: bold;"/>
     
                </children>
                <opaqueInsets>
