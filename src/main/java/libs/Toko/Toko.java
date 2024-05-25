@@ -1,5 +1,10 @@
 package libs.Toko;
 
+import libs.Card.CardFactory;
+import libs.Card.Products.ProductCard;
+import libs.Player.Player;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -68,5 +73,33 @@ public class Toko {
 
     public int getProductCount() {
         return stock.size();
+    }
+
+
+    public void buy(String item, Player currPlayer) throws IllegalArgumentException {
+        Map<String, ArrayList<String>> products = CardFactory.getInstance().getMapProduct();
+        ArrayList<String> datas = products.get(item);
+        int price = Integer.parseInt(datas.get(1));
+
+        if (currPlayer.getGulden() >= price){
+            ProductCard productCard = CardFactory.createProductCard(item);
+            currPlayer.getActiveDeck().add(productCard);
+            currPlayer.setGulden(currPlayer.getGulden() - price);
+            this.removeProduct(item,1);
+        }
+        else {
+            throw new IllegalArgumentException("Uang Anda tidak Cukup!");
+        }
+    }
+
+    public void sell(Player currPlayer, String args, String pos){
+        Map<String, ArrayList<String>> products = CardFactory.getInstance().getMapProduct();
+        String item = args.replace(" ","_");
+        ArrayList<String> datas = products.get(item);
+        int price = Integer.parseInt(datas.get(1));
+        currPlayer.setGulden(price + currPlayer.getGulden());
+        currPlayer.getActiveDeck().removeCard(Integer.parseInt(pos));
+
+        this.addProduct(item, 1);
     }
 }

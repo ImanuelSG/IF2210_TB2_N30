@@ -13,15 +13,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import libs.Card.CardFactory;
-import libs.Card.Harvestable.AnimalCard;
-import libs.Card.Harvestable.HarvestableCard;
-import libs.Card.Products.ProductCard;
-import libs.Card.Useable.UseableOnSelfCard;
 import libs.Deck.ActiveDeck;
 import libs.GameWorld.GameWorld;
 import libs.Player.Player;
 import libs.Toko.Toko;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -208,17 +203,9 @@ public class TokoController {
                     String pos = data[2];
                     System.out.println(type);
 
-                    ActiveDeck activeDeck = GameWorld.getInstance().getCurrentPlayer().getActiveDeck();
                     Player currPlayer = GameWorld.getInstance().getCurrentPlayer();
                     if (type.equals("Product")) {
-                        Map<String, ArrayList<String>> products = CardFactory.getInstance().getMapProduct();
-                        String item = args.replace(" ","_");
-                        ArrayList<String> datas = products.get(item);
-                        int price = Integer.parseInt(datas.get(1));
-                        currPlayer.setGulden(price + currPlayer.getGulden());
-                        activeDeck.removeCard(Integer.parseInt(pos));
-
-                        Toko.getInstance().addProduct(item, 1);
+                        Toko.getInstance().sell(currPlayer,args,pos);
                         refetch();
                         populateToko();
                         success = true;
@@ -270,7 +257,7 @@ public class TokoController {
 
         confirmButton.setOnAction(event -> {
             // Perform the confirmation action
-            handleSell(item,currPlayer);
+            handleBuy(item,currPlayer);
             refetch();
             populateToko();
         });
@@ -299,20 +286,12 @@ public class TokoController {
     }
 
 
-    public void handleSell(String item, Player currPlayer)
+    public void handleBuy(String item, Player currPlayer)
     {
-        Map<String, ArrayList<String>> products = CardFactory.getInstance().getMapProduct();
-        ArrayList<String> datas = products.get(item);
-        int price = Integer.parseInt(datas.get(1));
-
-        if (currPlayer.getGulden() >= price){
-            ProductCard productCard = CardFactory.createProductCard(item);
-            currPlayer.getActiveDeck().add(productCard);
-            currPlayer.setGulden(currPlayer.getGulden() - price);
-            Toko.getInstance().removeProduct(item,1);
-        }
-        else {
-            System.out.println("uang ga cukup");
+        try {
+            Toko.getInstance().buy(item,currPlayer);
+        } catch (Exception e) {
+            e.getMessage();
         }
         populateToko();
 

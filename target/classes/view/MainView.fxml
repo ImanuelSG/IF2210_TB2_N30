@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 
 <?import javafx.scene.layout.Pane?>
-<BorderPane prefHeight="1200" prefWidth="1203.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<BorderPane maxHeight="1200" prefWidth="1203.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <center >
       <!-- Switchable content pane -->
       <StackPane>
