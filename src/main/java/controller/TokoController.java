@@ -13,15 +13,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import libs.Card.CardFactory;
-import libs.Card.Harvestable.AnimalCard;
-import libs.Card.Harvestable.HarvestableCard;
 import libs.Card.Products.ProductCard;
-import libs.Card.Useable.UseableOnSelfCard;
 import libs.Deck.ActiveDeck;
 import libs.GameWorld.GameWorld;
 import libs.Player.Player;
 import libs.Toko.Toko;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,14 +43,6 @@ public class TokoController {
 
     @FXML
     public void initialize() {
-
-        Toko.getInstance().addProduct("SUSU",10);
-        Toko.getInstance().addProduct("TELUR",1);
-        Toko.getInstance().addProduct("STROBERI",10);
-        Toko.getInstance().addProduct("JAGUNG",10);
-        Toko.getInstance().addProduct("DAGING_KUDA",10);
-        Toko.getInstance().addProduct("DAGING_DOMBA",10);
-        Toko.getInstance().addProduct("DAGING_BERUANG",10);
         this.stock = new HashMap<String, Integer>();
         this.stock = Toko.getInstance().getStock();
 
