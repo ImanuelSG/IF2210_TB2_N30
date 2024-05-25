@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import libs.GameWorld.AudioPlayer;
 
 public class StartViewController {
 
@@ -21,5 +22,7 @@ public class StartViewController {
 
         stage.setResizable(false);
         stage.show();
+        AudioPlayer audioPlayer = AudioPlayer.getInstance("/audio/backsound.mp3", "/audio/attack.mp3");
+        audioPlayer.play();
     }
 }
