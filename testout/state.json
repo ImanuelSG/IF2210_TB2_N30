@@ -1,0 +1,63 @@
+{
+    "player1": {
+        "activeDeckCount": 1,
+        "ladangCardCount": 1,
+        "deckCount": 34,
+        "activeDeck": [{
+            "location": "A01",
+            "card": "SUSU"
+        }],
+        "ladangCards": [{
+            "activeItems": ["ACCELERATE"],
+            "ageOrWeight": 11,
+            "activeItemCount": 1,
+            "location": "C03",
+            "card": "DOMBA"
+        }],
+        "gulden": 0
+    },
+    "player2": {
+        "activeDeckCount": 6,
+        "ladangCardCount": 1,
+        "deckCount": 32,
+        "activeDeck": [
+            {
+                "location": "A01",
+                "card": "SIRIP_HIU"
+            },
+            {
+                "location": "B01",
+                "card": "SUSU"
+            },
+            {
+                "location": "C01",
+                "card": "BEAR_TRAP"
+            },
+            {
+                "location": "D01",
+                "card": "DAGING_DOMBA"
+            },
+            {
+                "location": "E01",
+                "card": "BIJI_LABU"
+            },
+            {
+                "location": "F01",
+                "card": "DELAY"
+            }
+        ],
+        "ladangCards": [{
+            "activeItems": [],
+            "ageOrWeight": 0,
+            "activeItemCount": 0,
+            "location": "A02",
+            "card": "DOMBA"
+        }],
+        "gulden": 0
+    },
+    "toko": {
+        "items": [],
+        "itemCount": 0
+    },
+    "turn": 4
+}

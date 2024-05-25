@@ -2,9 +2,11 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
+import javafx.scene.Node;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import java.io.File;
 
@@ -12,9 +14,6 @@ import libs.FileManager.FileManager;
 import libs.GameWorld.GameWorld;
 
 public class PluginController {
-
-    @FXML
-    private ComboBox<String> comboBox;
 
     @FXML
     void handleSelectPluginButtonAction(ActionEvent event) {
@@ -25,7 +24,10 @@ public class PluginController {
         FileChooser.ExtensionFilter jarFilter = new FileChooser.ExtensionFilter("JAR Files", "*.jar");
         fileChooser.getExtensionFilters().add(jarFilter);
 
-        Window window = comboBox.getScene().getWindow();
+        // Get the window from the source of the event
+        Node source = (Node) event.getSource();
+        Window window = source.getScene().getWindow();
+
         File selectedFile = fileChooser.showOpenDialog(window);
         if (selectedFile != null) {
             String selectedFilePath = selectedFile.getAbsolutePath();
@@ -33,8 +35,12 @@ public class PluginController {
             System.out.println("Selected JAR file: " + selectedFilePath);
             try {
                 FileManager.getInstance().loadJar(selectedFile);
+                // Display a success message
+                showAlert("Success", "JAR file loaded successfully.");
             } catch (Exception e) {
                 e.printStackTrace();
+                // Display an error message
+                showAlert("Error", "Failed to load JAR file.");
             }
         } else {
             System.out.println("No file selected.");
@@ -43,6 +49,14 @@ public class PluginController {
         System.out.println(FileManager.getInstance().getSupportedExtensions());
 
         GameWorld.getInstance().notifyObserver();
-        GameWorld.getInstance().movePhase(1);
+
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

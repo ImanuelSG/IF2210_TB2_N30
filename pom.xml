@@ -15,7 +15,12 @@
         <javafx.version>17.0.2</javafx.version> <!-- Use the latest stable version -->
     </properties>
 
-    <dependencies>
+    <dependencies><dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-engine</artifactId>
+    <version>5.7.0</version>
+    <scope>test</scope>
+</dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>

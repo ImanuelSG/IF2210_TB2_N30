@@ -78,7 +78,9 @@ public class BearAttack extends Thread {
             for (int i = rowstart; i <= rowend; i++) {
                 for (int j = colstart; j <= colend; j++) {
                     if (ladang.getHarvestable(i, j) != null) {
-                        if (!ladang.getHarvestable(i, j).isProtected() || !ladang.getHarvestable(i, j).isTrapped()) {
+                        if (!(ladang.getHarvestable(i, j).isProtected())
+                                && !(ladang.getHarvestable(i, j).isTrapped())) {
+                            System.out.println(ladang.getHarvestable(i, j).isProtected());
                             ladang.removeHarvestable(i, j);
                         }
                     }

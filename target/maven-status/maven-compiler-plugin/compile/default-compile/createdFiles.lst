@@ -15,12 +15,20 @@ libs/Field/Ladang.class
 MainApp.class
 libs/Card/Useable/TrapCard.class
 libs/GameWorld/BearAttackListener.class
+<<<<<<< HEAD
 controller/SaveStateController.class
 libs/Card/Useable/UseableOnSelf.class
 libs/Player/Player.class
 libs/GameWorld/SpecialObserver.class
 libs/Loader/XmlPlugin.class
 libs/Card/Products/Transactionable.class
+=======
+libs/Card/Useable/UseableOnSelf.class
+libs/Player/Player.class
+libs/GameWorld/SpecialObserver.class
+libs/Card/Products/Transactionable.class
+libs/Loader/XmlPlugin.class
+>>>>>>> f41f844139055565c516307fd85bcaeae475f30c
 controller/ShuffleController.class
 controller/LadangkuController.class
 libs/Loader/Loader.class

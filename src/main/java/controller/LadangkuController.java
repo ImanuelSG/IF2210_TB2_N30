@@ -68,7 +68,7 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
     private VBox exceptionPopUp;
 
     @FXML
-    private  Label exceptionText;
+    private Label exceptionText;
 
     @FXML
     private Label exceptionLabel;
@@ -78,7 +78,6 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
 
     @FXML
     private Button backExceptionButton;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -155,7 +154,6 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
 
         content.putString(rowIndex + "_" + columnIndex);
         dragboard.setContent(content);
-
 
         event.consume();
     }
@@ -246,12 +244,10 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
                         usecard.use(card);
                         activeDeck.removeCard(Integer.parseInt(pos));
                         success = true;
-                    } catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         initializeExceptionPopUp(e.getMessage());
                         exceptionPopUp.setVisible(true);
                     }
-
 
                 }
                 updateView();
@@ -282,6 +278,7 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
 
             titleLabel.setText(card.getName());
             ;
+            titleLabel.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
 
             // Determine the parameter text based on the card type
             String parameterText = "";
@@ -386,8 +383,7 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
         exceptionPopUp.setVisible(false);
     }
 
-    private void initializeExceptionPopUp(String error)
-    {
+    private void initializeExceptionPopUp(String error) {
         exceptionText.setText("GAGAL!");
         exceptionLabel.setText(error);
         exceptionImg.setImage(new Image("/img/gui/rename_ex.gif"));

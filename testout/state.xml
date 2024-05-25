@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<GameState>
+    <CurrentTurn>1</CurrentTurn>
+    <Shop>
+        <ItemCount>0</ItemCount>
+        <Items/>
+    </Shop>
+    <Player1>
+        <Gulden>0</Gulden>
+        <DeckCount>36</DeckCount>
+        <ActiveDeckCount>4</ActiveDeckCount>
+        <ActiveDeck>
+            <Card>
+                <Location>A01</Location>
+                <Name>KUDA</Name>
+            </Card>
+            <Card>
+                <Location>B01</Location>
+                <Name>BEAR_TRAP</Name>
+            </Card>
+            <Card>
+                <Location>C01</Location>
+                <Name>PROTECT</Name>
+            </Card>
+            <Card>
+                <Location>D01</Location>
+                <Name>ACCELERATE</Name>
+            </Card>
+        </ActiveDeck>
+        <LadangCardCount>0</LadangCardCount>
+        <LadangCards/>
+    </Player1>
+    <Player2>
+        <Gulden>0</Gulden>
+        <DeckCount>40</DeckCount>
+        <ActiveDeckCount>0</ActiveDeckCount>
+        <ActiveDeck/>
+        <LadangCardCount>0</LadangCardCount>
+        <LadangCards/>
+    </Player2>
+</GameState>
