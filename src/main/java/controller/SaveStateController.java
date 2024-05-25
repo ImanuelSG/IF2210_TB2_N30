@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import java.io.File;
 import java.net.URL;
@@ -34,7 +36,7 @@ public class SaveStateController implements Initializable {
     private void addComboBoxClickListener() {
         comboBox.setOnMouseClicked(event -> initializeComboBox());
     }
-
+    
     @FXML
     void handleSelectFolderButtonAction(ActionEvent event) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -50,11 +52,23 @@ public class SaveStateController implements Initializable {
                 System.out.println("Selected folder: " + selectedFolderPath);
                 System.out.println("Selected file extension: " + selectedExtension);
                 FileManager.getInstance().saveFile(selectedFolderPath, selectedExtension);
+                showAlert("Success", "File saved successfully.");
             } else {
                 System.out.println("No file extension selected.");
+                showAlert("Error", "No file extension selected.");
             }
         } else {
             System.out.println("No folder selected.");
+            showAlert("Error", "No folder selected.");
         }
     }
+    
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    
 }

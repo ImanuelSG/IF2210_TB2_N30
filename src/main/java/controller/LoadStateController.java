@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Window;
 import javafx.stage.FileChooser;
@@ -40,23 +41,43 @@ public class LoadStateController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select File");
 
-        // Set extension filters based on supported extensions from FileManager
-        fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter(comboBox.getValue().toUpperCase() + " Files", "*." + comboBox.getValue())
-        );
-    
-        Window window = comboBox.getScene().getWindow();
-        File selectedFile = fileChooser.showOpenDialog(window);
-        if (selectedFile != null) {
-            String selectedFilePath = selectedFile.getAbsolutePath();
-            // Do something with the selected file path
-            System.out.println("Selected file: " + selectedFilePath);
-            FileManager.getInstance().loadFile(selectedFile, FileManager.getInstance().getFileExtension(selectedFilePath));
+        String selectedExtension = comboBox.getValue();
+        if (selectedExtension != null && !selectedExtension.isEmpty()) {
+            // Set extension filters based on the selected extension from the ComboBox
+            fileChooser.getExtensionFilters().add(
+                    new FileChooser.ExtensionFilter(selectedExtension.toUpperCase() + " Files", "*." + selectedExtension)
+            );
+
+            Window window = comboBox.getScene().getWindow();
+            File selectedFile = fileChooser.showOpenDialog(window);
+            if (selectedFile != null) {
+                String selectedFilePath = selectedFile.getAbsolutePath();
+                // Do something with the selected file path
+                System.out.println("Selected file: " + selectedFilePath);
+                try {
+                    FileManager.getInstance().loadFile(selectedFile, selectedExtension);
+                    showAlert("Success", "File loaded successfully.");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    showAlert("Error", "Failed to load file: " + e.getMessage());
+                }
+            } else {
+                System.out.println("No file selected.");
+            }
         } else {
-            System.out.println("No file selected.");
+            System.out.println("No extension selected.");
         }
 
         GameWorld.getInstance().notifyObserver();
         GameWorld.getInstance().movePhase(1);
     }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }
