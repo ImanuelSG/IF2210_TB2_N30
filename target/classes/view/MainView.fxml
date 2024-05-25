@@ -90,9 +90,10 @@
             <fx:include source="/view/SaveStateView.fxml"/>
          </VBox>
 
-<!--         <VBox fx:id="loadStateBox">-->
-
-<!--         </VBox>-->
+        <VBox fx:id="loadStateBox">
+            <Text>LOAD STATE</Text>
+            <fx:include source="/view/LoadStateView.fxml"/>
+        </VBox>
 <!--         <VBox fx:id="loadPluginBox">-->
 
 <!--         </VBox>-->

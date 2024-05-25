@@ -33,6 +33,10 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
 
     @FXML
     private VBox saveStateBox;
+
+    @FXML
+    private VBox loadStateBox;
+
     @FXML
     private Label timerLabel;
 
@@ -74,6 +78,7 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
         main.getEnemy().addObserver(this);
 
         saveStateBox.setVisible(false);
+        loadStateBox.setVisible(false);
         main.registerObserver(this);
         main.addListener(this);
 
@@ -145,12 +150,12 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
 
     @FXML
     public void showSaveState() {
-        saveStateBox.setVisible(true);
+        saveStateBox.setVisible(!saveStateBox.isVisible());
     }
 
     @FXML
     public void showLoadState() {
-        loadView("TokoView.fxml");
+        loadStateBox.setVisible(!loadStateBox.isVisible());
     }
 
     @FXML
