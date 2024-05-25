@@ -21,6 +21,19 @@
     -fx-pref-width: 120px;
 }
 
+.greenButtonSave{
+    -fx-background-color : #9FC47C;
+    -fx-border-color:#7D912A;
+    -fx-border-width: 2px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 60px;
+    
+}
+
 .toko-pane {
     -fx-background-color: transparent;
     -fx-border-color: transparent; /* Removes any border */
@@ -36,6 +49,19 @@
     -fx-font-size: 40px;
     -fx-font-weight: bold;
     -fx-text-fill: #495749;
+}
+
+.toko-title {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #495749;
+}
+
+.save-title{
+    -fx-font-size: 80px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #364636;
+
 }
 
 .toko-scrollpane {

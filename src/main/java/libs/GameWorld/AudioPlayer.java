@@ -12,12 +12,13 @@ public class AudioPlayer {
     private AudioPlayer(String normalAudioPath, String bearAttackAudioPath) {
         System.out.println(normalAudioPath);
         System.out.println(bearAttackAudioPath);
-        Media mediaNormal = new Media(getClass().getResource(normalAudioPath).toExternalForm());
+        Media mediaNormal = new Media(
+                getClass().getResource(normalAudioPath).toExternalForm());
         Media mediaBearAttack = new Media(getClass().getResource(bearAttackAudioPath).toExternalForm());
 
         mediaPlayerNormal = new MediaPlayer(mediaNormal);
         mediaPlayerBearAttack = new MediaPlayer(mediaBearAttack);
-        
+
         // Ensure audio loops indefinitely
         mediaPlayerNormal.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayerBearAttack.setCycleCount(MediaPlayer.INDEFINITE);

@@ -232,6 +232,7 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
             case 2:
                 // Harvesting phase
                 enableAllButton();
+                closeOtherBox();
                 this.phaseLabel.setText("Phase: Aksi Bebas");
                 this.loadView("LadangKu.fxml");
                 break;

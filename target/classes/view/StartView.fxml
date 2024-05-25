@@ -15,9 +15,9 @@
                <Image url="@../img/gui/start_bg.png" />
             </image>
          </ImageView>
-         <Button onAction="#handleButtonClick" prefHeight="75.0" prefWidth="252.0" style="-fx-background-color: #de787c; -fx-background-radius: 15;" text="Mulai Permainan" textFill="WHITE">
+         <Button onAction="#handleButtonClick" prefHeight="120.0" prefWidth="400.0" style="-fx-background-color: #de787c; -fx-background-radius: 15;" text="Mulai Permainan" textFill="WHITE">
             <font>
-               <Font name="Inter Semi Bold" size="24.0" />
+               <Font name="Inter Semi Bold" size="32.0" />
             </font>
          </Button>
       </children>

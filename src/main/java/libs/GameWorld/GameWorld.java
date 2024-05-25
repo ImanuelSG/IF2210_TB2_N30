@@ -18,7 +18,8 @@ public class GameWorld implements Observerable, SpecialObserverable, BearAttackN
     private int state;
     private Player currentPlayer;
     private Random randomizer;
-    private AudioPlayer audioPlayer = AudioPlayer.getInstance("/audio/backsound.mp3", "/audio/attack.mp3");
+    // private AudioPlayer audioPlayer =
+    // AudioPlayer.getInstance("/audio/backsound.mp3", "/audio/attack.mp3");
 
     // For Bear Attack
     private int minX;
@@ -93,10 +94,10 @@ public class GameWorld implements Observerable, SpecialObserverable, BearAttackN
 
             double probs = randomizer.nextDouble();
 
-            if (probs <= 0.00) {
+            if (probs <= 1.00) {
                 state = 1;
                 notifySpecial();
-                audioPlayer.play();
+                // audioPlayer.play();
 
                 this.duration = randomizer.nextInt(60 - 30 + 1) + 30;
                 boolean found = false;
@@ -123,7 +124,7 @@ public class GameWorld implements Observerable, SpecialObserverable, BearAttackN
                 maxX = Math.max(startX, endX);
                 maxY = Math.max(startY, endY);
 
-                notifyListener(minY, maxY, minX, maxX, duration);
+                notifyListener(minY, maxY, minX, maxX, 10);
             } else {
                 state = 2;
                 notifySpecial();
@@ -132,7 +133,7 @@ public class GameWorld implements Observerable, SpecialObserverable, BearAttackN
             this.endBearNotify();
             state = 2;
             notifySpecial();
-            audioPlayer.play();
+            // audioPlayer.play();
         } else {
             state = 0;
             notifySpecial();
