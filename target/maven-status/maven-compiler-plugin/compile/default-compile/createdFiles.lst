@@ -24,6 +24,7 @@ libs/Card/Harvestable/PlantCard.class
 controller/ActiveDeckController.class
 libs/Card/Harvestable/AnimalCard.class
 libs/GameWorld/GameWorld.class
+controller/StartViewController.class
 libs/Toko/Toko.class
 libs/Card/Useable/AccelerateCard.class
 libs/Card/Useable/ProtectCard.class

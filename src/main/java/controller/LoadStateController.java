@@ -29,6 +29,7 @@ public class LoadStateController implements Initializable {
     private void initializeComboBox() {
         comboBox.getItems().clear(); // Clear existing items to avoid duplication
         comboBox.getItems().addAll(FileManager.getInstance().getSupportedExtensions());
+        comboBox.setValue("txt");
     }
 
     private void addComboBoxClickListener() {

@@ -12,15 +12,15 @@
         </GridPane>
         <!-- DETAIL HEWAN -->
         <VBox fx:id="labelPopUp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="583.0" spacing="10" style="-fx-background-color: #ffffff; -fx-border-color: #495749; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-padding: 15px; -fx-spacing: 15px;" >
-            <Text fx:id="titleLabel" wrappingWidth="148.0">
+            <Text fx:id="titleLabel" wrappingWidth="400.0">
             <font>
                <Font name="Inter Semi Bold" size="34.0" />
             </font></Text>
-            <HBox spacing="10">
+            <HBox spacing="20">
                 <ImageView fx:id="imageView" fitHeight="131.0" fitWidth="165.0" preserveRatio="true" />
                 <VBox>
                     <Label fx:id="descLabel" />
-                    <VBox fx:id="attrLabel" spacing="10">
+                    <VBox fx:id="attrLabel">
                     </VBox>
                 </VBox>
             </HBox>

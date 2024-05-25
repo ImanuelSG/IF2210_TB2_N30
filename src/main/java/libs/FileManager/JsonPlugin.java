@@ -52,6 +52,8 @@ public class JsonPlugin implements FilePlugin {
             JSONObject player2JSON = json.getJSONObject("player2");
             loadPlayerData(player2JSON, gameWorld, "player2");
 
+            gameWorld.setCurrentPlayer(turn % 2 == 0 ? gameWorld.getPlayer2() : gameWorld.getPlayer1());
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error: Failed to load game state from JSON file.");
@@ -68,7 +70,7 @@ public class JsonPlugin implements FilePlugin {
         } else {
             player = gameWorld.getPlayer2();
         }
-        
+
         player.setGulden(gulden);
 
         Deck deck1 = player.getDeck();
@@ -95,7 +97,7 @@ public class JsonPlugin implements FilePlugin {
             for (int k = 0; k < 5; k++) {
                 ladang.removeHarvestable(j, k);
             }
-        }        
+        }
         JSONArray ladangCardsArray = playerJSON.getJSONArray("ladangCards");
         for (int i = 0; i < ladangCardCount; i++) {
             JSONObject ladangCardObject = ladangCardsArray.getJSONObject(i);
@@ -114,7 +116,7 @@ public class JsonPlugin implements FilePlugin {
             }
             ladang.setHarvestable(row, col, card);
         }
-        player.setField(ladang);
+
     }
 
     public void save(String directory) {
@@ -204,7 +206,6 @@ public class JsonPlugin implements FilePlugin {
 
         return playerJson;
     }
-
 
     @Override
     public String getSupportedExtension() {

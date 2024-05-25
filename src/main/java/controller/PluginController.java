@@ -49,7 +49,7 @@ public class PluginController {
         System.out.println(FileManager.getInstance().getSupportedExtensions());
 
         GameWorld.getInstance().notifyObserver();
-        GameWorld.getInstance().movePhase(1);
+
     }
 
     private void showAlert(String title, String message) {

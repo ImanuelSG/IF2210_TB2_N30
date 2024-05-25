@@ -51,7 +51,9 @@ public class BearAttack extends Thread {
                             if (ladang.getHarvestable(i, j).isTrapped()) {
                                 running = false;
                                 ActiveDeck deck = player.getActiveDeck();
-                                Card card = CardFactory.createCard("DAGING_BERUANG");
+                                Card card = CardFactory.createCard("BERUANG");
+                                
+
                                 if (!deck.isFull()) {
                                     deck.add(card);
                                 }
@@ -77,7 +79,9 @@ public class BearAttack extends Thread {
             for (int i = rowstart; i <= rowend; i++) {
                 for (int j = colstart; j <= colend; j++) {
                     if (ladang.getHarvestable(i, j) != null) {
-                        if (!ladang.getHarvestable(i, j).isProtected() || !ladang.getHarvestable(i, j).isTrapped()) {
+                        if (!(ladang.getHarvestable(i, j).isProtected())
+                                && !(ladang.getHarvestable(i, j).isTrapped())) {
+                            System.out.println(ladang.getHarvestable(i, j).isProtected());
                             ladang.removeHarvestable(i, j);
                         }
                     }

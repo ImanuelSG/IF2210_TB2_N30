@@ -125,6 +125,7 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     public void closeOtherBox() {
         saveStateBox.setVisible(false);
         loadStateBox.setVisible(false);
+        loadPluginBox.setVisible(false);
     }
 
     @FXML
@@ -178,12 +179,9 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     @FXML
     public void showPlugin() {
         loadPluginBox.setVisible(!loadPluginBox.isVisible());
-        closeOtherBox();
-    }
+        saveStateBox.setVisible(false);
+        loadStateBox.setVisible(false);
 
-    @FXML
-    public void showLoadPlugin() {
-        loadView("TokoView.fxml");
     }
 
     @FXML
@@ -209,7 +207,7 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
         if (main.getTurn() == 21) {
             // End game
             System.out.println();
-//            loadView();
+            // loadView();
 
         }
 
@@ -229,13 +227,18 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     }
 
     private void play(int state) {
-
+        GameWorld main = GameWorld.getInstance();
         switch (state) {
             case 0:
-                disableAllButton();
-                this.phaseLabel.setText("Phase: Shuffling");
-                this.loadView("ShuffleView.fxml");
 
+                disableAllButton();
+                if (main.getCurrentPlayer().getActiveDeck().isFull()) {
+                    main.movePhase(0);
+
+                } else {
+                    this.phaseLabel.setText("Phase: Shuffling");
+                    this.loadView("ShuffleView.fxml");
+                }
                 break;
             case 1:
                 this.phaseLabel.setText("Phase: Serangan Beruang");
@@ -244,6 +247,7 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
             case 2:
                 // Harvesting phase
                 enableAllButton();
+                closeOtherBox();
                 this.phaseLabel.setText("Phase: Aksi Bebas");
                 this.loadView("LadangKu.fxml");
                 break;

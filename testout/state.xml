@@ -1,65 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <GameState>
-    <CurrentTurn>3</CurrentTurn>
+    <CurrentTurn>1</CurrentTurn>
     <Shop>
         <ItemCount>0</ItemCount>
         <Items/>
     </Shop>
     <Player1>
         <Gulden>0</Gulden>
-        <DeckCount>34</DeckCount>
-        <ActiveDeckCount>1</ActiveDeckCount>
-        <ActiveDeck>
-            <Card>
-                <Location>D01</Location>
-                <Name>INSTANT_HARVEST</Name>
-            </Card>
-        </ActiveDeck>
-        <LadangCardCount>2</LadangCardCount>
-        <LadangCards>
-            <LadangCard>
-                <Location>C03</Location>
-                <Name>DOMBA</Name>
-                <AgeOrWeight>11</AgeOrWeight>
-                <ActiveItemCount>1</ActiveItemCount>
-                <ActiveItems>
-                    <Item>ACCELERATE</Item>
-                </ActiveItems>
-            </LadangCard>
-            <LadangCard>
-                <Location>D03</Location>
-                <Name>SAPI</Name>
-                <AgeOrWeight>0</AgeOrWeight>
-                <ActiveItemCount>1</ActiveItemCount>
-                <ActiveItems>
-                    <Item>Trap</Item>
-                </ActiveItems>
-            </LadangCard>
-        </LadangCards>
-    </Player1>
-    <Player2>
-        <Gulden>0</Gulden>
         <DeckCount>36</DeckCount>
-        <ActiveDeckCount>2</ActiveDeckCount>
+        <ActiveDeckCount>4</ActiveDeckCount>
         <ActiveDeck>
             <Card>
                 <Location>A01</Location>
-                <Name>SIRIP_HIU</Name>
+                <Name>KUDA</Name>
             </Card>
             <Card>
                 <Location>B01</Location>
-                <Name>SUSU</Name>
+                <Name>BEAR_TRAP</Name>
+            </Card>
+            <Card>
+                <Location>C01</Location>
+                <Name>PROTECT</Name>
+            </Card>
+            <Card>
+                <Location>D01</Location>
+                <Name>ACCELERATE</Name>
             </Card>
         </ActiveDeck>
-        <LadangCardCount>1</LadangCardCount>
-        <LadangCards>
-            <LadangCard>
-                <Location>A02</Location>
-                <Name>DOMBA</Name>
-                <AgeOrWeight>0</AgeOrWeight>
-                <ActiveItemCount>0</ActiveItemCount>
-                <ActiveItems/>
-            </LadangCard>
-        </LadangCards>
+        <LadangCardCount>0</LadangCardCount>
+        <LadangCards/>
+    </Player1>
+    <Player2>
+        <Gulden>0</Gulden>
+        <DeckCount>40</DeckCount>
+        <ActiveDeckCount>0</ActiveDeckCount>
+        <ActiveDeck/>
+        <LadangCardCount>0</LadangCardCount>
+        <LadangCards/>
     </Player2>
 </GameState>

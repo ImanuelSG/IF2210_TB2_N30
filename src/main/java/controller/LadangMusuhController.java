@@ -27,7 +27,7 @@ import libs.Field.Ladang;
 import libs.GameWorld.GameWorld;
 import libs.Player.Player;
 
-import javax.swing.text.LabelView;
+
 
 public class LadangMusuhController implements Initializable, Observer {
 
