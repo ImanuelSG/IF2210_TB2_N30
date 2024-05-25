@@ -4,6 +4,6 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox fx:id="container" alignment="CENTER" maxWidth="750" maxHeight="100.0" spacing="10" style="-fx-padding: 15; -fx-background-color: #495749; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ActiveDeckController">
+<HBox fx:id="container" alignment="CENTER" maxWidth="850" maxHeight="100.0" spacing="20" style="-fx-padding: 15; -fx-background-color: #495749; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ActiveDeckController">
 
 </HBox>

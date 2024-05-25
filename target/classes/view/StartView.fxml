@@ -10,14 +10,14 @@
 <AnchorPane prefHeight="1200.0" prefWidth="1375.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StartViewController">
    <StackPane prefHeight="1200.0" prefWidth="1375.0">
       <children>
-         <ImageView fitHeight="1200.0" fitWidth="1375.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fitHeight="1200.0" fitWidth="1375.0" pickOnBounds="true" >
             <image>
                <Image url="@../img/gui/start_bg.png" />
             </image>
          </ImageView>
-         <Button onAction="#handleButtonClick" prefHeight="75.0" prefWidth="252.0" style="-fx-background-color: #de787c; -fx-background-radius: 15;" text="Mulai Permainan" textFill="WHITE">
+         <Button onAction="#handleButtonClick" prefHeight="150" prefWidth="600" style="-fx-background-color: #de787c; -fx-background-radius: 15;" text="Mulai Permainan" textFill="WHITE">
             <font>
-               <Font name="Inter Semi Bold" size="24.0" />
+               <Font name="Inter Semi Bold" size="48.0" />
             </font>
          </Button>
       </children>

@@ -92,7 +92,7 @@ public class GameWorld implements Observerable, SpecialObserverable, BearAttackN
 
             double probs = randomizer.nextDouble();
 
-            if (probs <= 1.00) {
+            if (probs <= 0.00) {
                 state = 1;
                 notifySpecial();
 
