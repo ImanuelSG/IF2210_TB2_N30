@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Text?>
 
 <?import javafx.scene.layout.Pane?>
-<BorderPane maxHeight="1200" prefWidth="1203.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<BorderPane prefHeight="1200" prefWidth="1375.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <center >
       <!-- Switchable content pane -->
       <StackPane>
@@ -86,16 +86,18 @@
             </children>
          </VBox>
           <VBox fx:id="saveStateBox">
-            <Text>SAVE STATE</Text>
+            
             <fx:include source="/view/SaveStateView.fxml"/>
          </VBox>
 
-<!--         <VBox fx:id="loadStateBox">-->
-
-<!--         </VBox>-->
-<!--         <VBox fx:id="loadPluginBox">-->
-
-<!--         </VBox>-->
+        <VBox fx:id="loadStateBox">
+         
+            <fx:include source="/view/LoadStateView.fxml"/>
+        </VBox>
+        <VBox fx:id="loadPluginBox">
+            <Text>LOAD PLUGIN</Text>
+            <fx:include source="/view/PluginView.fxml"/>
+        </VBox>
       </StackPane>
    </center>
    <right>
@@ -129,7 +131,7 @@
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button fx:id="loadPluginButton" layoutX="10.0" layoutY="212.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LOAD PLUGIN" textFill="WHITE">
+                  <Button fx:id="loadPluginButton" onAction = "#showPlugin" layoutX="10.0" layoutY="212.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LOAD PLUGIN" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font>

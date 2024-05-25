@@ -294,10 +294,10 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
             descLabel.setText(parameterText);
 
             Map<String, Integer> attributes = card.getAppliedEffect();
-            System.out.println(attributes);
+
             if (attributes != null) {
                 for (Map.Entry<String, Integer> entry : attributes.entrySet()) {
-                    System.out.println("Ayam");
+
                     Label attributeLabel = new Label(entry.getKey() + ": " + entry.getValue());
                     attrLabel.getChildren().add(attributeLabel);
                 }
