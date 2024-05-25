@@ -43,6 +43,9 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
     private VBox labelPopUp;
 
     @FXML
+    private ImageView sellBoxImage;
+
+    @FXML
     private Text titleLabel;
 
     @FXML

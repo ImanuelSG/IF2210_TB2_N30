@@ -1,12 +1,31 @@
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
-
-
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.TokoController">
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.TokoController" prefWidth="1000" stylesheets="/view/styles.css" styleClass="toko-pane">
     <center>
-        <VBox>
-            <Text>TokoA</Text>
-        </VBox>
+        <HBox alignment="CENTER" prefWidth="1000" spacing="20">
+            <VBox alignment="CENTER" spacing="10" prefWidth="800" styleClass="toko-vbox">
+                <Text styleClass="toko-title">TOKO</Text>
+                <ScrollPane fitToWidth="true" styleClass="toko-scrollpane" prefHeight="600">
+                    <GridPane fx:id="itemCards" hgap="10" vgap="10" styleClass="toko-gridpane" prefWidth="800">
+                        <!-- Dynamically added content -->
+                    </GridPane>
+                </ScrollPane>
+            </VBox>
+            <BorderPane fx:id="sellBox" prefWidth="200" style="-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;">
+                <center>
+                    <VBox alignment="CENTER" spacing="30">
+                        <Label fx:id="sellBoxText"/>
+                        <ImageView fx:id="sellBoxImage" fitWidth="100" fitHeight="100" />
+                    </VBox>
+                </center>
+            </BorderPane>
+        </HBox>
     </center>
 </BorderPane>

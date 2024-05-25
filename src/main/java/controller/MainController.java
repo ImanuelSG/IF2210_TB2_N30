@@ -7,12 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import libs.Deck.Deck;
 import libs.GameWorld.BearAttack;
 import libs.GameWorld.BearAttackListener;
 import libs.GameWorld.GameWorld;
 import libs.GameWorld.SpecialObserver;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,6 +31,8 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     @FXML
     private Label player2GuldenLabel;
 
+    @FXML
+    private VBox saveStateBox;
     @FXML
     private Label timerLabel;
 
@@ -60,9 +62,18 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     @FXML
     private Button loadPluginButton;
 
+    @FXML
+    private Button saveStateButton;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         GameWorld main = GameWorld.getInstance();
+        main.addObserver(this);
+        main.getCurrentPlayer().addObserver(this);
+        main.getEnemy().addObserver(this);
+
+        saveStateBox.setVisible(false);
         main.registerObserver(this);
         main.addListener(this);
 
@@ -86,6 +97,7 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
         tokoButton.setDisable(true);
         loadStateButton.setDisable(true);
         loadPluginButton.setDisable(true);
+        saveStateButton.setDisable(true);
     }
 
     @FXML
@@ -96,6 +108,8 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
         tokoButton.setDisable(false);
         loadStateButton.setDisable(false);
         loadPluginButton.setDisable(false);
+        saveStateButton.setDisable(false);
+
     }
 
     @FXML
@@ -125,13 +139,30 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
 
     @FXML
     public void showToko() {
-        loadView("ShuffleView.fxml");
+        loadView("TokoView.fxml");
+
+    }
+
+    @FXML
+    public void showSaveState() {
+        saveStateBox.setVisible(true);
+    }
+
+    @FXML
+    public void showLoadState() {
+        loadView("TokoView.fxml");
+    }
+
+    @FXML
+    public void showLoadPlugin() {
+        loadView("TokoView.fxml");
     }
 
     @FXML
     public void handleNextTurn() {
         GameWorld main = GameWorld.getInstance();
         main.nextTurn();
+
     }
 
     private void loadView(String fxml) {

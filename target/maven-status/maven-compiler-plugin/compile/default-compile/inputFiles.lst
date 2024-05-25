@@ -25,6 +25,7 @@
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/GameWorld/BearAttack.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/AccelerateCard.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Harvestable/PlantCard.java
+/home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/controller/SaveStateController.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Products/ProductCard.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/DestroyCard.java
 /home/imanuelgirsang/TubesOOP/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Harvestable/AnimalCard.java

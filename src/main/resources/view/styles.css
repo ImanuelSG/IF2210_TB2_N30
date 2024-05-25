@@ -20,3 +20,30 @@
     -fx-pref-height: 40px;
     -fx-pref-width: 120px;
 }
+
+.toko-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent; /* Removes any border */
+}
+
+.toko-vbox {
+    -fx-background-color: rgba(255, 255, 255, 0.5); /* White with 50% opacity */
+    -fx-padding: 20px;
+    -fx-background-radius: 20px;
+}
+
+.toko-title {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #495749;
+}
+
+.toko-scrollpane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.toko-gridpane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent; /* Removes any border */
+}

@@ -27,6 +27,7 @@ libs/GameWorld/SpecialObserverable.class
 controller/Observer.class
 libs/Deck/ActiveDeck.class
 libs/GameWorld/BearAttackListener.class
+controller/SaveStateController.class
 libs/Card/Useable/UseableOnSelf.class
 libs/Card/Useable/DestroyCard.class
 libs/Card/Products/ProductCard.class
