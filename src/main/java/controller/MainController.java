@@ -203,10 +203,11 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     public void updateView() {
         GameWorld main = GameWorld.getInstance();
 
-        if (main.getTurn() == 20) {
+        if (main.getTurn() == 21) {
             // End game
             System.out.println();
-            return;
+            // loadView();
+
         }
 
         // Update turn label
@@ -225,13 +226,18 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     }
 
     private void play(int state) {
-
+        GameWorld main = GameWorld.getInstance();
         switch (state) {
             case 0:
-                disableAllButton();
-                this.phaseLabel.setText("Phase: Shuffling");
-                this.loadView("ShuffleView.fxml");
 
+                disableAllButton();
+                if (main.getCurrentPlayer().getActiveDeck().isFull()) {
+                    main.movePhase(0);
+
+                } else {
+                    this.phaseLabel.setText("Phase: Shuffling");
+                    this.loadView("ShuffleView.fxml");
+                }
                 break;
             case 1:
                 this.phaseLabel.setText("Phase: Serangan Beruang");

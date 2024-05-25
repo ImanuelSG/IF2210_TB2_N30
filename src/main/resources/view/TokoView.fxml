@@ -7,25 +7,52 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.TokoController" prefWidth="1000" stylesheets="/view/styles.css" styleClass="toko-pane">
     <center>
-        <HBox alignment="CENTER" prefWidth="1000" spacing="20">
-            <VBox alignment="CENTER" spacing="10" prefWidth="800" styleClass="toko-vbox">
-                <Text styleClass="toko-title">TOKO</Text>
-                <ScrollPane fitToWidth="true" styleClass="toko-scrollpane" prefHeight="600">
-                    <GridPane fx:id="itemCards" hgap="10" vgap="10" styleClass="toko-gridpane" prefWidth="800">
-                        <!-- Dynamically added content -->
-                    </GridPane>
-                </ScrollPane>
+        <StackPane>
+            <HBox alignment="CENTER" prefWidth="1000" spacing="20">
+                <VBox alignment="CENTER" spacing="10" prefWidth="800" styleClass="toko-vbox">
+                    <Text styleClass="toko-title">TOKO</Text>
+                    <ScrollPane fitToWidth="true" styleClass="toko-scrollpane" prefHeight="600">
+                        <GridPane fx:id="itemCards" hgap="10" vgap="10" styleClass="toko-gridpane" prefWidth="800">
+                            <!-- Dynamically added content -->
+                        </GridPane>
+                    </ScrollPane>
+                </VBox>
+                <BorderPane fx:id="sellBox" prefWidth="200" style="-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;">
+                    <center>
+                        <VBox alignment="CENTER" spacing="30">
+                            <Label fx:id="sellBoxText"/>
+                            <ImageView fx:id="sellBoxImage" fitWidth="100" fitHeight="100" />
+                        </VBox>
+                    </center>
+                </BorderPane>
+            </HBox>
+            <!-- JUAL POP UP -->
+            <VBox fx:id="labelPopUp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="583.0" spacing="10" style="-fx-background-color: #ffffff; -fx-border-color: #495749; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-padding: 15px; -fx-spacing: 15px;" >
+                <VBox alignment="CENTER" spacing="15">
+                    <Label fx:id="confirmSellText"/>
+                    <Label fx:id="moneySellLabel"/>
+                    <ImageView fx:id="confirmImg" fitWidth="100" fitHeight="100" />
+                </VBox>
+                <HBox alignment="CENTER" style="-fx-spacing: 20px;">
+                    <Button fx:id="backButton" onAction="#handleBackButton" prefHeight="38.0" prefWidth="77.0" text="Kembali" stylesheets="/view/styles.css" styleClass="greenButton" />
+                </HBox>
             </VBox>
-            <BorderPane fx:id="sellBox" prefWidth="200" style="-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;">
-                <center>
-                    <VBox alignment="CENTER" spacing="30">
-                        <Label fx:id="sellBoxText"/>
-                        <ImageView fx:id="sellBoxImage" fitWidth="100" fitHeight="100" />
-                    </VBox>
-                </center>
-            </BorderPane>
-        </HBox>
+            <!-- EXCEPTION -->
+            <VBox fx:id="exceptionPopUp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="583.0" spacing="10" style="-fx-background-color: #ffffff; -fx-border-color: #495749; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-padding: 15px; -fx-spacing: 15px;" >
+                <VBox alignment="CENTER" spacing="15">
+                    <Label fx:id="exceptionText"/>
+                    <Label fx:id="exceptionLabel"/>
+                    <ImageView fx:id="exceptionImg" fitWidth="100" fitHeight="100" />
+                </VBox>
+                <HBox alignment="CENTER" style="-fx-spacing: 20px;">
+                    <Button fx:id="backExceptionButton" onAction="#handleExceptionBackButton" prefHeight="38.0" prefWidth="77.0" text="Kembali" stylesheets="/view/styles.css" styleClass="brownButton" />
+                </HBox>
+            </VBox>
+        </StackPane>
     </center>
 </BorderPane>

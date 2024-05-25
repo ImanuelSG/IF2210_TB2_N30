@@ -52,6 +52,8 @@ public class BearAttack extends Thread {
                                 running = false;
                                 ActiveDeck deck = player.getActiveDeck();
                                 Card card = CardFactory.createCard("BERUANG");
+                                
+
                                 if (!deck.isFull()) {
                                     deck.add(card);
                                 }

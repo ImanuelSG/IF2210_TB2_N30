@@ -1,12 +1,15 @@
 package controller;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -14,23 +17,63 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import libs.Card.CardFactory;
+import libs.Card.Harvestable.AnimalCard;
 import libs.Card.Harvestable.HarvestableCard;
+import libs.Card.Harvestable.PlantCard;
 import libs.Card.Useable.UseableOnEnemyCard;
 import libs.Field.Ladang;
 import libs.GameWorld.GameWorld;
 import libs.Player.Player;
+
+
 
 public class LadangMusuhController implements Initializable, Observer {
 
     @FXML
     private GridPane gridPane;
 
+    @FXML
+    private VBox labelPopUp;
+
+    @FXML
+    private Text titleLabel;
+
+    @FXML
+    private ImageView imageView;
+
+    @FXML
+    private Label descLabel;
+
+    @FXML
+    private VBox attrLabel;
+
+    @FXML
+    private Button backDetailButton;
+
+    @FXML
+    private VBox exceptionPopUp;
+
+    @FXML
+    private  Label exceptionText;
+
+    @FXML
+    private Label exceptionLabel;
+
+    @FXML
+    private ImageView exceptionImg;
+
+    @FXML
+    private Button backButton;
 
     private Ladang ladang;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        labelPopUp.setVisible(false);
+        exceptionPopUp.setVisible(false);
+
         GameWorld main = GameWorld.getInstance();
         main.addObserver(this);
         Ladang p1 = main.getPlayer1().getField();
@@ -75,7 +118,7 @@ public class LadangMusuhController implements Initializable, Observer {
         borderPane.setOnDragOver(event -> handleDragOver(event, borderPane));
         borderPane.setOnDragExited(event -> handleDragExited(event, borderPane));
         borderPane.setOnDragDropped(event -> handleDragDropped(event, borderPane));
-
+        borderPane.setOnMouseClicked(event -> handleCellClick(borderPane));
         return borderPane;
     }
 
@@ -120,7 +163,9 @@ public class LadangMusuhController implements Initializable, Observer {
                         success = true;
                         GameWorld.getInstance().getCurrentPlayer().getActiveDeck().removeCard(Integer.parseInt(idx));
                     } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        // PROTECTED
+                        initializeExceptionPopUp(e.getMessage());
+                        exceptionPopUp.setVisible(true);
 
                     }
                 }
@@ -157,5 +202,65 @@ public class LadangMusuhController implements Initializable, Observer {
                 }
             }
         }
+    }
+
+    private void handleCellClick(BorderPane borderPane) {
+        System.out.println("CLICK");
+        int columnIndex = GridPane.getColumnIndex(borderPane);
+        int rowIndex = GridPane.getRowIndex(borderPane);
+        HarvestableCard card = ladang.getHarvestable(rowIndex, columnIndex);
+
+        if (card != null) {
+            attrLabel.getChildren().clear();
+            labelPopUp.setVisible(true);
+
+            titleLabel.setText(card.getName());
+            ;
+
+            // Determine the parameter text based on the card type
+            String parameterText = "";
+            if (card instanceof PlantCard) {
+                parameterText = "Age: " + card.getParameter();
+            } else if (card instanceof AnimalCard) {
+                parameterText = "Weight: " + ((AnimalCard) card).getParameter();
+            }
+
+            descLabel.setText(parameterText);
+
+            Map<String, Integer> attributes = card.getAppliedEffect();
+            System.out.println(attributes);
+            if (attributes != null) {
+                for (Map.Entry<String, Integer> entry : attributes.entrySet()) {
+                    System.out.println("Ayam");
+                    Label attributeLabel = new Label(entry.getKey() + ": " + entry.getValue());
+                    attrLabel.getChildren().add(attributeLabel);
+                }
+            }
+
+            Image img = card.getImage();
+            imageView.setImage(img);
+
+
+        }
+    }
+
+    private void initializeExceptionPopUp(String error)
+    {
+        exceptionText.setText("GAGAL! KARTU TERLINDUNGI");
+        exceptionLabel.setText(error);
+        exceptionImg.setImage(new Image("/img/gui/musuh_ex.gif"));
+        exceptionImg.setFitHeight(150);
+        exceptionImg.setFitWidth(150);
+
+    }
+
+    @FXML
+    private void handleBackDetailButton() {
+        labelPopUp.setVisible(false);
+    }
+
+    @FXML
+    private void handleBackButton() {
+        exceptionPopUp.setVisible(false);
     }
 }

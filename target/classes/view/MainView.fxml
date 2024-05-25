@@ -95,7 +95,7 @@
             <fx:include source="/view/LoadStateView.fxml"/>
         </VBox>
         <VBox fx:id="loadPluginBox">
-            <Text>LOAD PLUGIN</Text>
+        
             <fx:include source="/view/PluginView.fxml"/>
         </VBox>
       </StackPane>

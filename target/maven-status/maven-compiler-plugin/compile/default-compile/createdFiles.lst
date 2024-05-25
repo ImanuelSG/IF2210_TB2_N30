@@ -15,7 +15,6 @@ libs/Field/Ladang.class
 MainApp.class
 libs/Card/Useable/TrapCard.class
 libs/GameWorld/BearAttackListener.class
-controller/SaveStateController.class
 libs/Card/Useable/UseableOnSelf.class
 libs/Player/Player.class
 libs/GameWorld/SpecialObserver.class

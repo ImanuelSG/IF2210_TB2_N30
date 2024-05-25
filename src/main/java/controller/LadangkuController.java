@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -63,6 +64,22 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
     @FXML
     private Button panenButton;
 
+    @FXML
+    private VBox exceptionPopUp;
+
+    @FXML
+    private  Label exceptionText;
+
+    @FXML
+    private Label exceptionLabel;
+
+    @FXML
+    private ImageView exceptionImg;
+
+    @FXML
+    private Button backExceptionButton;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GameWorld main = GameWorld.getInstance();
@@ -74,6 +91,7 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
         ladang = GameWorld.getInstance().getCurrentPlayer().getField();
 
         labelPopUp.setVisible(false);
+        exceptionPopUp.setVisible(false);
         populateGrid();
         updateView();
 
@@ -123,8 +141,21 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
         int columnIndex = GridPane.getColumnIndex(borderPane);
         int rowIndex = GridPane.getRowIndex(borderPane);
 
+        // Access the VBox in the center of the BorderPane
+        Node centerNode = borderPane.getCenter();
+        if (centerNode instanceof VBox) {
+            VBox vBox = (VBox) centerNode;
+            // Access the first child of the VBox, which should be the ImageView
+            Node imageViewNode = vBox.getChildren().get(0);
+            if (imageViewNode instanceof ImageView) {
+                ImageView imageView = (ImageView) imageViewNode;
+                content.putImage(imageView.getImage());
+            }
+        }
+
         content.putString(rowIndex + "_" + columnIndex);
         dragboard.setContent(content);
+
 
         event.consume();
     }
@@ -156,7 +187,7 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
         int columnIndex = GridPane.getColumnIndex(borderPane);
         if (gameWorld.isBearAttack() && gameWorld.isAttacked(rowIndex, columnIndex)) {
             borderPane.setStyle(
-                    "-fx-background-color: #FF0000; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #495749;  -fx-border-width: 6px; -fx-border-radius: 7px;");
+                    "-fx-background-color: #F65F5F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #9C4023;  -fx-border-width: 6px; -fx-border-radius: 7px;");
         } else
             borderPane.setStyle(
                     "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;");
@@ -184,6 +215,7 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
                     Label label = (Label) centerBox.getChildren().get(1);
                     HarvestableCard card = CardFactory.createHarvestableCard(args);
                     imageView.setImage(card.getImage());
+
                     label.setText(card.getName());
                     ladang.setHarvestable(rowIndex, columnIndex, card);
                     activeDeck.removeCard(Integer.parseInt(pos));
@@ -199,23 +231,31 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
 
                         success = true;
                     } catch (Exception e) {
-                        System.out.println(e);
+                        // EXCEPTION MAKAN
+                        initializeExceptionPopUp(e.getMessage());
+                        exceptionPopUp.setVisible(true);
 
                     }
                     // Handle Item Drop
                 } else if (type.equals("UseableSelf") && ladang.getHarvestable(rowIndex, columnIndex) != null) {
-                    HarvestableCard card = ladang.getHarvestable(rowIndex, columnIndex);
+                    try {
 
-                    UseableOnSelfCard usecard = (UseableOnSelfCard) CardFactory.createItemCard(args);
+                        HarvestableCard card = ladang.getHarvestable(rowIndex, columnIndex);
+                        UseableOnSelfCard usecard = (UseableOnSelfCard) CardFactory.createItemCard(args);
 
-                    usecard.use(card);
+                        usecard.use(card);
+                        activeDeck.removeCard(Integer.parseInt(pos));
+                        success = true;
+                    } catch (Exception e)
+                    {
+                        initializeExceptionPopUp(e.getMessage());
+                        exceptionPopUp.setVisible(true);
+                    }
 
-                    activeDeck.removeCard(Integer.parseInt(pos));
-                    success = true;
 
                 }
                 updateView();
-            } // Handle move harbestable or swap
+            } // Handle move harvestable or swap
             else {
                 String rowFrom = data[0];
                 String colFrom = data[1];
@@ -327,7 +367,7 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
                 BorderPane borderPane = (BorderPane) gridPane.getChildren().get(i * 5 + j);
 
                 borderPane.setStyle(
-                        "-fx-background-color: #FF0000; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #495749;  -fx-border-width: 6px; -fx-border-radius: 7px;");
+                        "-fx-background-color: #F65F5F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #9C4023;  -fx-border-width: 6px; -fx-border-radius: 7px;");
             }
     }
 
@@ -341,4 +381,18 @@ public class LadangkuController implements Initializable, Observer, BearAttackLi
             }
     }
 
+    @FXML
+    private void handleExceptionBackButton() {
+        exceptionPopUp.setVisible(false);
+    }
+
+    private void initializeExceptionPopUp(String error)
+    {
+        exceptionText.setText("GAGAL!");
+        exceptionLabel.setText(error);
+        exceptionImg.setImage(new Image("/img/gui/rename_ex.gif"));
+        exceptionImg.setFitHeight(150);
+        exceptionImg.setFitWidth(150);
+
+    }
 }
