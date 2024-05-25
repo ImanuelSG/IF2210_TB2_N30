@@ -65,4 +65,8 @@ public class Toko {
     public void setItems(Map<String, Integer> items) {
         stock = new HashMap<>(items);
     }
+
+    public int getProductCount() {
+        return stock.size();
+    }
 }

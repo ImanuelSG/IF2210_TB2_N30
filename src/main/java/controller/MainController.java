@@ -1,24 +1,23 @@
 package controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import libs.Deck.Deck;
+import libs.GameWorld.BearAttack;
+import libs.GameWorld.BearAttackListener;
 import libs.GameWorld.GameWorld;
-
+import libs.GameWorld.SpecialObserver;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable,Observer {
+public class MainController implements Initializable, SpecialObserver, BearAttackListener, Observer {
 
     @FXML
     private BorderPane contentPane;
@@ -34,6 +33,37 @@ public class MainController implements Initializable,Observer {
 
     @FXML
     private VBox saveStateBox;
+    @FXML
+    private Label timerLabel;
+
+    @FXML
+    private Label deckLabel;
+
+    @FXML
+    private Label phaseLabel;
+
+    // Buttons
+
+    @FXML
+    private Button nextButton;
+
+    @FXML
+    private Button ladangKuButton;
+
+    @FXML
+    private Button ladangMusuhButton;
+
+    @FXML
+    private Button tokoButton;
+
+    @FXML
+    private Button loadStateButton;
+
+    @FXML
+    private Button loadPluginButton;
+
+    @FXML
+    private Button saveStateButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -43,12 +73,58 @@ public class MainController implements Initializable,Observer {
         main.getCurrentPlayer().addObserver(this);
         main.getEnemy().addObserver(this);
 
-
         saveStateBox.setVisible(false);
-        loadView("LadangKu.fxml"); // Corrected to load "View1.fxml"
-        updateView();
-        // main.run();
+        main.registerObserver(this);
+        main.addListener(this);
 
+        Deck d1 = main.getPlayer1().getDeck();
+        Deck d2 = main.getPlayer2().getDeck();
+
+        d1.addObserver(this);
+
+        d2.addObserver(this);
+
+        timerLabel.setVisible(false);
+        updateView();
+        play(0);
+    }
+
+    @FXML
+    public void disableAllButton() {
+        nextButton.setDisable(true);
+        ladangKuButton.setDisable(true);
+        ladangMusuhButton.setDisable(true);
+        tokoButton.setDisable(true);
+        loadStateButton.setDisable(true);
+        loadPluginButton.setDisable(true);
+        saveStateButton.setDisable(true);
+    }
+
+    @FXML
+    public void enableAllButton() {
+        nextButton.setDisable(false);
+        ladangKuButton.setDisable(false);
+        ladangMusuhButton.setDisable(false);
+        tokoButton.setDisable(false);
+        loadStateButton.setDisable(false);
+        loadPluginButton.setDisable(false);
+        saveStateButton.setDisable(false);
+
+    }
+
+    @FXML
+    public void setTimer(String duration) {
+        timerLabel.setText("Time Left: " + duration + "s");
+    }
+
+    @FXML
+    public void onTimer() {
+        timerLabel.setVisible(true);
+    }
+
+    @FXML
+    public void offTimer() {
+        timerLabel.setVisible(false);
     }
 
     @FXML
@@ -86,12 +162,8 @@ public class MainController implements Initializable,Observer {
     public void handleNextTurn() {
         GameWorld main = GameWorld.getInstance();
         main.nextTurn();
-        updateView();
-        play();
+
     }
-
-
-
 
     private void loadView(String fxml) {
         try {
@@ -121,20 +193,52 @@ public class MainController implements Initializable,Observer {
         // Update player 2 gulden label, ensuring it's a string
         player2GuldenLabel.setText(String.valueOf(main.getPlayer2().getGulden()));
 
-    }
+        // Update deck label
 
-    private void play() {
-        // Shuffling phase
-        this.loadView("ShuffleView.fxml");
-
-
-        // if 
-
+        deckLabel.setText("Deck: " + main.getCurrentPlayer().getDeck().getSize() + "/" + " 40");
 
     }
 
-    private void seranganBeruang() {
+    private void play(int state) {
 
+        switch (state) {
+            case 0:
+                this.phaseLabel.setText("Phase: Shuffling");
+                this.loadView("ShuffleView.fxml");
+
+                break;
+            case 1:
+                this.phaseLabel.setText("Phase: Serangan Beruang");
+                this.loadView("LadangKu.fxml");
+                break;
+            case 2:
+                // Harvesting phase
+                this.phaseLabel.setText("Phase: Aksi Bebas");
+                this.loadView("LadangKu.fxml");
+                break;
+        }
+    }
+
+    @Override
+    public void update() {
+        // Update the view
+        GameWorld main = GameWorld.getInstance();
+        int state = main.getState();
+        updateView();
+        play(state);
+    }
+
+    @Override
+    public void setupBearAttack(int rowstart, int rowend, int colstart, int colend, int duration) {
+        disableAllButton();
+        BearAttack bearAttack = new BearAttack(rowstart, rowend, colstart, colend, duration, this);
+        bearAttack.start();
+    }
+
+    @Override
+    public void endBearAttack() {
+        offTimer();
+        enableAllButton();
     }
 
 }

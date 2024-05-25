@@ -13,12 +13,16 @@ public class DelayCard extends UseableOnEnemyCard {
 
     @Override
     public void use(HarvestableCard target, Player enemyPlayer) {
-        if (target instanceof AnimalCard) {
-            target.setParameter(target.getParameter() > 5 ? target.getParameter() - 5 : 0);
+        if (target.isProtected()) {
+            throw new IllegalArgumentException("Card is protected");
+        } else {
+            if (target instanceof AnimalCard) {
+                target.setParameter(target.getParameter() > 5 ? target.getParameter() - 5 : 0);
 
-        } else if (target instanceof PlantCard) {
-            target.setParameter(target.getParameter() > 2 ? target.getParameter() - 2 : 0);
+            } else if (target instanceof PlantCard) {
+                target.setParameter(target.getParameter() > 2 ? target.getParameter() - 2 : 0);
+            }
+            target.applyEffect("Delay");
         }
-        target.applyEffect("Delay");
     }
 }

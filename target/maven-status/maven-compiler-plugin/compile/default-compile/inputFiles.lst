@@ -1,8 +1,8 @@
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Deck/ActiveDeck.java
+/home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/GameWorld/BearAttack.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/controller/ActiveDeckController.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/TrapCard.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/GameWorld/SpecialObserver.java
-/home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Loader/JsonPlugin.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/UseableOnEnemyCard.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Player/Player.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/InstantHarvestCard.java
@@ -17,6 +17,7 @@
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Products/ProductCard.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/UseableOnSelfCard.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/controller/Observer.java
+/home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/GameWorld/BearAttackNotifier.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Loader/XmlPlugin.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Deck/Deck.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Useable/ProtectCard.java
@@ -38,6 +39,7 @@
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Loader/Loader.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Harvestable/HarvestableCard.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/controller/SaveStateController.java
+/home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/GameWorld/BearAttackListener.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/GameWorld/SpecialObserverable.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/MainApp.java
 /home/angelica/OOP-Semoga_Ga_Mati/src/main/java/libs/Card/Card.java

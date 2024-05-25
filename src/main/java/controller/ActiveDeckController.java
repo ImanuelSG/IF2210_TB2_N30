@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -127,15 +128,17 @@ public class ActiveDeckController implements Initializable, Observer {
 
     @Override
     public void updateView() {
-        activeDeck = GameWorld.getInstance().getCurrentPlayer().getActiveDeck();
-        
-        for (int i = 0; i < 6; i++) {
-            Card card = activeDeck.getCard(i);
-            if (card != null) {
-                setCard(i, card);
-            } else {
-                removeCardAt(i);
+        Platform.runLater(() -> {
+            activeDeck = GameWorld.getInstance().getCurrentPlayer().getActiveDeck();
+
+            for (int i = 0; i < 6; i++) {
+                Card card = activeDeck.getCard(i);
+                if (card != null) {
+                    setCard(i, card);
+                } else {
+                    removeCardAt(i);
+                }
             }
-        }
+        });
     }
 }

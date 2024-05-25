@@ -72,30 +72,30 @@
                      </VBox>
                   </StackPane>
                   <Label fx:id="turnLabel" alignment="CENTER" prefHeight="63.0" prefWidth="141.0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" text="TURN : 0" />
-                  <Label fx:id="phaseLabel" alignment="CENTER" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" text="Phase : 0" />
+                                    <Label fx:id="phaseLabel" alignment="CENTER" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" text="Phase : 0" />
                </children>
             </HBox>
             <children>
                <HBox alignment="CENTER" style="-fx-padding: 20px;">
                   <BorderPane fx:id="contentPane" prefHeight="700.0" maxWidth="900.0"/>
                </HBox>
-               <!--               <fx:include source="ActiveDeckView.fxml" />-->
+<!--               <fx:include source="ActiveDeckView.fxml" />-->
                <HBox alignment="BOTTOM_CENTER" style="-fx-padding: 20px;">
                   <fx:include source="ActiveDeckView.fxml" />
                </HBox>
             </children>
          </VBox>
-         <VBox fx:id="saveStateBox">
+          <VBox fx:id="saveStateBox">
             <Text>SAVE STATE</Text>
             <fx:include source="/view/SaveStateView.fxml"/>
          </VBox>
 
-         <!--         <VBox fx:id="loadStateBox">-->
+<!--         <VBox fx:id="loadStateBox">-->
 
-         <!--         </VBox>-->
-         <!--         <VBox fx:id="loadPluginBox">-->
+<!--         </VBox>-->
+<!--         <VBox fx:id="loadPluginBox">-->
 
-         <!--         </VBox>-->
+<!--         </VBox>-->
       </StackPane>
    </center>
    <right>
@@ -120,11 +120,11 @@
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button fx:id="saveStateButton" mnemonicParsing="false" onAction="#showSaveState" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="SAVE STATE" textFill="WHITE">
+                     <Button fx:id="saveStateButton" mnemonicParsing="false" onAction="#showSaveState" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="SAVE STATE" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-
+                  
                   <Button fx:id="loadStateButton" onAction = "#showLoadState" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="LOAD STATE" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
@@ -139,9 +139,9 @@
                         <Font name="Inter Semi Bold" size="19.0" />
                      </font>
                   </Label>
-
-                  <Label fx:id="timerLabel" text="Timer: 0.0" style="-fx-font-size: 20px; -fx-text-fill: red; -fx-font-weight: bold;"/>
-
+                   
+        <Label fx:id="timerLabel" text="Timer: 0.0" style="-fx-font-size: 20px; -fx-text-fill: red; -fx-font-weight: bold;"/>
+    
                </children>
                <opaqueInsets>
                   <Insets />

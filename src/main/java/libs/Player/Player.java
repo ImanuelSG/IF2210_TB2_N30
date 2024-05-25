@@ -19,7 +19,7 @@ public class Player implements Observerable {
     public Player(String name, int gulden, int decksize) {
         this.name = name;
         this.gulden = gulden;
-        this.deck = new Deck(40);
+        this.deck = new Deck(decksize);
         this.activeDeck = new ActiveDeck();
         this.field = new Ladang();
         this.observers = new ArrayList<>();
@@ -55,6 +55,9 @@ public class Player implements Observerable {
         this.activeDeck = activeDeck;
     }
 
+    public void setField(Ladang field) {
+        this.field = field;
+    }
     @Override
     public void addObserver(Observer observer) {
         observers.add(observer);
