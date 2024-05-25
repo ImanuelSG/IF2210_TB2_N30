@@ -7,9 +7,10 @@
 
 <StackPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LadangkuController">
     <children>
-        <GridPane fx:id="gridPane" hgap="10" style="-fx-padding: 10;" vgap="10">
+        <GridPane fx:id="gridPane" hgap="10" style="-fx-padding: 10;" vgap="10" prefHeight="800" prefWidth="600">
             <!-- Placeholders for dynamic content -->
         </GridPane>
+        <!-- DETAIL HEWAN -->
         <VBox fx:id="labelPopUp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="583.0" spacing="10" style="-fx-background-color: #ffffff; -fx-border-color: #495749; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-padding: 15px; -fx-spacing: 15px;" >
             <Text fx:id="titleLabel" wrappingWidth="148.0">
             <font>
@@ -27,6 +28,17 @@
                   <Button fx:id="backButton" onAction="#handleBackButton" prefHeight="38.0" prefWidth="77.0" text="Kembali" stylesheets="/view/styles.css" styleClass="brownButton" />
                   <Button fx:id="panenButton"  prefHeight="39.0" prefWidth="73.0" text="Panen" stylesheets="/view/styles.css" styleClass="greenButton" />
               </HBox>
+        </VBox>
+        <!-- EXCEPTION -->
+        <VBox fx:id="exceptionPopUp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="583.0" spacing="10" style="-fx-background-color: #ffffff; -fx-border-color: #495749; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-padding: 15px; -fx-spacing: 15px;" >
+            <VBox alignment="CENTER" spacing="15">
+                <Label fx:id="exceptionText"/>
+                <Label fx:id="exceptionLabel"/>
+                <ImageView fx:id="exceptionImg" fitWidth="100" fitHeight="100" />
+            </VBox>
+            <HBox alignment="CENTER" style="-fx-spacing: 20px;">
+                <Button fx:id="backExceptionButton" onAction="#handleExceptionBackButton" prefHeight="38.0" prefWidth="77.0" text="Kembali" stylesheets="/view/styles.css" styleClass="brownButton" />
+            </HBox>
         </VBox>
     </children>
 </StackPane>

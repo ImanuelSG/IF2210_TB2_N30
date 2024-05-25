@@ -3,6 +3,48 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 
-<GridPane fx:id="gridPane" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.LadangMusuhController" hgap="10" vgap="10" style="-fx-padding: 10;" prefWidth="600.0" prefHeight="800.0">
-    <!-- Placeholders for dynamic content -->
-</GridPane>
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<StackPane prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LadangMusuhController">
+<children>
+    <GridPane fx:id="gridPane" hgap="10" style="-fx-padding: 10;" vgap="10" prefHeight="800" prefWidth="600">
+        <!-- Placeholders for dynamic content -->
+    </GridPane>
+    <!-- Detail Hewan -->
+    <VBox fx:id="labelPopUp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="583.0" spacing="10" style="-fx-background-color: #ffffff; -fx-border-color: #495749; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-padding: 15px; -fx-spacing: 15px;" >
+        <Text fx:id="titleLabel" wrappingWidth="148.0">
+            <font>
+                <Font name="Inter Semi Bold" size="34.0" />
+            </font></Text>
+        <HBox spacing="10">
+            <ImageView fx:id="imageView" fitHeight="131.0" fitWidth="165.0" preserveRatio="true" />
+            <VBox>
+                <Label fx:id="descLabel" />
+                <VBox fx:id="attrLabel" spacing="10">
+                </VBox>
+            </VBox>
+        </HBox>
+        <HBox alignment="CENTER" style="-fx-spacing: 20px;">
+            <Button fx:id="backDetailButton" onAction="#handleBackDetailButton" prefHeight="38.0" prefWidth="77.0" text="Kembali" stylesheets="/view/styles.css" styleClass="brownButton" />
+        </HBox>
+    </VBox>
+    <!-- EXCEPTION -->
+    <VBox fx:id="exceptionPopUp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="583.0" spacing="10" style="-fx-background-color: #ffffff; -fx-border-color: #495749; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-padding: 15px; -fx-spacing: 15px;" >
+        <VBox alignment="CENTER" spacing="15">
+            <Label fx:id="exceptionText"/>
+            <Label fx:id="exceptionLabel"/>
+            <ImageView fx:id="exceptionImg" fitWidth="100" fitHeight="100" />
+        </VBox>
+        <HBox alignment="CENTER" style="-fx-spacing: 20px;">
+            <Button fx:id="backButton" onAction="#handleBackButton" prefHeight="38.0" prefWidth="77.0" text="Kembali" stylesheets="/view/styles.css" styleClass="brownButton" />
+        </HBox>
+    </VBox>
+</children>
+</StackPane>

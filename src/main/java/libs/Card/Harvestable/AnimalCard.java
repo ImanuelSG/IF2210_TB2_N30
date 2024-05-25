@@ -16,7 +16,7 @@ public class AnimalCard extends HarvestableCard {
         if (product.use(this)) {
             this.setParameter(this.getParameter() + product.getAddedParameter());
         } else {
-            throw new IllegalArgumentException("This animal can't eat this product");
+            throw new IllegalArgumentException("Anda salah memberikan jenis makanan!");
         }
     }
 

@@ -17,7 +17,7 @@ public class DestroyCard extends UseableOnEnemyCard {
             target.applyEffect("Destroy");
             enemyField.removeHarvestable(target);
         } else {
-            throw new IllegalArgumentException("Card is protected");
+            throw new IllegalArgumentException("Tidak bisa menggunakan kartu Destroy");
         }
 
     }
