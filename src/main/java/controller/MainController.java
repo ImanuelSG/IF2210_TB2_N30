@@ -122,8 +122,15 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     }
 
     @FXML
+    public void closeOtherBox() {
+        saveStateBox.setVisible(false);
+        loadStateBox.setVisible(false);
+    }
+
+    @FXML
     public void setTimer(String duration) {
         timerLabel.setText("Time Left: " + duration + "s");
+
     }
 
     @FXML
@@ -139,27 +146,31 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     @FXML
     public void showLadangKu() {
         loadView("LadangKu.fxml");
+        closeOtherBox();
     }
 
     @FXML
     public void showLadangMusuh() {
         loadView("LadangMusuh.fxml");
+        closeOtherBox();
     }
 
     @FXML
     public void showToko() {
         loadView("TokoView.fxml");
-
+        closeOtherBox();
     }
 
     @FXML
     public void showSaveState() {
         saveStateBox.setVisible(!saveStateBox.isVisible());
+        loadStateBox.setVisible(false);
     }
 
     @FXML
     public void showLoadState() {
         loadStateBox.setVisible(!loadStateBox.isVisible());
+        saveStateBox.setVisible(false);
     }
 
     @FXML
@@ -217,6 +228,7 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
 
         switch (state) {
             case 0:
+                disableAllButton();
                 this.phaseLabel.setText("Phase: Shuffling");
                 this.loadView("ShuffleView.fxml");
 
@@ -227,6 +239,7 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
                 break;
             case 2:
                 // Harvesting phase
+                enableAllButton();
                 this.phaseLabel.setText("Phase: Aksi Bebas");
                 this.loadView("LadangKu.fxml");
                 break;

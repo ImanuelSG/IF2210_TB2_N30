@@ -68,6 +68,10 @@ public class ActiveDeckController implements Initializable, Observer {
             Label label = new Label();
             // Set the label to the center of the VBox
             VBox.setMargin(label, new Insets(0, 0, 10, 0)); // Add margin to bottom
+
+            label.setWrapText(true);
+            label.setMaxWidth(80);
+            label.setAlignment(javafx.geometry.Pos.CENTER);
             vBox.getChildren().add(label);
             // Set VBox to center of BorderPane
             borderPane.setCenter(vBox);

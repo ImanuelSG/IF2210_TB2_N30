@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.stage.DirectoryChooser;
+import javafx.stage.Window;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 

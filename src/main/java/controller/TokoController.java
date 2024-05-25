@@ -13,15 +13,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import libs.Card.CardFactory;
-import libs.Card.Harvestable.AnimalCard;
-import libs.Card.Harvestable.HarvestableCard;
 import libs.Card.Products.ProductCard;
-import libs.Card.Useable.UseableOnSelfCard;
 import libs.Deck.ActiveDeck;
 import libs.GameWorld.GameWorld;
 import libs.Player.Player;
 import libs.Toko.Toko;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,8 +39,6 @@ public class TokoController {
     @FXML
     private Label sellBoxText;
 
-
-
     @FXML
     public void initialize() {
         this.stock = new HashMap<String, Integer>();
@@ -64,15 +58,13 @@ public class TokoController {
         borderPane.setPrefWidth(400);
         borderPane.setPrefHeight(250);
         borderPane.setStyle(
-                "-fx-background-color: #495749; -fx-background-radius: 10; -fx-padding: 10; -fx-min-height: 150;"
-        );
+                "-fx-background-color: #495749; -fx-background-radius: 10; -fx-padding: 10; -fx-min-height: 150;");
 
         // Card Pane setup
         BorderPane cardPane = new BorderPane();
         cardPane.setPrefWidth(200);
         cardPane.setStyle(
-                "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-height: 150; -fx-border-color: #D49656; -fx-border-width: 6px; -fx-border-radius: 7px;"
-        );
+                "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-min-height: 150; -fx-border-color: #D49656; -fx-border-width: 6px; -fx-border-radius: 7px;");
 
         // Set the borderPane to be clickable
         borderPane.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> showConfirmation(borderPane, string, quantity));
@@ -127,7 +119,8 @@ public class TokoController {
 
         Label hargaTitle = new Label();
         hargaTitle.setText("HARGA:");
-        hargaTitle.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px;"); // Set larger font size
+        hargaTitle.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px;"); // Set larger font
+                                                                                                  // size
         hargaTitle.setWrapText(true);
 
         Label harga = new Label();
@@ -137,7 +130,8 @@ public class TokoController {
 
         Label stockLabel = new Label();
         stockLabel.setText("STOCK:");
-        stockLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px;"); // Set larger font size
+        stockLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px;"); // Set larger font
+                                                                                                  // size
         stockLabel.setWrapText(true);
 
         Label stock = new Label();
@@ -152,7 +146,7 @@ public class TokoController {
         return borderPane;
     }
 
-    private  void refetch() {
+    private void refetch() {
         this.stock = Toko.getInstance().getStock();
     }
 
@@ -165,7 +159,7 @@ public class TokoController {
 
         for (String item : stock.keySet()) {
             Integer quantity = stock.get(item);
-            if (quantity > 0){
+            if (quantity > 0) {
 
                 BorderPane borderPane = createTokoCard(item, quantity);
                 itemCards.add(borderPane, col, row);
@@ -189,12 +183,14 @@ public class TokoController {
 
         sellBox.setOnDragEntered(event -> {
             if (event.getGestureSource() != sellBox && event.getDragboard().hasString()) {
-                sellBox.setStyle("-fx-background-color: #9FC47C; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #495749;  -fx-border-width: 6px; -fx-border-radius: 7px;");
+                sellBox.setStyle(
+                        "-fx-background-color: #9FC47C; -fx-background-radius: 10; -fx-padding: 10; -fx-min-width: 100; -fx-min-height: 150; -fx-border-color: #495749;  -fx-border-width: 6px; -fx-border-radius: 7px;");
             }
         });
 
         sellBox.setOnDragExited(event -> {
-            sellBox.setStyle("-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;");
+            sellBox.setStyle(
+                    "-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;");
         });
 
         sellBox.setOnDragDropped(event -> {
@@ -212,7 +208,7 @@ public class TokoController {
                     Player currPlayer = GameWorld.getInstance().getCurrentPlayer();
                     if (type.equals("Product")) {
                         Map<String, ArrayList<String>> products = CardFactory.getInstance().getMapProduct();
-                        String item = args.replace(" ","_");
+                        String item = args.replace(" ", "_");
                         ArrayList<String> datas = products.get(item);
                         int price = Integer.parseInt(datas.get(1));
                         currPlayer.setGulden(price + currPlayer.getGulden());
@@ -243,11 +239,9 @@ public class TokoController {
         Map<String, ArrayList<String>> products = CardFactory.getInstance().getMapProduct();
         ArrayList<String> datas = products.get(item);
 
-
         Node originalContent = borderPane.getCenter();
         // Create a new BorderPane for the confirmation
         BorderPane confirmationPane = new BorderPane();
-
 
         confirmationPane.setPrefWidth(300);
         confirmationPane.setPrefHeight(200);
@@ -263,14 +257,13 @@ public class TokoController {
 
         Button confirmButton = new Button("BELI");
 
-        if (currPlayer.getActiveDeck().isFull())
-        {
+        if (currPlayer.getActiveDeck().isFull()) {
             confirmButton.setDisable(true);
         }
 
         confirmButton.setOnAction(event -> {
             // Perform the confirmation action
-            handleSell(item,currPlayer);
+            handleSell(item, currPlayer);
             refetch();
             populateToko();
         });
@@ -298,28 +291,21 @@ public class TokoController {
         borderPane.setCenter(confirmationPane);
     }
 
-
-    public void handleSell(String item, Player currPlayer)
-    {
+    public void handleSell(String item, Player currPlayer) {
         Map<String, ArrayList<String>> products = CardFactory.getInstance().getMapProduct();
         ArrayList<String> datas = products.get(item);
         int price = Integer.parseInt(datas.get(1));
 
-        if (currPlayer.getGulden() >= price){
+        if (currPlayer.getGulden() >= price) {
             ProductCard productCard = CardFactory.createProductCard(item);
             currPlayer.getActiveDeck().add(productCard);
             currPlayer.setGulden(currPlayer.getGulden() - price);
-            Toko.getInstance().removeProduct(item,1);
-        }
-        else {
+            Toko.getInstance().removeProduct(item, 1);
+        } else {
             System.out.println("uang ga cukup");
         }
         populateToko();
 
-
     }
 
 }
-
-
-

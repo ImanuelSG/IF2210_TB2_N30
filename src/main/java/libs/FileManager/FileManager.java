@@ -156,14 +156,15 @@ public class FileManager {
 
             Player player1 = g.getPlayer1();
             player1.setGulden(gulden1);
-            
+
             Deck deck1 = player1.getDeck();
             deck1.setCards(CardFactory.seedDeck(deckCountPlayer1));
-        
+
             line = br.readLine();
             int activeDeckCountPlayer1 = Integer.parseInt(line.trim());
 
             ActiveDeck activeDeckPlayer1 = player1.getActiveDeck();
+
             for (int j = 0; j < 6; j++) {
                 activeDeckPlayer1.removeCard(j);
             }
@@ -176,10 +177,10 @@ public class FileManager {
                 Card card = CardFactory.createCard(cardName);
                 activeDeckPlayer1.addCard(card, location);
             }
-    
+
             line = br.readLine();
             int ladangCardCountPlayer1 = Integer.parseInt(line.trim());
-            
+
             Ladang ladangPlayer1 = player1.getField();
             for (int j = 0; j < 4; j++) {
                 for (int k = 0; k < 5; k++) {
@@ -212,7 +213,7 @@ public class FileManager {
 
             line = br.readLine();
             int gulden2 = Integer.parseInt(line.trim());
-    
+
             line = br.readLine();
             int deckCountPlayer2 = Integer.parseInt(line.trim());
 
@@ -238,10 +239,10 @@ public class FileManager {
                 Card card = CardFactory.createCard(cardName);
                 activeDeckPlayer2.addCard(card, location);
             }
-    
+
             line = br.readLine();
             int ladangCardCountPlayer2 = Integer.parseInt(line.trim());
-            
+
             Ladang ladangPlayer2 = player2.getField();
             for (int j = 0; j < 4; j++) {
                 for (int k = 0; k < 5; k++) {
@@ -270,9 +271,11 @@ public class FileManager {
                 }
 
                 ladangPlayer2.setHarvestable(row, col, card);
+
+                g.setCurrentPlayer(turn % 2 == 0 ? player2 : player1);
+
             }
 
-           
         } catch (IOException e) {
             System.out.println("Error reading the file: " + e.getMessage());
         }
@@ -300,7 +303,7 @@ public class FileManager {
             bw.write(player1.getGulden() + "\n");
             bw.write(player1.getDeck().getSize() + "\n");
             bw.write(player1.getActiveDeck().getCardCount() + "\n");
-            
+
             ActiveDeck p1ActiveDeck = player1.getActiveDeck();
             for (int i = 0; i < 6; i++) {
                 Card activeDeckCard = p1ActiveDeck.getCard(i);
@@ -325,15 +328,15 @@ public class FileManager {
 
                         Map<String, Integer> appliedEffects = ladangCard.getAppliedEffect();
                         bw.write(ladangCard.getTotalEffectCount() + " ");
-                        
+
                         for (Map.Entry<String, Integer> entry : appliedEffects.entrySet()) {
                             for (int k = 0; k < entry.getValue(); k++) {
                                 bw.write(entry.getKey() + " ");
                             }
                         }
-                        
+
                         bw.write("\n");
-                    }   
+                    }
                 }
             }
 
@@ -341,7 +344,7 @@ public class FileManager {
             bw.write(player2.getGulden() + "\n");
             bw.write(player2.getDeck().getSize() + "\n");
             bw.write(player2.getActiveDeck().getCardCount() + "\n");
-            
+
             ActiveDeck p2ActiveDeck = player2.getActiveDeck();
             for (int i = 0; i < 6; i++) {
                 Card activeDeckCard = p2ActiveDeck.getCard(i);
@@ -366,21 +369,21 @@ public class FileManager {
 
                         Map<String, Integer> appliedEffects = ladangCard.getAppliedEffect();
                         bw.write(ladangCard.getTotalEffectCount() + " ");
-                        
+
                         for (Map.Entry<String, Integer> entry : appliedEffects.entrySet()) {
                             for (int k = 0; k < entry.getValue(); k++) {
                                 bw.write(entry.getKey() + " ");
                             }
                         }
-                        
+
                         bw.write("\n");
-                    }   
+                    }
                 }
             }
-            
+
             System.out.println("Game state saved successfully to TXT file.");
         } catch (IOException e) {
             System.out.println("Error writing to the file: " + e.getMessage());
         }
-    }   
+    }
 }
