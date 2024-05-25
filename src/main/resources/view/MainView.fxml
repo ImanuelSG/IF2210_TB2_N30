@@ -22,7 +22,7 @@
             <Image url="/img/gui/bg_deck.png" />
          </ImageView>
          <VBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="875.0" style="-fx-padding: 10px;">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="875.0" style="-fx-padding: 10px; -fx-spacing:20px;">
                <children>
                   <StackPane style="-fx-padding: 10;">
                      <Rectangle arcHeight="39.0" arcWidth="42.0" fill="#495749" height="149.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="424.0" />
@@ -72,72 +72,76 @@
                      </VBox>
                   </StackPane>
                   <Label fx:id="turnLabel" alignment="CENTER" prefHeight="63.0" prefWidth="141.0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" text="TURN : 0" />
+                  <Label fx:id="phaseLabel" alignment="CENTER" prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #4C544C; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px 20px; -fx-background-radius: 10px;" text="Phase : 0" />
                </children>
             </HBox>
             <children>
                <HBox alignment="CENTER" style="-fx-padding: 20px;">
                   <BorderPane fx:id="contentPane" prefHeight="700.0" maxWidth="900.0"/>
                </HBox>
-<!--               <fx:include source="ActiveDeckView.fxml" />-->
+               <!--               <fx:include source="ActiveDeckView.fxml" />-->
                <HBox alignment="BOTTOM_CENTER" style="-fx-padding: 20px;">
                   <fx:include source="ActiveDeckView.fxml" />
                </HBox>
             </children>
          </VBox>
-
          <VBox fx:id="saveStateBox">
             <Text>SAVE STATE</Text>
             <fx:include source="/view/SaveStateView.fxml"/>
          </VBox>
 
-<!--         <VBox fx:id="loadStateBox">-->
+         <!--         <VBox fx:id="loadStateBox">-->
 
-<!--         </VBox>-->
-<!--         <VBox fx:id="loadPluginBox">-->
+         <!--         </VBox>-->
+         <!--         <VBox fx:id="loadPluginBox">-->
 
-<!--         </VBox>-->
+         <!--         </VBox>-->
       </StackPane>
    </center>
    <right>
       <!--SIDE BAR-->
-      <VBox prefHeight="1000.0" prefWidth="304.0" style="-fx-padding: 20px; -fx-spacing: 150px; -fx-background-image: url('img/gui/bg_sidebar.png'); -fx-background-size: cover;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="304.0" style="-fx-padding: 20px; -fx-spacing: 150px; -fx-background-image: url('img/gui/bg_sidebar.png'); -fx-background-size: cover;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleNextTurn" prefHeight="72.0" prefWidth="96.0" style="-fx-background-color: #68441D; -fx-background-radius: 8px;" text="NEXT" textFill="WHITE">
+            <Button fx:id="nextButton" mnemonicParsing="false" onAction="#handleNextTurn" prefHeight="72.0" prefWidth="96.0" style="-fx-background-color: #68441D; -fx-background-radius: 8px;" text="NEXT" textFill="WHITE">
                <font>
                   <Font name="Inter Semi Bold" size="18.0" />
                </font></Button>
             <VBox alignment="TOP_CENTER" prefHeight="756.0" prefWidth="264.0" style="-fx-spacing: 50px;">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" onAction="#showLadangKu" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 25px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="LADANGKU" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="ladangKuButton" alignment="CENTER" contentDisplay="CENTER" onAction="#showLadangKu" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 25px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="LADANGKU" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" onAction="#showLadangMusuh" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LADANG LAWAN" textFill="WHITE">
+                  <Button fx:id="ladangMusuhButton" alignment="CENTER" contentDisplay="CENTER" onAction="#showLadangMusuh" prefHeight="40.0" prefWidth="260.0" style="-fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LADANG LAWAN" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" onAction="#showToko" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 40px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="TOKO" textFill="WHITE">
+                  <Button fx:id="tokoButton" mnemonicParsing="false" onAction="#showToko" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 40px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="TOKO" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" onAction="#showSaveState" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="SAVE STATE" textFill="WHITE">
+                  <Button fx:id="saveStateButton" mnemonicParsing="false" onAction="#showSaveState" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="SAVE STATE" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" onAction="#showLoadState" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="LOAD STATE" textFill="WHITE">
+
+                  <Button fx:id="loadStateButton" onAction = "#showLoadState" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="LOAD STATE" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button layoutX="10.0" layoutY="212.0" onAction="#showLoadPlugin" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LOAD PLUGIN" textFill="WHITE">
+                  <Button fx:id="loadPluginButton" layoutX="10.0" layoutY="212.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LOAD PLUGIN" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="141.0" prefWidth="260.0" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-padding: 10px;" text="DECK" textAlignment="CENTER" textFill="#68441d">
+                  <Label fx:id="deckLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="141.0" prefWidth="260.0" style="-fx-background-color: white; -fx-background-radius: 15px; -fx-padding: 10px;" text="DECK" textAlignment="CENTER" textFill="#68441d">
                      <font>
                         <Font name="Inter Semi Bold" size="19.0" />
                      </font>
                   </Label>
+
+                  <Label fx:id="timerLabel" text="Timer: 0.0" style="-fx-font-size: 20px; -fx-text-fill: red; -fx-font-weight: bold;"/>
+
                </children>
                <opaqueInsets>
                   <Insets />
