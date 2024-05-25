@@ -27,4 +27,5 @@ public class StartViewController {
         // AudioPlayer audioPlayer = AudioPlayer.getInstance("/audio/backsound.mp3", "/audio/attack.mp3");
         // audioPlayer.play();
     }
+
 }

@@ -52,8 +52,7 @@ public class BearAttack extends Thread {
                                 running = false;
                                 ActiveDeck deck = player.getActiveDeck();
                                 Card card = CardFactory.createCard("BERUANG");
-                                
-
+                                mc.showBearPopUp();
                                 if (!deck.isFull()) {
                                     deck.add(card);
                                 }
@@ -90,7 +89,7 @@ public class BearAttack extends Thread {
             }
             Platform.runLater(() -> {
                 mc.offTimer();
-                GameWorld.getInstance().movePhase(1);
+
             });
         }
     }
