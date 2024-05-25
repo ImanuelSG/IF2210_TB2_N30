@@ -98,11 +98,29 @@
             <Text>LOAD PLUGIN</Text>
             <fx:include source="/view/PluginView.fxml"/>
         </VBox>
+
+         <!-- BERUANG -->
+         <VBox fx:id="beruangPopUp" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="583.0" spacing="10" style="-fx-background-color: #ffffff; -fx-border-color: #495749; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-padding: 15px; -fx-spacing: 15px;" >
+            <VBox alignment="CENTER" spacing="15">
+               <Label fx:id="beruangText"/>
+               <Label fx:id="beruangLabel"/>
+               <ImageView fx:id="beruangImg" fitWidth="100" fitHeight="100" />
+            </VBox>
+            <HBox alignment="CENTER" style="-fx-spacing: 20px;">
+               <Button fx:id="okButton" onAction="#handleOKButton" prefHeight="38.0" prefWidth="77.0" text="Lanjutkan" stylesheets="/view/styles.css" styleClass="greenButton" />
+            </HBox>
+         </VBox>
+
+         <!--WINNING STATE -->
+         <VBox fx:id="winningState">
+            <ImageView fx:id="winningImg"/>
+         </VBox>
+
       </StackPane>
    </center>
    <right>
       <!--SIDE BAR-->
-      <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="304.0" style="-fx-padding: 20px; -fx-spacing: 150px; -fx-background-image: url('img/gui/bg_sidebar.png'); -fx-background-size: cover;" BorderPane.alignment="CENTER">
+      <VBox fx:id="sideBar" alignment="CENTER" prefHeight="1000.0" prefWidth="304.0" style="-fx-padding: 20px; -fx-spacing: 150px; -fx-background-image: url('img/gui/bg_sidebar.png'); -fx-background-size: cover;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="nextButton" mnemonicParsing="false" onAction="#handleNextTurn" prefHeight="72.0" prefWidth="96.0" style="-fx-background-color: #68441D; -fx-background-radius: 8px;" text="NEXT" textFill="WHITE">
                <font>

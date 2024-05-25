@@ -51,7 +51,8 @@ public class BearAttack extends Thread {
                             if (ladang.getHarvestable(i, j).isTrapped()) {
                                 running = false;
                                 ActiveDeck deck = player.getActiveDeck();
-                                Card card = CardFactory.createCard("DAGING_BERUANG");
+                                Card card = CardFactory.createCard("BERUANG");
+                                mc.showBearPopUp();
                                 if (!deck.isFull()) {
                                     deck.add(card);
                                 }
@@ -86,7 +87,7 @@ public class BearAttack extends Thread {
             }
             Platform.runLater(() -> {
                 mc.offTimer();
-                GameWorld.getInstance().movePhase(1);
+
             });
         }
     }

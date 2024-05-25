@@ -24,7 +24,8 @@ public class StartViewController {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        AudioPlayer audioPlayer = AudioPlayer.getInstance("/audio/backsound.mp3", "/audio/attack.mp3");
-        audioPlayer.play();
+        // AudioPlayer audioPlayer = AudioPlayer.getInstance("/audio/backsound.mp3", "/audio/attack.mp3");
+        // audioPlayer.play();
     }
+
 }
