@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+// Assuming MainApp is in the "main" package
 
 public class StartViewController {
 
@@ -16,9 +17,11 @@ public class StartViewController {
         Parent root = loader.load();
 
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
 
+        // Set fixed width and height from MainApp
+        Scene scene = new Scene(root, 1375, 1200.0);
+
+        stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
     }
