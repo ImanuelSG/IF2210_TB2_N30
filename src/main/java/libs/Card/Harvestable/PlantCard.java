@@ -18,4 +18,22 @@ public class PlantCard extends HarvestableCard {
         return this.productMade;
     }
 
+    @Override
+    public Image getImage() {
+        if (this.parameter >= this.parameterToHarvest) {
+            return this.transformedImage;
+        } else {
+            return this.image;
+        }
+    }
+
+    @Override
+    public String getName() {
+        if (this.parameter >= this.parameterToHarvest) {
+            return this.productMade;
+        } else {
+            return this.name;
+        }
+    }
+
 }

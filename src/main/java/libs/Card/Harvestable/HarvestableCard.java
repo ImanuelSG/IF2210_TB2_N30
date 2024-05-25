@@ -65,22 +65,6 @@ public abstract class HarvestableCard extends Card implements Harvestable {
         return totalCount;
     }
 
-    @Override
-    public Image getImage() {
-        if (parameter >= parameterToHarvest) {
-            return transformedImage;
-        } else {
-            return image;
-        }
-    }
 
-    @Override
-    public String getName() {
-        if (parameter >= parameterToHarvest) {
-            return productMade;
-        } else {
-            return name;
-        }
-    }
 
 }
