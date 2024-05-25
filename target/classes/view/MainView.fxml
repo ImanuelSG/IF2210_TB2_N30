@@ -84,12 +84,12 @@
                </HBox>
             </children>
          </VBox>
-         <VBox >
-            <VBox fx:id="saveStateBox">
-               <Text>SAVE STATE</Text>
-               <fx:include source="/view/SaveStateView.fxml"/>
-            </VBox>
+
+         <VBox fx:id="saveStateBox">
+            <Text>SAVE STATE</Text>
+            <fx:include source="/view/SaveStateView.fxml"/>
          </VBox>
+
 <!--         <VBox fx:id="loadStateBox">-->
 
 <!--         </VBox>-->
