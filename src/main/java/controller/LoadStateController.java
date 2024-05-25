@@ -30,6 +30,7 @@ public class LoadStateController implements Initializable {
     private void initializeComboBox() {
         comboBox.getItems().clear(); // Clear existing items to avoid duplication
         comboBox.getItems().addAll(FileManager.getInstance().getSupportedExtensions());
+        comboBox.setValue("txt");
     }
 
     private void addComboBoxClickListener() {
@@ -45,8 +46,8 @@ public class LoadStateController implements Initializable {
         if (selectedExtension != null && !selectedExtension.isEmpty()) {
             // Set extension filters based on the selected extension from the ComboBox
             fileChooser.getExtensionFilters().add(
-                    new FileChooser.ExtensionFilter(selectedExtension.toUpperCase() + " Files", "*." + selectedExtension)
-            );
+                    new FileChooser.ExtensionFilter(selectedExtension.toUpperCase() + " Files",
+                            "*." + selectedExtension));
 
             Window window = comboBox.getScene().getWindow();
             File selectedFile = fileChooser.showOpenDialog(window);

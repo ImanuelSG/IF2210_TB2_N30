@@ -295,7 +295,7 @@ public class FileManager {
 
             // Write shop items
             for (Map.Entry<String, Integer> entry : t.getStock().entrySet()) {
-                bw.write(entry.getKey() + " " + entry.getValue() + "\n");
+                bw.write(entry.getKey().toUpperCase().replace(" ", "_") + " " + entry.getValue() + "\n");
             }
 
             // Write Player 1's data
@@ -309,7 +309,7 @@ public class FileManager {
                 Card activeDeckCard = p1ActiveDeck.getCard(i);
                 if (activeDeckCard != null) {
                     bw.write(Ladang.rowColToPetak(0, i) + " ");
-                    bw.write(activeDeckCard.getName() + "\n");
+                    bw.write(activeDeckCard.getName().toUpperCase().replace(" ", "_") + "\n");
                 }
             }
 
@@ -323,7 +323,7 @@ public class FileManager {
                     HarvestableCard ladangCard = p1Ladang.getHarvestable(i, j);
                     if (ladangCard != null) {
                         bw.write(Ladang.rowColToPetak(i, j) + " ");
-                        bw.write(ladangCard.getName() + " ");
+                        bw.write(ladangCard.getName().toUpperCase().replace(" ", "_") + " ");
                         bw.write(ladangCard.getParameter() + " ");
 
                         Map<String, Integer> appliedEffects = ladangCard.getAppliedEffect();
@@ -331,7 +331,7 @@ public class FileManager {
 
                         for (Map.Entry<String, Integer> entry : appliedEffects.entrySet()) {
                             for (int k = 0; k < entry.getValue(); k++) {
-                                bw.write(entry.getKey() + " ");
+                                bw.write(entry.getKey().toUpperCase().replace(" ", "_") + " ");
                             }
                         }
 
@@ -350,7 +350,7 @@ public class FileManager {
                 Card activeDeckCard = p2ActiveDeck.getCard(i);
                 if (activeDeckCard != null) {
                     bw.write(Ladang.rowColToPetak(0, i) + " ");
-                    bw.write(activeDeckCard.getName() + "\n");
+                    bw.write(activeDeckCard.getName().toUpperCase().replace(" ", "_") + "\n");
                 }
             }
 
@@ -364,7 +364,7 @@ public class FileManager {
                     HarvestableCard ladangCard = p2Ladang.getHarvestable(i, j);
                     if (ladangCard != null) {
                         bw.write(Ladang.rowColToPetak(i, j) + " ");
-                        bw.write(ladangCard.getName() + " ");
+                        bw.write(ladangCard.getName().toUpperCase().replace(" ", "_") + " ");
                         bw.write(ladangCard.getParameter() + " ");
 
                         Map<String, Integer> appliedEffects = ladangCard.getAppliedEffect();
@@ -372,7 +372,7 @@ public class FileManager {
 
                         for (Map.Entry<String, Integer> entry : appliedEffects.entrySet()) {
                             for (int k = 0; k < entry.getValue(); k++) {
-                                bw.write(entry.getKey() + " ");
+                                bw.write(entry.getKey().toUpperCase().replace(" ", "_") + " ");
                             }
                         }
 
