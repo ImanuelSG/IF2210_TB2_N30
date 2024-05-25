@@ -103,6 +103,14 @@ public class Ladang implements Observerable {
         notifyObserver();
     }
 
+    public void swapHarvestable(int fromRow, int fromCol, int toRow, int toCol) {
+
+        HarvestableCard temp = field[toRow][toCol];
+        field[toRow][toCol] = field[fromRow][fromCol];
+        field[fromRow][fromCol] = temp;
+        notifyObserver();
+    }
+
     @Override
     public void addObserver(Observer observer) {
         observers.add(observer);

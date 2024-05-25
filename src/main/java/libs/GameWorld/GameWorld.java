@@ -1,6 +1,7 @@
 package libs.GameWorld;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import controller.Observer;
 import controller.Observerable;
@@ -10,12 +11,22 @@ import libs.Field.Ladang;
 import libs.Player.Player;
 
 // Karena singleton maka harus dibuat private constructor
-public class GameWorld implements Observerable, SpecialObserverable {
+public class GameWorld implements Observerable, SpecialObserverable, BearAttackNotifier {
     private int turn;
     private Player player1;
     private Player player2;
     private int state;
     private Player currentPlayer;
+    private Random randomizer;
+
+    // For Bear Attack
+    private int minX;
+    private int minY;
+    private int maxX;
+    private int maxY;
+    private int duration;
+
+    private ArrayList<BearAttackListener> listener = new ArrayList<>();
 
     private ArrayList<Observer> observers = new ArrayList<>();
 
@@ -29,6 +40,7 @@ public class GameWorld implements Observerable, SpecialObserverable {
         turn = 1;
         state = 0;
         currentPlayer = player1;
+        randomizer = new Random();
     }
 
     // Public static method to provide access to the instance
@@ -70,7 +82,6 @@ public class GameWorld implements Observerable, SpecialObserverable {
 
         currentPlayer = (turn % 2 == 0) ? player2 : player1;
 
-        System.out.println(currentPlayer.getName());
         movePhase(2);
         notifyObserver();
     }
@@ -78,13 +89,52 @@ public class GameWorld implements Observerable, SpecialObserverable {
     public void movePhase(int lastState) {
 
         if (lastState == 0) {
-            state = 2;
+
+            double probs = randomizer.nextDouble();
+
+            if (probs <= 1.00) {
+                state = 1;
+                notifySpecial();
+
+                this.duration = randomizer.nextInt(60 - 30 + 1) + 30;
+                boolean found = false;
+                int result;
+                int startX;
+                int startY;
+                int endX;
+                int endY;
+                do {
+                    startX = randomizer.nextInt(5);
+                    startY = randomizer.nextInt(4);
+
+                    endX = randomizer.nextInt(5);
+                    endY = randomizer.nextInt(4);
+
+                    result = (Math.abs(startX - endX) + 1) * (Math.abs(startY - endY) + 1);
+                    if (result <= 6 && result >= 0) {
+                        found = true;
+                    }
+                } while (!found);
+
+                minX = Math.min(startX, endX);
+                minY = Math.min(startY, endY);
+                maxX = Math.max(startX, endX);
+                maxY = Math.max(startY, endY);
+
+                notifyListener(minY, maxY, minX, maxX, 10);
+            } else {
+                state = 2;
+                notifySpecial();
+            }
         } else if (lastState == 1) {
+            this.endBearNotify();
             state = 2;
+            notifySpecial();
         } else {
             state = 0;
+            notifySpecial();
         }
-        notifySpecial();
+
     }
 
     public int getTurn() {
@@ -106,6 +156,14 @@ public class GameWorld implements Observerable, SpecialObserverable {
     public int getState() {
         return state;
 
+    }
+
+    public boolean isBearAttack() {
+        return this.state == 1;
+    }
+
+    public boolean isAttacked(int row, int col) {
+        return row >= minY && row <= maxY && col >= minX && col <= maxX;
     }
 
     public void setTurn(int turn) {
@@ -168,6 +226,25 @@ public class GameWorld implements Observerable, SpecialObserverable {
     public void notifySpecial() {
         for (SpecialObserver observer : specialobservers) {
             observer.update();
+        }
+    }
+
+    @Override
+    public void addListener(BearAttackListener listener) {
+        this.listener.add(listener);
+    }
+
+    @Override
+    public void notifyListener(int startrow, int endrow, int startcol, int endcol, int duration) {
+        for (BearAttackListener ls : listener) {
+
+            ls.setupBearAttack(startrow, endrow, startcol, endcol, duration);
+        }
+    }
+
+    private void endBearNotify() {
+        for (BearAttackListener ls : listener) {
+            ls.endBearAttack();
         }
     }
 }

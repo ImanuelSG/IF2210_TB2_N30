@@ -122,6 +122,9 @@
                         <Font name="Inter Semi Bold" size="19.0" />
                      </font>
                   </Label>
+                   <top>
+        <Label fx:id="timerLabel" text="0.0"/>
+    </top>
                </children>
                <opaqueInsets>
                   <Insets />
