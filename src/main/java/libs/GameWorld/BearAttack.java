@@ -56,6 +56,8 @@ public class BearAttack extends Thread {
                                 if (!deck.isFull()) {
                                     deck.add(card);
                                 }
+
+                                return;
                             }
                         }
                     }
@@ -89,6 +91,7 @@ public class BearAttack extends Thread {
             }
             Platform.runLater(() -> {
                 mc.offTimer();
+                GameWorld.getInstance().movePhase(1);
 
             });
         }
