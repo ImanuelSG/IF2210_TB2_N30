@@ -131,7 +131,7 @@ public class JsonPlugin implements FilePlugin {
         JSONArray itemsArray = new JSONArray();
         for (Map.Entry<String, Integer> entry : t.getStock().entrySet()) {
             JSONObject item = new JSONObject();
-            item.put("name", entry.getKey());
+            item.put("name", entry.getKey().toUpperCase().replace(" ", "_"));
             item.put("quantity", entry.getValue());
             itemsArray.put(item);
         }
@@ -168,7 +168,7 @@ public class JsonPlugin implements FilePlugin {
             if (activeDeckCard != null) {
                 JSONObject card = new JSONObject();
                 card.put("location", Ladang.rowColToPetak(0, i));
-                card.put("card", activeDeckCard.getName());
+                card.put("card", activeDeckCard.getName().toUpperCase().replace(" ", "_"));
                 activeDeckArray.put(card);
             }
         }
@@ -184,7 +184,7 @@ public class JsonPlugin implements FilePlugin {
                 if (ladangCard != null) {
                     JSONObject ladangCardJson = new JSONObject();
                     ladangCardJson.put("location", Ladang.rowColToPetak(i, j));
-                    ladangCardJson.put("card", ladangCard.getName());
+                    ladangCardJson.put("card", ladangCard.getName().toUpperCase().replace(" ", "_"));
                     ladangCardJson.put("ageOrWeight", ladangCard.getParameter());
                     ladangCardJson.put("activeItemCount", ladangCard.getTotalEffectCount());
 
@@ -192,7 +192,7 @@ public class JsonPlugin implements FilePlugin {
                     Map<String, Integer> appliedEffects = ladangCard.getAppliedEffect();
                     for (Map.Entry<String, Integer> entry : appliedEffects.entrySet()) {
                         for (int k = 0; k < entry.getValue(); k++) {
-                            activeItemsArray.put(entry.getKey());
+                            activeItemsArray.put(entry.getKey().toUpperCase().replace(" ", "_"));
                         }
                     }
                     ladangCardJson.put("activeItems", activeItemsArray);

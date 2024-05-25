@@ -165,17 +165,20 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     public void showSaveState() {
         saveStateBox.setVisible(!saveStateBox.isVisible());
         loadStateBox.setVisible(false);
+        loadPluginBox.setVisible(false);
     }
 
     @FXML
     public void showLoadState() {
         loadStateBox.setVisible(!loadStateBox.isVisible());
         saveStateBox.setVisible(false);
+        loadPluginBox.setVisible(false);
     }
 
     @FXML
     public void showPlugin() {
         loadPluginBox.setVisible(!loadPluginBox.isVisible());
+        closeOtherBox();
     }
 
     @FXML

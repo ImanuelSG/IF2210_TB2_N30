@@ -208,7 +208,7 @@ public class XmlPlugin implements FilePlugin {
                 Element item = doc.createElement("Item");
 
                 Element name = doc.createElement("Name");
-                name.appendChild(doc.createTextNode(entry.getKey()));
+                name.appendChild(doc.createTextNode(entry.getKey().toUpperCase().replace(" ", "_")));
                 item.appendChild(name);
 
                 Element quantity = doc.createElement("Quantity");
@@ -272,7 +272,7 @@ public class XmlPlugin implements FilePlugin {
                 card.appendChild(location);
     
                 Element name = doc.createElement("Name");
-                name.appendChild(doc.createTextNode(activeDeckCard.getName()));
+                name.appendChild(doc.createTextNode(activeDeckCard.getName().toUpperCase().replace(" ", "_")));
                 card.appendChild(name);
     
                 activeDeck.appendChild(card);
@@ -298,7 +298,7 @@ public class XmlPlugin implements FilePlugin {
                     ladangCardElement.appendChild(location);
     
                     Element name = doc.createElement("Name");
-                    name.appendChild(doc.createTextNode(ladangCard.getName()));
+                    name.appendChild(doc.createTextNode(ladangCard.getName().toUpperCase().replace(" ", "_")));
                     ladangCardElement.appendChild(name);
     
                     Element ageOrWeight = doc.createElement("AgeOrWeight");
@@ -314,7 +314,7 @@ public class XmlPlugin implements FilePlugin {
                     for (Map.Entry<String, Integer> entry : appliedEffects.entrySet()) {
                         for (int k = 0; k < entry.getValue(); k++) {
                             Element item = doc.createElement("Item");
-                            item.appendChild(doc.createTextNode(entry.getKey()));
+                            item.appendChild(doc.createTextNode(entry.getKey().toUpperCase().replace(" ", "_")));
                             activeItems.appendChild(item);
                         }
                     }
