@@ -1,13 +1,19 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import libs.Deck.Deck;
 import libs.GameWorld.BearAttack;
 import libs.GameWorld.BearAttackListener;
@@ -72,6 +78,32 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
     @FXML
     private Button saveStateButton;
 
+    @FXML
+    private VBox sideBar;
+
+    // Beruang
+
+    @FXML
+    private VBox beruangPopUp;
+
+    @FXML
+    private Label beruangText;
+
+    @FXML
+    private Label beruangLabel;
+
+    @FXML
+    private ImageView beruangImg;
+
+    @FXML
+    private Button okButton;
+
+    @FXML
+    private VBox winningState;
+
+    @FXML
+    private ImageView winningImg;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -83,6 +115,10 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
         saveStateBox.setVisible(false);
         loadStateBox.setVisible(false);
         loadPluginBox.setVisible(false);
+        beruangPopUp.setVisible(false);
+        winningState.setVisible(false);
+
+
         main.registerObserver(this);
         main.addListener(this);
 
@@ -206,8 +242,7 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
 
         if (main.getTurn() == 21) {
             // End game
-            System.out.println();
-            // loadView();
+            setWinningState(getWinningPlayer());
 
         }
 
@@ -225,6 +260,7 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
         deckLabel.setText("Deck: " + main.getCurrentPlayer().getDeck().getSize() + "/" + " 40");
 
     }
+
 
     private void play(int state) {
         GameWorld main = GameWorld.getInstance();
@@ -276,4 +312,58 @@ public class MainController implements Initializable, SpecialObserver, BearAttac
         enableAllButton();
     }
 
+    private void initializeBearPopUp()
+    {
+        Platform.runLater(()->{
+            beruangText.setText("BERHASIL DITANGKAP!");
+            beruangLabel.setText("Anda berhasil ditangkap Beruang!!");
+            beruangImg.setImage(new Image("/img/gui/cry_bear.gif"));
+            beruangImg.setFitHeight(150);
+            beruangImg.setFitWidth(150);
+        });
+
+
+    }
+    public void showBearPopUp() {
+        initializeBearPopUp();;
+        beruangPopUp.setVisible(true);
+        disableAllButton();
+    }
+
+    @FXML
+    private void handleOKButton() {
+        beruangPopUp.setVisible(false);
+        GameWorld.getInstance().movePhase(1);
+    }
+
+    private int getWinningPlayer() {
+        int p1Gulden = GameWorld.getInstance().getPlayer1().getGulden();
+        int p2Gulden = GameWorld.getInstance().getPlayer2().getGulden();
+
+        if (p1Gulden >= p2Gulden) {
+            return 1;
+        }
+        else {
+            return 2;
+        }
+    }
+
+    @FXML
+    private void setWinningState(int player) {
+        sideBar.setPrefWidth(0);
+        sideBar.setVisible(false);
+
+        if (player == 1)
+        {
+            winningImg.setImage(new Image("/img/gui/p1_win.png"));
+        }
+        else
+        {
+            winningImg.setImage(new Image("/img/gui/p2_win.png"));
+        }
+
+        winningImg.setFitWidth(1400);
+        winningImg.setFitHeight(1400);
+        winningState.setVisible(true);
+    }
 }

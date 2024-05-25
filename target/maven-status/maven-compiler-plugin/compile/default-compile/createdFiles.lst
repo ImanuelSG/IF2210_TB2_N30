@@ -2,6 +2,10 @@ libs/Card/Useable/UseableOnEnemy.class
 libs/Card/Harvestable/HarvestableCard.class
 libs/GameWorld/BearAttackNotifier.class
 controller/LadangMusuhController.class
+<<<<<<< HEAD
+libs/Loader/FilePlugin.class
+=======
+>>>>>>> 15431af6d15898b7889a066a6c91bb16cd04a581
 libs/Card/CardFactory.class
 libs/Card/Products/UseableOnAnimal.class
 controller/MainController.class
@@ -14,9 +18,14 @@ libs/Field/Ladang.class
 MainApp.class
 libs/Card/Useable/TrapCard.class
 libs/GameWorld/BearAttackListener.class
+controller/SaveStateController.class
 libs/Card/Useable/UseableOnSelf.class
 libs/Player/Player.class
 libs/GameWorld/SpecialObserver.class
+<<<<<<< HEAD
+libs/Loader/XmlPlugin.class
+=======
+>>>>>>> 15431af6d15898b7889a066a6c91bb16cd04a581
 libs/Card/Products/Transactionable.class
 controller/ShuffleController.class
 controller/LadangkuController.class
