@@ -22,6 +22,7 @@ import libs.Deck.*;
 import libs.Card.*;
 import libs.Field.*;
 import libs.Card.Harvestable.*;
+import libs.FileManager.*;
 
 public class MainTestLoad extends Application {
 
@@ -40,10 +41,9 @@ public class MainTestLoad extends Application {
         CardFactory cf = CardFactory.getInstance();
         GameWorld g = GameWorld.getInstance();
         Toko t = Toko.getInstance();
-        Loader l = Loader.getInstance();
 
         Scanner scanner = new Scanner(System.in);
-        Loader loader = Loader.getInstance();
+        FileManager loader = FileManager.getInstance();
 
         while (true) {
             System.out.println();
@@ -66,16 +66,16 @@ public class MainTestLoad extends Application {
             if (file.exists()) {
                 if (input.endsWith(".jar")) {
                     try {
-                        loader.loadJar(input);
+                        loader.loadJar(file);
                     } catch (Exception e) {
                         System.out.println("Failed to load JAR file: " + e.getMessage());
                         e.printStackTrace();
                     }
                 } else {
-                    loader.loadFile(input);
+                    loader.loadFile(file, loader.getFileExtension(input));
                 }
             } else {
-                loader.saveFile(input);
+                loader.saveFile(input, loader.getFileExtension(input));
             }
 
             System.out.println();

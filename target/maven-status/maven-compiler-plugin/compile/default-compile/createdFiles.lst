@@ -20,13 +20,11 @@ libs/Field/Ladang.class
 libs/Toko/Toko.class
 libs/Card/Useable/AccelerateCard.class
 MainTestLoad.class
-MainApp.class
 libs/Card/Useable/TrapCard.class
 libs/Card/Useable/ProtectCard.class
 libs/GameWorld/SpecialObserverable.class
 controller/Observer.class
 libs/Deck/ActiveDeck.class
-controller/SaveStateController.class
 libs/GameWorld/BearAttackListener.class
 libs/Card/Useable/UseableOnSelf.class
 libs/Player/Player.class
