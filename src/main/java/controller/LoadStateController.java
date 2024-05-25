@@ -5,8 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.stage.Window;
-import javafx.stage.FileChooser;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Window;
 
 import java.io.File;
@@ -37,32 +36,32 @@ public class LoadStateController implements Initializable {
     }
 
     @FXML
-    void handleSelectFileButtonAction(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select File");
+    void handleSelectFolderButtonAction(ActionEvent event) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select Folder");
 
         String selectedExtension = comboBox.getValue();
         if (selectedExtension != null && !selectedExtension.isEmpty()) {
-            // Set extension filters based on the selected extension from the ComboBox
-            fileChooser.getExtensionFilters().add(
-                    new FileChooser.ExtensionFilter(selectedExtension.toUpperCase() + " Files", "*." + selectedExtension)
-            );
-
             Window window = comboBox.getScene().getWindow();
-            File selectedFile = fileChooser.showOpenDialog(window);
-            if (selectedFile != null) {
-                String selectedFilePath = selectedFile.getAbsolutePath();
-                // Do something with the selected file path
-                System.out.println("Selected file: " + selectedFilePath);
-                try {
-                    FileManager.getInstance().loadFile(selectedFile, selectedExtension);
-                    showAlert("Success", "File loaded successfully.");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    showAlert("Error", "Failed to load file: " + e.getMessage());
+            File selectedDirectory = directoryChooser.showDialog(window);
+            if (selectedDirectory != null) {
+                File stateFile = new File(selectedDirectory, "state." + selectedExtension);
+                if (stateFile.exists()) {
+                    String selectedFilePath = stateFile.getAbsolutePath();
+                    // Do something with the selected file path
+                    System.out.println("Selected file: " + selectedFilePath);
+                    try {
+                        FileManager.getInstance().loadFile(stateFile, selectedExtension);
+                        showAlert("Success", "File loaded successfully.");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        showAlert("Error", "Failed to load file: " + e.getMessage());
+                    }
+                } else {
+                    showAlert("Error", "File state." + selectedExtension + " not found in the selected folder.");
                 }
             } else {
-                System.out.println("No file selected.");
+                System.out.println("No folder selected.");
             }
         } else {
             System.out.println("No extension selected.");

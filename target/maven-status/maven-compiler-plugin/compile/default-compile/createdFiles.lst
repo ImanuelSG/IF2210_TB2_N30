@@ -3,7 +3,6 @@ libs/Card/Harvestable/HarvestableCard.class
 libs/GameWorld/BearAttackNotifier.class
 controller/LadangMusuhController.class
 libs/Card/CardFactory.class
-libs/Loader/FilePlugin.class
 libs/Card/Products/UseableOnAnimal.class
 controller/MainController.class
 controller/TokoController.class
@@ -19,17 +18,14 @@ libs/Card/Useable/UseableOnSelf.class
 libs/Player/Player.class
 libs/GameWorld/SpecialObserver.class
 libs/Card/Products/Transactionable.class
-libs/Loader/XmlPlugin.class
 controller/ShuffleController.class
 controller/LadangkuController.class
-libs/Loader/Loader.class
 libs/Card/Harvestable/PlantCard.class
 controller/ActiveDeckController.class
 libs/Card/Harvestable/AnimalCard.class
 libs/GameWorld/GameWorld.class
 libs/Toko/Toko.class
 libs/Card/Useable/AccelerateCard.class
-MainTestLoad.class
 libs/Card/Useable/ProtectCard.class
 libs/GameWorld/SpecialObserverable.class
 controller/Observer.class

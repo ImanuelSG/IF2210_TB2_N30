@@ -11,7 +11,7 @@
       <VBox alignment="CENTER" style="-fx-spacing: 100px; -fx-background-color: white;" prefHeight="600">
          <Label text="Load State" styleClass="save-load-title"/>
          <ComboBox fx:id="comboBox" style="-fx-font-size: 16px; -fx-background-color: #f0f0f0; -fx-padding: 10px; -fx-border-color: #cccccc; -fx-border-radius: 5px; -fx-background-radius: 5px;"/>
-         <Button text="Select File" onAction="#handleSelectFileButtonAction" styleClass="greenButtonSave"/>
+         <Button text="Select Folder" onAction="#handleSelectFolderButtonAction" styleClass="greenButtonSave"/>
       </VBox>
    </children>
 </VBox>
