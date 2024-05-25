@@ -1,11 +1,16 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import libs.GameWorld.GameWorld;
 
 import java.io.IOException;
@@ -27,7 +32,8 @@ public class MainController implements Initializable,Observer {
     @FXML
     private Label player2GuldenLabel;
 
-
+    @FXML
+    private VBox saveStateBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,6 +44,7 @@ public class MainController implements Initializable,Observer {
         main.getEnemy().addObserver(this);
 
 
+        saveStateBox.setVisible(false);
         loadView("LadangKu.fxml"); // Corrected to load "View1.fxml"
         updateView();
         // main.run();
@@ -56,6 +63,22 @@ public class MainController implements Initializable,Observer {
 
     @FXML
     public void showToko() {
+        loadView("TokoView.fxml");
+
+    }
+
+    @FXML
+    public void showSaveState() {
+        saveStateBox.setVisible(true);
+    }
+
+    @FXML
+    public void showLoadState() {
+        loadView("TokoView.fxml");
+    }
+
+    @FXML
+    public void showLoadPlugin() {
         loadView("TokoView.fxml");
     }
 

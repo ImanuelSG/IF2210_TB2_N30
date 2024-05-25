@@ -84,6 +84,18 @@
                </HBox>
             </children>
          </VBox>
+         <VBox >
+            <VBox fx:id="saveStateBox">
+               <Text>SAVE STATE</Text>
+               <fx:include source="/view/SaveStateView.fxml"/>
+            </VBox>
+         </VBox>
+<!--         <VBox fx:id="loadStateBox">-->
+
+<!--         </VBox>-->
+<!--         <VBox fx:id="loadPluginBox">-->
+
+<!--         </VBox>-->
       </StackPane>
    </center>
    <right>
@@ -108,11 +120,15 @@
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="LOAD STATE" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#showSaveState" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="SAVE STATE" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font></Button>
-                  <Button layoutX="10.0" layoutY="212.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LOAD PLUGIN" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#showLoadState" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-border-radius: 8px; -fx-background-radius: 8px;" text="LOAD STATE" textFill="WHITE">
+                     <font>
+                        <Font name="Inter Semi Bold" size="20.0" />
+                     </font></Button>
+                  <Button layoutX="10.0" layoutY="212.0" onAction="#showLoadPlugin" mnemonicParsing="false" prefHeight="40.0" prefWidth="260.0" style="-fx-padding: 4px 18px; -fx-background-color: #D49656; -fx-border-color: #68441D; -fx-background-radius: 8px; -fx-border-radius: 8px;" text="LOAD PLUGIN" textFill="WHITE">
                      <font>
                         <Font name="Inter Semi Bold" size="20.0" />
                      </font>

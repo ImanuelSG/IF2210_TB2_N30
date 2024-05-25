@@ -20,7 +20,7 @@
             </VBox>
             <BorderPane fx:id="sellBox" prefWidth="200" style="-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10; -fx-border-color: #D49656;  -fx-border-width: 6px; -fx-border-radius: 7px;">
                 <center>
-                    <VBox alignment="CENTER">
+                    <VBox alignment="CENTER" spacing="30">
                         <Label fx:id="sellBoxText"/>
                         <ImageView fx:id="sellBoxImage" fitWidth="100" fitHeight="100" />
                     </VBox>

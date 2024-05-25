@@ -49,7 +49,7 @@ public class TokoController {
     public void initialize() {
 
         Toko.getInstance().addProduct("SUSU",10);
-        Toko.getInstance().addProduct("TELUR",10);
+        Toko.getInstance().addProduct("TELUR",1);
         Toko.getInstance().addProduct("STROBERI",10);
         Toko.getInstance().addProduct("JAGUNG",10);
         Toko.getInstance().addProduct("DAGING_KUDA",10);
@@ -160,9 +160,12 @@ public class TokoController {
         return borderPane;
     }
 
-
+    private  void refetch() {
+        this.stock = Toko.getInstance().getStock();
+    }
 
     private void populateToko() {
+
         itemCards.getChildren().clear();
 
         int row = 0;
@@ -170,13 +173,16 @@ public class TokoController {
 
         for (String item : stock.keySet()) {
             Integer quantity = stock.get(item);
-            BorderPane borderPane = createTokoCard(item, quantity);
-            itemCards.add(borderPane, col, row);
+            if (quantity > 0){
 
-            col++;
-            if (col == 2) { // Assuming 2 items per row
-                col = 0;
-                row++;
+                BorderPane borderPane = createTokoCard(item, quantity);
+                itemCards.add(borderPane, col, row);
+
+                col++;
+                if (col == 2) { // Assuming 2 items per row
+                    col = 0;
+                    row++;
+                }
             }
         }
     }
@@ -220,7 +226,8 @@ public class TokoController {
                         currPlayer.setGulden(price + currPlayer.getGulden());
                         activeDeck.removeCard(Integer.parseInt(pos));
 
-                        Toko.getInstance().addProduct(item, stock.get(item)+1);
+                        Toko.getInstance().addProduct(item, 1);
+                        refetch();
                         populateToko();
                         success = true;
                     }
@@ -248,6 +255,8 @@ public class TokoController {
         Node originalContent = borderPane.getCenter();
         // Create a new BorderPane for the confirmation
         BorderPane confirmationPane = new BorderPane();
+
+
         confirmationPane.setPrefWidth(300);
         confirmationPane.setPrefHeight(200);
         confirmationPane.setStyle("-fx-background-color: #E2CC9F; -fx-background-radius: 10; -fx-padding: 10;");
@@ -256,11 +265,11 @@ public class TokoController {
         vbox.setAlignment(Pos.CENTER);
         vbox.setSpacing(10);
 
-        Label confirmationLabel = new Label("Are you sure you want to perform this action?");
+        Label confirmationLabel = new Label("Yakin Membeli?");
         confirmationLabel.setStyle("-fx-text-fill: black; -fx-font-weight: bold;");
         vbox.getChildren().add(confirmationLabel);
 
-        Button confirmButton = new Button("Confirm");
+        Button confirmButton = new Button("BELI");
 
         if (currPlayer.getActiveDeck().isFull())
         {
@@ -270,14 +279,18 @@ public class TokoController {
         confirmButton.setOnAction(event -> {
             // Perform the confirmation action
             handleSell(item,currPlayer);
-            borderPane.setCenter(originalContent); // Restore the original content
+            refetch();
+            populateToko();
         });
 
-        Button cancelButton = new Button("Cancel");
+        Button cancelButton = new Button("BATAL");
         cancelButton.setOnAction(event -> {
             // Restore the original content
             borderPane.setCenter(originalContent);
         });
+
+        confirmButton.getStyleClass().add("greenButton");
+        cancelButton.getStyleClass().add("brownButton");
 
         HBox buttonBox = new HBox();
         buttonBox.setAlignment(Pos.CENTER);
@@ -304,7 +317,7 @@ public class TokoController {
             ProductCard productCard = CardFactory.createProductCard(item);
             currPlayer.getActiveDeck().add(productCard);
             currPlayer.setGulden(currPlayer.getGulden() - price);
-            Toko.getInstance().addProduct(item, stock.get(item)-1);
+            Toko.getInstance().removeProduct(item,1);
         }
         else {
             System.out.println("uang ga cukup");
