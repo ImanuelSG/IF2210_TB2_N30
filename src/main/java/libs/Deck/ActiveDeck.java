@@ -79,6 +79,10 @@ public class ActiveDeck implements Observerable {
         return cardCount;
     }
 
+    public void setCardCount(int cardCount) {
+        this.cardCount = cardCount;
+    }
+
     @Override
     public void addObserver(Observer observer) {
         observers.add(observer);

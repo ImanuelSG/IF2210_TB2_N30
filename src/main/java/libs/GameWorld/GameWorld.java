@@ -123,7 +123,7 @@ public class GameWorld implements Observerable, SpecialObserverable, BearAttackN
                 maxX = Math.max(startX, endX);
                 maxY = Math.max(startY, endY);
 
-                notifyListener(minY, maxY, minX, maxX, 10);
+                notifyListener(minY, maxY, minX, maxX, 0);
             } else {
                 state = 2;
                 notifySpecial();

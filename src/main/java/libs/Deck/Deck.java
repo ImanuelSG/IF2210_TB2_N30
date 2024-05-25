@@ -35,6 +35,10 @@ public class Deck implements Observerable {
         return cards;
     }
 
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
     public ArrayList<Card> shuffle(int quantity) {
         Collections.shuffle(cards);
         ArrayList<Card> shuffledCards = new ArrayList<>();
